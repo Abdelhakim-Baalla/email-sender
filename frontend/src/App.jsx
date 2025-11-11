@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, Reorder } from "framer-motion";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +8,9 @@ import LoginForm from './components/LoginForm';
 import ProfileModal from './components/ProfileModal';
 import SmtpConfigModal from './components/SmtpConfigModal';
 import LanguageSwitcher from './components/LanguageSwitcher';
+import GlobalSearch from './components/GlobalSearch';
+import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
+import { useUndoRedo } from './hooks/useUndoRedo';
 import "./scripts.js";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:4859";
@@ -51,7 +54,8 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
   const [darkMode, setDarkMode] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState(emptyForm);
-  const [applications, setApplications] = useState([]);
+  const { state: applications, set: setApplications, undo, redo, canUndo, canRedo } = useUndoRedo([]);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [cvFile, setCvFile] = useState(null);
   const [cvName, setCvName] = useState("");
   const [limit, setLimit] = useState(1);
@@ -264,7 +268,6 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
 
     const companyName = formData.company.trim() || emailList[0].split('@')[1].split('.')[0];
 
-    // Utiliser le CV uploadé ou le CV du profil utilisateur
     const userCvPath = localStorage.getItem('userCvPath');
     
     const entry = {
@@ -272,11 +275,11 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
       company: companyName,
       to: emailList.join(', '),
       cvFile: cvFile,
-      cvPath: userCvPath, // Ajouter le chemin du CV utilisateur
+      cvPath: userCvPath,
       createdAt: Date.now(),
     };
 
-    setApplications((prev) => [...prev, entry]);
+    setApplications([...applications, entry]);
     setSuccessMessage(`✓ Candidature ajoutée avec succès (${emailList.length} email${emailList.length > 1 ? 's' : ''})`);
     
     if (formData.portfolioUrl || formData.linkedinUrl || formData.phoneNumber) {
@@ -296,8 +299,15 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
   };
 
   const handleRemoveApplication = (index) => {
-    setApplications((prev) => prev.filter((_, i) => i !== index));
+    setApplications(applications.filter((_, i) => i !== index));
   };
+
+  useKeyboardShortcuts({
+    'ctrl+k': (e) => { e.preventDefault(); setSearchOpen(true); },
+    'ctrl+z': (e) => { e.preventDefault(); undo(); },
+    'ctrl+y': (e) => { e.preventDefault(); redo(); },
+    'ctrl+shift+z': (e) => { e.preventDefault(); redo(); },
+  });
 
   const [downloading, setDownloading] = useState(false);
 
@@ -404,6 +414,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           </nav>
           <div className="site-header__actions">
             <LanguageSwitcher />
+            <button onClick={() => setSearchOpen(true)} className="btn btn--ghost" style={{ padding: 'var(--space-2)', fontSize: '0.875rem' }}>🔍 Ctrl+K</button>
             <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', marginRight: 'var(--space-3)' }}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -1102,7 +1113,11 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
         >
           <div className="section__header">
             <h2 className="section__title">{t('queue.title')}</h2>
-            <span className="status-badge success">{applications.length} {t('queue.pending')}</span>
+            <div style={{ display: 'flex', gap: 'var(--space-2)', alignItems: 'center' }}>
+              <span className="status-badge success">{applications.length} {t('queue.pending')}</span>
+              <button onClick={undo} disabled={!canUndo} className="btn btn--ghost" style={{ padding: 'var(--space-1) var(--space-2)', fontSize: '0.75rem' }}>↶ Undo</button>
+              <button onClick={redo} disabled={!canRedo} className="btn btn--ghost" style={{ padding: 'var(--space-1) var(--space-2)', fontSize: '0.75rem' }}>↷ Redo</button>
+            </div>
           </div>
         <AnimatePresence>
           {applications.length === 0 ? (
@@ -1114,15 +1129,9 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
               {t('queue.empty')}
             </motion.p>
           ) : (
-            <div className="queue-list">
+            <Reorder.Group axis="y" values={applications} onReorder={setApplications} style={{ listStyle: 'none', padding: 0 }}>
               {applications.map((item, index) => (
-                <motion.div
-                  key={item.createdAt}
-                  className="queue-item"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                >
+                <Reorder.Item key={item.createdAt} value={item} className="queue-item" style={{ cursor: 'grab' }}>
                   <div className="queue-info">
                     <h4>{item.company}</h4>
                     <p>{item.position}</p>
@@ -1142,9 +1151,9 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
                     </svg>
                     {t('queue.remove')}
                   </motion.button>
-                </motion.div>
+                </Reorder.Item>
               ))}
-            </div>
+            </Reorder.Group>
           )}
           </AnimatePresence>
         </motion.section>
@@ -1324,6 +1333,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           )}
         </AnimatePresence>
       </div>
+      <GlobalSearch applications={applications} onSelect={(i) => document.getElementById('queue-section')?.scrollIntoView({ behavior: 'smooth' })} isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 }
