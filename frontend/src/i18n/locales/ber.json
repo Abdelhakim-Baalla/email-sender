@@ -1,107 +1,107 @@
 {
   "app": {
-    "title": "Email Sender",
-    "subtitle": "Awtmat n tuzna n imeɣriyen"
+    "title": "ⴰⵙⴰⵣⵏ ⵏ ⵉⵎⴰⵢⵍⵏ",
+    "subtitle": "ⴰⵡⵜⵎⴰⵜ ⵏ ⵜⵓⵣⵏⴰ ⵏ ⵉⵎⴰⵢⵍⵏ"
   },
   "nav": {
-    "newApplication": "Asuter Amaynu",
-    "queue": "Umuɣ",
-    "send": "Azen",
-    "logout": "Ffeɣ"
+    "newApplication": "ⴰⵙⵓⵜⵔ ⴰⵎⴰⵢⵏⵓ",
+    "queue": "ⵓⵎⵓⵖ",
+    "send": "ⴰⵣⵏ",
+    "logout": "ⴼⴼⵖ"
   },
   "hero": {
-    "title": "Amɛiwen n Usuter",
-    "description": "Awtmat n tuzna n imeɣriyen, rnu CV-inek, sɛu ɣef kulec deg Excel.",
-    "getStarted": "Bdu Tura",
-    "viewQueue": "Ẓer Umuɣ",
-    "inQueue": "Deg Umuɣ",
-    "sent": "Yettwazen"
+    "title": "ⴰⵎⵄⵉⵡⵏ ⵏ ⵓⵙⵓⵜⵔ",
+    "description": "ⴰⵡⵜⵎⴰⵜ ⵏ ⵜⵓⵣⵏⴰ ⵏ ⵉⵎⴰⵢⵍⵏ, ⵔⵏⵓ CV-ⵉⵏⴽ, ⵙⵄⵓ ⵖⴼ ⴽⵓⵍⵛ ⴷⴳ Excel.",
+    "getStarted": "ⴱⴷⵓ ⵜⵓⵔⴰ",
+    "viewQueue": "ⵥⵔ ⵓⵎⵓⵖ",
+    "inQueue": "ⴷⴳ ⵓⵎⵓⵖ",
+    "sent": "ⵢⵜⵜⵡⴰⵣⵏ"
   },
   "form": {
-    "company": "Tkebbanit",
-    "position": "Adeg",
-    "email": "Email n Unermes",
-    "location": "Adeg",
-    "flexibility": "Tafrawant",
-    "contractType": "Anaw n Umtawa",
-    "applicationMethod": "Tarrayt n Usuter",
-    "contactPerson": "Amdan n Unermes",
-    "applyDate": "Azemz n Usuter",
-    "status": "Addad",
-    "responseDate": "Azemz n Tririt",
-    "referral": "Asumer",
-    "interviewDate": "Azemz n Udiwenni",
-    "inTouchPerson": "Amdan Yettmeslayen",
-    "salaryRange": "Azal n Rrbeḥ",
+    "company": "ⵜⴽⴱⴱⴰⵏⵉⵜ",
+    "position": "ⴰⴷⴳ",
+    "email": "ⵉⵎⴰⵢⵍ ⵏ ⵓⵏⵔⵎⵙ",
+    "location": "ⴰⴷⴳ",
+    "flexibility": "ⵜⴰⴼⵔⴰⵡⴰⵏⵜ",
+    "contractType": "ⴰⵏⴰⵡ ⵏ ⵓⵎⵜⴰⵡⴰ",
+    "applicationMethod": "ⵜⴰⵔⵔⴰⵢⵜ ⵏ ⵓⵙⵓⵜⵔ",
+    "contactPerson": "ⴰⵎⴷⴰⵏ ⵏ ⵓⵏⵔⵎⵙ",
+    "applyDate": "ⴰⵣⵎⵣ ⵏ ⵓⵙⵓⵜⵔ",
+    "status": "ⴰⴷⴷⴰⴷ",
+    "responseDate": "ⴰⵣⵎⵣ ⵏ ⵜⵔⵉⵔⵉⵜ",
+    "referral": "ⴰⵙⵓⵎⵔ",
+    "interviewDate": "ⴰⵣⵎⵣ ⵏ ⵓⴷⵉⵡⵏⵏⵉ",
+    "inTouchPerson": "ⴰⵎⴷⴰⵏ ⵢⵜⵜⵎⵙⵍⴰⵢⵏ",
+    "salaryRange": "ⴰⵣⴰⵍ ⵏ ⵕⵕⴱⵃ",
     "portfolio": "Portfolio",
     "linkedin": "LinkedIn",
-    "phone": "Tiliɣri",
-    "notes": "Tizmilin",
-    "attachCV": "Rnu CV (PDF)",
-    "dryRun": "Asekyed (ur d-yettwazen ara)",
-    "realMode": "Asekyed n Tidet (ad yettwazen)",
-    "addToQueue": "Rnu ɣer Umuɣ",
-    "optional": "afrayan"
+    "phone": "ⵜⵉⵍⵉⵖⵔⵉ",
+    "notes": "ⵜⵉⵣⵎⵉⵍⵉⵏ",
+    "attachCV": "ⵔⵏⵓ CV (PDF)",
+    "dryRun": "ⴰⵙⴽⵢⴷ (ⵓⵔ ⴷ-ⵢⵜⵜⵡⴰⵣⵏ ⴰⵔⴰ)",
+    "realMode": "ⴰⵙⴽⵢⴷ ⵏ ⵜⵉⴷⵜ (ⴰⴷ ⵢⵜⵜⵡⴰⵣⵏ)",
+    "addToQueue": "ⵔⵏⵓ ⵖⵔ ⵓⵎⵓⵖ",
+    "optional": "ⴰⴼⵔⴰⵢⴰⵏ"
   },
   "profile": {
-    "title": "Amaɣnu",
-    "phone": "Tiliɣri",
+    "title": "ⴰⵎⴰⵖⵏⵓ",
+    "phone": "ⵜⵉⵍⵉⵖⵔⵉ",
     "linkedin": "LinkedIn",
     "portfolio": "Portfolio",
     "cv": "CV (PDF)",
-    "uploadCV": "Sit i usali n CV-inek",
-    "cancel": "Sefsex",
-    "save": "Sekles",
-    "saving": "Asekles..."
+    "uploadCV": "ⵙⵉⵜ ⵉ ⵓⵙⴰⵍⵉ ⵏ CV-ⵉⵏⴽ",
+    "cancel": "ⵙⴼⵙⵅ",
+    "save": "ⵙⴽⵍⵙ",
+    "saving": "ⴰⵙⴽⵍⵙ..."
   },
   "smtp": {
-    "title": "Aswel SMTP Gmail",
-    "subtitle": "I tuzna n imeɣriyen s Gmail-inek",
-    "instructions": "Iwellihen:",
-    "step1": "Rmed asesteb s sin n tarrayin deg Google",
-    "step2": "Ddu ɣer myaccount.google.com/apppasswords",
-    "step3": "Rnu awal uffir n usnas s yisem \"Email Sender\"",
-    "step4": "Nɣel awal uffir n 16 n yisekkilen syen senteḍ-t daw-a",
-    "password": "Awal Uffir n Usnas Gmail",
-    "configured": "Yettuswel",
-    "notConfigured": "Ur yettuswel ara",
-    "modify": "Beddel Aswel Gmail",
-    "configure": "Swel Gmail i Tuzna"
+    "title": "ⴰⵙⵡⵍ SMTP Gmail",
+    "subtitle": "ⵉ ⵜⵓⵣⵏⴰ ⵏ ⵉⵎⴰⵢⵍⵏ ⵙ Gmail-ⵉⵏⴽ",
+    "instructions": "ⵉⵡⵍⵍⵉⵀⵏ:",
+    "step1": "ⵔⵎⴷ ⴰⵙⵙⵜⴱ ⵙ ⵙⵉⵏ ⵏ ⵜⴰⵔⵔⴰⵢⵉⵏ ⴷⴳ Google",
+    "step2": "ⴷⴷⵓ ⵖⵔ myaccount.google.com/apppasswords",
+    "step3": "ⵔⵏⵓ ⴰⵡⴰⵍ ⵓⴼⴼⵉⵔ ⵏ ⵓⵙⵏⴰⵙ ⵙ ⵢⵉⵙⵎ \"Email Sender\"",
+    "step4": "ⵏⵖⵍ ⴰⵡⴰⵍ ⵓⴼⴼⵉⵔ ⵏ 16 ⵏ ⵢⵉⵙⴽⴽⵉⵍⵏ ⵙⵢⵏ ⵙⵏⵜⴹ-ⵜ ⴷⴰⵡ-ⴰ",
+    "password": "ⴰⵡⴰⵍ ⵓⴼⴼⵉⵔ ⵏ ⵓⵙⵏⴰⵙ Gmail",
+    "configured": "ⵢⵜⵜⵓⵙⵡⵍ",
+    "notConfigured": "ⵓⵔ ⵢⵜⵜⵓⵙⵡⵍ ⴰⵔⴰ",
+    "modify": "ⴱⴷⴷⵍ ⴰⵙⵡⵍ Gmail",
+    "configure": "ⵙⵡⵍ Gmail ⵉ ⵜⵓⵣⵏⴰ"
   },
   "send": {
-    "title": "Asenqed n Tuzna",
-    "numberOfEmails": "Amḍan n Imeɣriyen",
-    "delay": "Aɣbalu gar Tuzniwin",
-    "fast": "Arurad",
-    "secure": "Aɣelsan",
-    "sendButton": "Azen",
-    "sending": "Tuzna...",
-    "success": "imeɣriyen ttwazen s lǧehd",
-    "simulation": "asekyed"
+    "title": "ⴰⵙⵏⵇⴷ ⵏ ⵜⵓⵣⵏⴰ",
+    "numberOfEmails": "ⴰⵎⴹⴰⵏ ⵏ ⵉⵎⴰⵢⵍⵏ",
+    "delay": "ⴰⵖⴱⴰⵍⵓ ⴳⴰⵔ ⵜⵓⵣⵏⵉⵡⵉⵏ",
+    "fast": "ⴰⵔⵓⵔⴰⴷ",
+    "secure": "ⴰⵖⵍⵙⴰⵏ",
+    "sendButton": "ⴰⵣⵏ",
+    "sending": "ⵜⵓⵣⵏⴰ...",
+    "success": "ⵉⵎⴰⵢⵍⵏ ⵜⵜⵡⴰⵣⵏ ⵙ ⵍⵊⵀⴷ",
+    "simulation": "ⴰⵙⴽⵢⴷ"
   },
   "queue": {
-    "title": "Umuɣ",
-    "pending": "yettṛaǧu",
-    "empty": "Rnu isutren i tebdut n lḥemla-inek.",
-    "remove": "Kkes"
+    "title": "ⵓⵎⵓⵖ",
+    "pending": "ⵢⵜⵜⵕⴰⵊⵓ",
+    "empty": "ⵔⵏⵓ ⵉⵙⵓⵜⵔⵏ ⵉ ⵜⴱⴷⵓⵜ ⵏ ⵍⵃⵎⵍⴰ-ⵉⵏⴽ.",
+    "remove": "ⴽⴽⵙ"
   },
   "results": {
-    "title": "Igmaḍ",
-    "sent": "yettwazen",
-    "failed": "yugi"
+    "title": "ⵉⴳⵎⴰⴹ",
+    "sent": "ⵢⵜⵜⵡⴰⵣⵏ",
+    "failed": "ⵢⵓⴳⵉ"
   },
   "login": {
-    "title": "Email Sender",
-    "subtitle": "Awtmat n tuzna n imeɣriyen",
-    "secureConnection": "Tuqqna taɣelsant s Google",
-    "dataProtected": "Isefka-inek ttwaḥerzen"
+    "title": "ⴰⵙⴰⵣⵏ ⵏ ⵉⵎⴰⵢⵍⵏ",
+    "subtitle": "ⴰⵡⵜⵎⴰⵜ ⵏ ⵜⵓⵣⵏⴰ ⵏ ⵉⵎⴰⵢⵍⵏ",
+    "secureConnection": "ⵜⵓⵇⵇⵏⴰ ⵜⴰⵖⵍⵙⴰⵏⵜ ⵙ Google",
+    "dataProtected": "ⵉⵙⴼⴽⴰ-ⵉⵏⴽ ⵜⵜⵡⴰⵃⵔⵣⵏ"
   },
   "messages": {
-    "addEmail": "Rnu yiwen n email xir",
-    "emailAdded": "Asuter yettwarna s lǧehd",
-    "invalidEmail": "Talɣa n email d tarameɣtut",
-    "emailExists": "Email-a yella yakan",
-    "configureSmtp": "Ttxil-k swel awal uffir n usnas Gmail",
-    "cvFromProfile": "CV-inek n umaɣnu ad yettwaseqdec"
+    "addEmail": "ⵔⵏⵓ ⵢⵉⵡⵏ ⵏ ⵉⵎⴰⵢⵍ ⵅⵉⵔ",
+    "emailAdded": "ⴰⵙⵓⵜⵔ ⵢⵜⵜⵡⴰⵔⵏⴰ ⵙ ⵍⵊⵀⴷ",
+    "invalidEmail": "ⵜⴰⵍⵖⴰ ⵏ ⵉⵎⴰⵢⵍ ⴷ ⵜⴰⵔⴰⵎⵖⵜⵓⵜ",
+    "emailExists": "ⵉⵎⴰⵢⵍ-ⴰ ⵢⵍⵍⴰ ⵢⴰⴽⴰⵏ",
+    "configureSmtp": "ⵜⵜⵅⵉⵍ-ⴽ ⵙⵡⵍ ⴰⵡⴰⵍ ⵓⴼⴼⵉⵔ ⵏ ⵓⵙⵏⴰⵙ Gmail",
+    "cvFromProfile": "CV-ⵉⵏⴽ ⵏ ⵓⵎⴰⵖⵏⵓ ⴰⴷ ⵢⵜⵜⵡⴰⵙⵇⴷⵛ"
   }
 }

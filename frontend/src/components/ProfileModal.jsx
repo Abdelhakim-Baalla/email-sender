@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
 const ProfileModal = ({ isOpen, onClose }) => {
   const { user, token } = useAuth();
+  const { t } = useTranslation();
   const [profile, setProfile] = useState({
     phone: '',
     linkedin: '',
@@ -157,7 +159,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: 'var(--color-text)', marginBottom: '8px' }}>
-                  📱 Téléphone
+                  📱 {t('profile.phone')}
                 </label>
                 <input
                   type="tel"
@@ -182,7 +184,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
 
               <div>
                 <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: 'var(--color-text)', marginBottom: '8px' }}>
-                  💼 LinkedIn
+                  💼 {t('profile.linkedin')}
                 </label>
                 <input
                   type="url"
@@ -207,7 +209,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
 
               <div>
                 <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: 'var(--color-text)', marginBottom: '8px' }}>
-                  🌐 Portfolio
+                  🌐 {t('profile.portfolio')}
                 </label>
                 <input
                   type="url"
@@ -232,7 +234,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
 
               <div>
                 <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: 'var(--color-text)', marginBottom: '8px' }}>
-                  📄 CV (PDF)
+                  📄 {t('profile.cv')}
                 </label>
                 <div style={{ position: 'relative' }}>
                   <input
@@ -273,7 +275,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
                       <polyline points="17 8 12 3 7 8"/>
                       <line x1="12" y1="3" x2="12" y2="15"/>
                     </svg>
-                    {cvFile ? `✓ ${cvFile.name}` : 'Cliquez pour uploader votre CV'}
+                    {cvFile ? `✓ ${cvFile.name}` : t('profile.uploadCV')}
                   </label>
                 </div>
               </div>
@@ -297,7 +299,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
                 onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-accent-soft)'}
                 onMouseLeave={(e) => e.currentTarget.style.background = 'var(--color-panel-solid)'}
               >
-                Annuler
+                {t('profile.cancel')}
               </button>
               <button
                 onClick={handleSave}
@@ -321,7 +323,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
                   if (!loading) e.currentTarget.style.transform = 'scale(1)';
                 }}
               >
-                {loading ? 'Sauvegarde...' : 'Sauvegarder'}
+                {loading ? t('profile.saving') : t('profile.save')}
               </button>
             </div>
           </motion.div>

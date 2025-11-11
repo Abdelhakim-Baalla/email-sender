@@ -1,10 +1,12 @@
 import { GoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../contexts/AuthContext';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 
 const LoginForm = () => {
   const { login } = useAuth();
+  const { t } = useTranslation();
 
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
@@ -69,8 +71,8 @@ const LoginForm = () => {
               </svg>
             </div>
           </motion.div>
-          <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#1a202c', marginBottom: '12px' }}>Email Sender</h1>
-          <p style={{ color: '#4a5568', fontSize: '18px' }}>Automatisez vos candidatures professionnelles</p>
+          <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#1a202c', marginBottom: '12px' }}>{t('login.title')}</h1>
+          <p style={{ color: '#4a5568', fontSize: '18px' }}>{t('login.subtitle')}</p>
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '32px' }}>
@@ -91,13 +93,13 @@ const LoginForm = () => {
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
             </svg>
-            <span>Connexion sécurisée avec Google</span>
+            <span>{t('login.secureConnection')}</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '14px', color: '#4a5568' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
-            <span>Vos données sont protégées</span>
+            <span>{t('login.dataProtected')}</span>
           </div>
         </div>
       </motion.div>

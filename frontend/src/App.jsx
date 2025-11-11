@@ -180,12 +180,12 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
     if (!email) return;
     
     if (!emailRegex.test(email)) {
-      setError("Format d'email invalide");
+      setError(t('messages.invalidEmail'));
       return;
     }
     
     if (emailList.includes(email)) {
-      setError("Cet email existe déjà");
+      setError(t('messages.emailExists'));
       return;
     }
     
@@ -258,7 +258,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
     setSuccessMessage("");
 
     if (emailList.length === 0) {
-      setError("Ajoutez au moins un email");
+      setError(t('messages.addEmail'));
       return;
     }
 
@@ -301,7 +301,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
 
   const handleSendBatch = async () => {
     if (!smtpConfigured && !dryRun) {
-      setError('Veuillez configurer votre mot de passe d\'application Gmail');
+      setError(t('messages.configureSmtp'));
       setShowSmtpConfig(true);
       return;
     }
@@ -335,9 +335,9 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
       setResults(data.results ?? []);
       if (data.successes) {
         setSuccessMessage(
-          `${data.successes} e-mail(s) envoyé(s) avec succès${
-            dryRun ? " (simulation)" : ""
-          }.`
+          `${data.successes} ${t('send.success')}${
+            dryRun ? ` (${t('send.simulation')})` : ""
+          }`
         );
       }
     } catch (err) {
@@ -612,8 +612,8 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           data-reveal
         >
           <div className="section__header">
-            <h2 className="section__title">New Application</h2>
-            <div className="eyebrow">Add to Campaign</div>
+            <h2 className="section__title">{t('nav.newApplication')}</h2>
+            <div className="eyebrow">{t('form.addToQueue')}</div>
           </div>
 
           <motion.button
@@ -624,7 +624,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
             onClick={() => setShowQuickFill(!showQuickFill)}
             style={{ fontSize: '0.85rem', marginBottom: 'var(--space-3)' }}
           >
-            {showQuickFill ? '✕ Fermer' : '⚡ Remplissage rapide'}
+            {showQuickFill ? '✕' : '⚡'}
           </motion.button>
 
           <AnimatePresence>
@@ -649,22 +649,22 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
         <div className="form-grid">
           <div className="input-group">
             <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-              <span>Company</span>
-              <small style={{ color: 'var(--color-text-soft)', fontSize: '0.7rem', fontWeight: 'normal' }}>(optionnel)</small>
+              <span>{t('form.company')}</span>
+              <small style={{ color: 'var(--color-text-soft)', fontSize: '0.7rem', fontWeight: 'normal' }}>({t('form.optional')})</small>
             </label>
             <input
               name="company"
-              placeholder="Auto-détecté depuis l'email si vide"
+              placeholder={t('form.company')}
               value={formData.company}
               onChange={handleInputChange}
             />
           </div>
 
           <div className="input-group">
-            <label>Position *</label>
+            <label>{t('form.position')} *</label>
             <input
               name="position"
-              placeholder="e.g., Full-Stack Developer"
+              placeholder={t('form.position')}
               value={formData.position}
               onChange={handleInputChange}
             />
@@ -672,7 +672,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
 
           <div className="input-group span-full">
             <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span>Contact Email(s) *</span>
+              <span>{t('form.email')} *</span>
               {emailList.length > 0 && (
                 <motion.span 
                   initial={{ scale: 0 }}
@@ -680,7 +680,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
                   className="status-badge success" 
                   style={{ fontSize: '0.7rem' }}
                 >
-                  {emailList.length} email{emailList.length > 1 ? 's' : ''}
+                  {emailList.length}
                 </motion.span>
               )}
             </label>
@@ -810,47 +810,47 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           </div>
 
           <div className="input-group">
-            <label>Location</label>
+            <label>{t('form.location')}</label>
             <input
               name="location"
-              placeholder="e.g., Casablanca, Remote"
+              placeholder={t('form.location')}
               value={formData.location}
               onChange={handleInputChange}
             />
           </div>
 
           <div className="input-group">
-            <label>Flexibility</label>
+            <label>{t('form.flexibility')}</label>
             <input
               name="flexibility"
-              placeholder="e.g., Hybrid, Remote"
+              placeholder={t('form.flexibility')}
               value={formData.flexibility}
               onChange={handleInputChange}
             />
           </div>
 
           <div className="input-group">
-            <label>Contract Type</label>
+            <label>{t('form.contractType')}</label>
             <input
               name="type_contrat"
-              placeholder="e.g., CDI, Freelance"
+              placeholder={t('form.contractType')}
               value={formData.type_contrat}
               onChange={handleInputChange}
             />
           </div>
 
           <div className="input-group">
-            <label>Application Method</label>
+            <label>{t('form.applicationMethod')}</label>
             <input
               name="application_method"
-              placeholder="e.g., Email, Portal"
+              placeholder={t('form.applicationMethod')}
               value={formData.application_method}
               onChange={handleInputChange}
             />
           </div>
 
           <div className="input-group">
-            <label>Contact Person</label>
+            <label>{t('form.contactPerson')}</label>
             <input
               name="contact"
               placeholder="e.g., John Doe"
@@ -860,7 +860,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           </div>
 
           <div className="input-group">
-            <label>Apply Date</label>
+            <label>{t('form.applyDate')}</label>
             <input
               type="date"
               name="apply_date"
@@ -870,7 +870,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           </div>
 
           <div className="input-group">
-            <label>Status</label>
+            <label>{t('form.status')}</label>
             <input
               name="status"
               placeholder="e.g., Applied, Pending"
@@ -880,7 +880,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           </div>
 
           <div className="input-group">
-            <label>Response Date</label>
+            <label>{t('form.responseDate')}</label>
             <input
               type="date"
               name="response_date"
@@ -890,7 +890,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           </div>
 
           <div className="input-group">
-            <label>Referral?</label>
+            <label>{t('form.referral')}</label>
             <input
               name="referral"
               placeholder="e.g., Yes, No"
@@ -900,7 +900,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           </div>
 
           <div className="input-group">
-            <label>Interview Date</label>
+            <label>{t('form.interviewDate')}</label>
             <input
               type="date"
               name="interview_date"
@@ -910,7 +910,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           </div>
 
           <div className="input-group">
-            <label>In-touch Person</label>
+            <label>{t('form.inTouchPerson')}</label>
             <input
               name="in_touch_person"
               placeholder="e.g., Jane Smith"
@@ -920,7 +920,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           </div>
 
           <div className="input-group">
-            <label>Salary Range</label>
+            <label>{t('form.salaryRange')}</label>
             <input
               name="salary_range"
               placeholder="e.g., 50k-70k"
@@ -931,8 +931,8 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
 
           <div className="input-group">
             <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span>Portfolio URL</span>
-              {savedPersonalInfo?.portfolioUrl && <span style={{ fontSize: '0.7rem', color: 'var(--color-success)' }}>✓ Enregistré</span>}
+              <span>{t('form.portfolio')}</span>
+              {savedPersonalInfo?.portfolioUrl && <span style={{ fontSize: '0.7rem', color: 'var(--color-success)' }}>✓</span>}
             </label>
             <input
               name="portfolioUrl"
@@ -944,8 +944,8 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
 
           <div className="input-group">
             <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span>LinkedIn</span>
-              {savedPersonalInfo?.linkedinUrl && <span style={{ fontSize: '0.7rem', color: 'var(--color-success)' }}>✓ Enregistré</span>}
+              <span>{t('form.linkedin')}</span>
+              {savedPersonalInfo?.linkedinUrl && <span style={{ fontSize: '0.7rem', color: 'var(--color-success)' }}>✓</span>}
             </label>
             <input
               name="linkedinUrl"
@@ -957,8 +957,8 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
 
           <div className="input-group">
             <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span>Phone</span>
-              {savedPersonalInfo?.phoneNumber && <span style={{ fontSize: '0.7rem', color: 'var(--color-success)' }}>✓ Enregistré</span>}
+              <span>{t('form.phone')}</span>
+              {savedPersonalInfo?.phoneNumber && <span style={{ fontSize: '0.7rem', color: 'var(--color-success)' }}>✓</span>}
             </label>
             <input
               name="phoneNumber"
@@ -969,7 +969,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           </div>
 
           <div className="input-group span-full">
-            <label>Notes</label>
+            <label>{t('form.notes')}</label>
             <textarea
               name="notes"
               rows="3"
@@ -1005,7 +1005,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                 <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
               </svg>
-              <span>{cvName ? `✓ ${cvName}` : (localStorage.getItem('userCvPath') ? "✓ CV du profil" : "📄 Joindre CV (PDF)")}</span>
+              <span>{cvName ? `✓ ${cvName}` : (localStorage.getItem('userCvPath') ? `✓ ${t('profile.cv')}` : t('form.attachCV'))}</span>
               {(cvName || localStorage.getItem('userCvPath')) && (
                 <motion.div
                   initial={{ width: 0 }}
@@ -1022,7 +1022,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
             </motion.label>
             {localStorage.getItem('userCvPath') && !cvName && (
               <small style={{ color: 'var(--color-success)', fontSize: '0.75rem' }}>
-                ✓ Votre CV du profil sera utilisé
+                {t('messages.cvFromProfile')}
               </small>
             )}
 
@@ -1039,7 +1039,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
                 onChange={(event) => setDryRun(event.target.checked)}
               />
               <label htmlFor="dryRun" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-                {dryRun ? '🧪 Mode Simulation (aucun email envoyé)' : '✉️ Mode Réel (emails seront envoyés)'}
+                {dryRun ? `🧪 ${t('form.dryRun')}` : `✉️ ${t('form.realMode')}`}
               </label>
             </div>
 
@@ -1056,7 +1056,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
                 <line x1="12" y1="5" x2="12" y2="19"/>
                 <line x1="5" y1="12" x2="19" y2="12"/>
               </svg>
-              Ajouter à la file
+              {t('form.addToQueue')}
             </motion.button>
           </div>
 
@@ -1073,8 +1073,8 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           data-reveal
         >
           <div className="section__header">
-            <h2 className="section__title">Queue</h2>
-            <span className="status-badge success">{applications.length} pending</span>
+            <h2 className="section__title">{t('queue.title')}</h2>
+            <span className="status-badge success">{applications.length} {t('queue.pending')}</span>
           </div>
         <AnimatePresence>
           {applications.length === 0 ? (
@@ -1083,7 +1083,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
-              Add applications using the form above to start your campaign.
+              {t('queue.empty')}
             </motion.p>
           ) : (
             <div className="queue-list">
@@ -1112,7 +1112,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
                       <polyline points="3 6 5 6 21 6"/>
                       <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
                     </svg>
-                    Retirer
+                    {t('queue.remove')}
                   </motion.button>
                 </motion.div>
               ))}
@@ -1130,12 +1130,11 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           data-reveal
         >
           <div className="section__header">
-            <h2 className="section__title">Send Control</h2>
-            <div className="eyebrow">Campaign Settings</div>
+            <h2 className="section__title">{t('send.title')}</h2>
           </div>
           <div className="form-grid">
           <div className="input-group">
-            <label>Number of Emails to Send</label>
+            <label>{t('send.numberOfEmails')}</label>
             <input
               type="number"
               min="1"
@@ -1148,7 +1147,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
 
           <div className="input-group">
             <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span>Délai entre envois</span>
+              <span>{t('send.delay')}</span>
               <span style={{ fontSize: '0.85rem', color: 'var(--color-accent)', fontWeight: 600 }}>{(delayMs / 1000).toFixed(1)}s</span>
             </label>
             <input
@@ -1162,23 +1161,23 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
             />
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: 'var(--color-text-soft)', marginTop: '0.5rem' }}>
               <span>0.5s</span>
-              <span style={{ color: delayMs < 3000 ? 'var(--color-warning)' : 'var(--color-success)' }}>{delayMs < 3000 ? '⚡ Rapide' : '🛡️ Sécurisé'}</span>
+              <span style={{ color: delayMs < 3000 ? 'var(--color-warning)' : 'var(--color-success)' }}>{delayMs < 3000 ? `⚡ ${t('send.fast')}` : `🛡️ ${t('send.secure')}`}</span>
               <span>10s</span>
             </div>
           </div>
 
             <div className="input-group">
               <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span>Configuration SMTP</span>
+                <span>{t('smtp.title')}</span>
                 {smtpConfigured ? (
                   <span style={{ fontSize: '0.75rem', color: 'var(--color-success)', display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <polyline points="20 6 9 17 4 12"/>
                     </svg>
-                    Configuré
+                    {t('smtp.configured')}
                   </span>
                 ) : (
-                  <span style={{ fontSize: '0.75rem', color: 'var(--color-warning)' }}>⚠️ Non configuré</span>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--color-warning)' }}>⚠️ {t('smtp.notConfigured')}</span>
                 )}
               </label>
               <button
@@ -1204,7 +1203,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
                   <path d="M2 17l10 5 10-5"/>
                   <path d="M2 12l10 5 10-5"/>
                 </svg>
-                {smtpConfigured ? 'Modifier la configuration Gmail' : 'Configurer Gmail pour envoyer'}
+                {smtpConfigured ? t('smtp.modify') : t('smtp.configure')}
               </button>
             </div>
 
@@ -1217,20 +1216,20 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
                 style={{ width: '100%', padding: 'var(--space-4)', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-2)' }}
               >
                 {sending ? (
-                  "Sending..."
+                  t('send.sending')
                 ) : (
                   <>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="22" y1="2" x2="11" y2="13"/>
                       <polygon points="22 2 15 22 11 13 2 9 22 2"/>
                     </svg>
-                    Send {totalToSend} Email{totalToSend > 1 ? "s" : ""}
+                    {t('send.sendButton')} {totalToSend}
                   </>
                 )}
               </button>
               {!smtpConfigured && !dryRun && (
                 <p style={{ textAlign: 'center', color: 'var(--color-warning)', fontSize: '0.875rem', marginTop: 'var(--space-2)' }}>
-                  ⚠️ Configurez votre Gmail pour envoyer des emails réels
+                  ⚠️ {t('messages.configureSmtp')}
                 </p>
               )}
             </div>
@@ -1247,13 +1246,13 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
               data-reveal
             >
               <div className="section__header">
-                <h2 className="section__title">Results</h2>
+                <h2 className="section__title">{t('results.title')}</h2>
                 <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
                   <span className="status-badge success">
-                    {results.filter((res) => res.status === "sent").length} sent
+                    {results.filter((res) => res.status === "sent").length} {t('results.sent')}
                   </span>
                   <span className="status-badge error">
-                    {results.filter((res) => res.status === "failed").length} failed
+                    {results.filter((res) => res.status === "failed").length} {t('results.failed')}
                   </span>
                 </div>
               </div>
@@ -1266,7 +1265,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
                     animate={{ opacity: 1, y: 0 }}
                   >
                     <span className={getStatusBadgeClass(item.status)}>
-                      {item.status === "sent" ? "Sent" : "Failed"}
+                      {item.status === "sent" ? t('results.sent') : t('results.failed')}
                     </span>
                     <div className="queue-info">
                       <h4>{item.to ?? "(Unknown email)"}</h4>

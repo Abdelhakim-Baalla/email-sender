@@ -1,13 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const languages = [
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'ar', name: 'العربية', flag: '🇲🇦' },
-  { code: 'ber', name: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', flag: 'ⵣ' }
-];
+import { languages } from '../i18n/languages';
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
@@ -16,11 +10,20 @@ const LanguageSwitcher = () => {
   const currentLang = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   const changeLanguage = (code) => {
+    const lang = languages.find(l => l.code === code);
     i18n.changeLanguage(code);
     localStorage.setItem('language', code);
-    document.documentElement.dir = code === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.dir = lang?.dir || 'ltr';
+    document.documentElement.lang = code;
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const savedLang = localStorage.getItem('language') || 'fr';
+    const lang = languages.find(l => l.code === savedLang);
+    document.documentElement.dir = lang?.dir || 'ltr';
+    document.documentElement.lang = savedLang;
+  }, []);
 
   return (
     <div style={{ position: 'relative' }}>
@@ -65,7 +68,9 @@ const LanguageSwitcher = () => {
               boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
               overflow: 'hidden',
               zIndex: 1000,
-              minWidth: '150px'
+              minWidth: '180px',
+              maxHeight: '400px',
+              overflowY: 'auto'
             }}
           >
             {languages.map((lang) => (

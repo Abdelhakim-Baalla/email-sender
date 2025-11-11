@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tifinagh&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;700&display=swap');
+
+[lang="ar"] * { font-family: 'Cairo', sans-serif !important; }
+[lang="ber"] * { font-family: 'Noto Sans Tifinagh', sans-serif !important;  }
+[lang="ru"] * { font-family: 'Roboto', sans-serif !important; }
+[lang="zh"] * { font-family: 'Noto Sans SC', sans-serif !important; font-size: 0.95em !important; }
+[lang="ja"] * { font-family: 'Noto Sans JP', sans-serif !important; font-size: 0.95em !important; }
+[lang="ko"] * { font-family: 'Noto Sans KR', sans-serif !important; font-size: 0.95em !important; }
+[lang="hi"] * { font-family: 'Noto Sans Devanagari', sans-serif !important; font-size: 0.95em !important; }
+[lang="he"] * { font-family: 'Rubik', sans-serif !important; }
+[lang="th"] * { font-family: 'Noto Sans Thai', sans-serif !important; font-size: 0.95em !important; }

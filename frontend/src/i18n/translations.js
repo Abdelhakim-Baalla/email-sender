@@ -1,0 +1,31 @@
+// Traductions de base pour toutes les langues (utilisant le français comme base)
+export const baseTranslations = {
+  es: {
+    app: { title: "Enviador de Correos", subtitle: "Automatiza tus solicitudes profesionales" },
+    nav: { newApplication: "Nueva Solicitud", queue: "Cola", send: "Enviar", logout: "Cerrar Sesión" },
+    hero: { title: "Asistente de Solicitudes", description: "Automatiza campañas de correo profesionales, adjunta tu CV y rastrea todo en Excel.", getStarted: "Comenzar", viewQueue: "Ver Cola", inQueue: "En Cola", sent: "Enviados" },
+    form: { company: "Empresa", position: "Puesto", email: "Email(s) de Contacto", location: "Ubicación", flexibility: "Flexibilidad", contractType: "Tipo de Contrato", applicationMethod: "Método de Solicitud", contactPerson: "Persona de Contacto", applyDate: "Fecha de Solicitud", status: "Estado", responseDate: "Fecha de Respuesta", referral: "Referencia", interviewDate: "Fecha de Entrevista", inTouchPerson: "Persona en Contacto", salaryRange: "Rango Salarial", portfolio: "Portafolio", linkedin: "LinkedIn", phone: "Teléfono", notes: "Notas", attachCV: "Adjuntar CV (PDF)", dryRun: "Modo Simulación (sin enviar emails)", realMode: "Modo Real (se enviarán emails)", addToQueue: "Agregar a la Cola", optional: "opcional" },
+    profile: { title: "Perfil", phone: "Teléfono", linkedin: "LinkedIn", portfolio: "Portafolio", cv: "CV (PDF)", uploadCV: "Haz clic para subir tu CV", cancel: "Cancelar", save: "Guardar", saving: "Guardando..." },
+    smtp: { title: "Configuración SMTP Gmail", subtitle: "Para enviar emails desde tu cuenta Gmail", instructions: "Instrucciones:", step1: "Activa la autenticación de 2 factores en tu cuenta Google", step2: "Ve a myaccount.google.com/apppasswords", step3: "Crea una contraseña de aplicación llamada \"Email Sender\"", step4: "Copia la contraseña de 16 caracteres y pégala abajo", password: "Contraseña de Aplicación Gmail", configured: "Configurado", notConfigured: "No Configurado", modify: "Modificar Configuración Gmail", configure: "Configurar Gmail para Enviar" },
+    send: { title: "Control de Envío", numberOfEmails: "Número de Emails a Enviar", delay: "Retraso Entre Envíos", fast: "Rápido", secure: "Seguro", sendButton: "Enviar", sending: "Enviando...", success: "email(s) enviado(s) con éxito", simulation: "simulación" },
+    queue: { title: "Cola", pending: "pendiente", empty: "Agrega solicitudes para comenzar tu campaña.", remove: "Eliminar" },
+    results: { title: "Resultados", sent: "enviado", failed: "fallido" },
+    login: { title: "Enviador de Correos", subtitle: "Automatiza tus solicitudes profesionales", secureConnection: "Conexión segura con Google", dataProtected: "Tus datos están protegidos" },
+    messages: { addEmail: "Agrega al menos un email", emailAdded: "Solicitud agregada con éxito", invalidEmail: "Formato de email inválido", emailExists: "Este email ya existe", configureSmtp: "Por favor configura tu contraseña de aplicación Gmail", cvFromProfile: "Se usará tu CV del perfil" }
+  },
+  de: {
+    app: { title: "E-Mail-Sender", subtitle: "Automatisieren Sie Ihre professionellen Bewerbungen" },
+    nav: { newApplication: "Neue Bewerbung", queue: "Warteschlange", send: "Senden", logout: "Abmelden" },
+    hero: { title: "Bewerbungsassistent", description: "Automatisieren Sie professionelle E-Mail-Kampagnen, fügen Sie Ihren Lebenslauf bei und verfolgen Sie alles in Excel.", getStarted: "Beginnen", viewQueue: "Warteschlange anzeigen", inQueue: "In Warteschlange", sent: "Gesendet" },
+    form: { company: "Unternehmen", position: "Position", email: "Kontakt-E-Mail(s)", location: "Standort", flexibility: "Flexibilität", contractType: "Vertragsart", applicationMethod: "Bewerbungsmethode", contactPerson: "Kontaktperson", applyDate: "Bewerbungsdatum", status: "Status", responseDate: "Antwortdatum", referral: "Empfehlung", interviewDate: "Vorstellungstermin", inTouchPerson: "Kontaktperson", salaryRange: "Gehaltsspanne", portfolio: "Portfolio", linkedin: "LinkedIn", phone: "Telefon", notes: "Notizen", attachCV: "Lebenslauf anhängen (PDF)", dryRun: "Simulationsmodus (keine E-Mails gesendet)", realMode: "Echter Modus (E-Mails werden gesendet)", addToQueue: "Zur Warteschlange hinzufügen", optional: "optional" },
+    profile: { title: "Profil", phone: "Telefon", linkedin: "LinkedIn", portfolio: "Portfolio", cv: "Lebenslauf (PDF)", uploadCV: "Klicken Sie, um Ihren Lebenslauf hochzuladen", cancel: "Abbrechen", save: "Speichern", saving: "Speichern..." },
+    smtp: { title: "Gmail SMTP-Konfiguration", subtitle: "Um E-Mails von Ihrem Gmail-Konto zu senden", instructions: "Anweisungen:", step1: "Aktivieren Sie die 2-Faktor-Authentifizierung für Ihr Google-Konto", step2: "Gehen Sie zu myaccount.google.com/apppasswords", step3: "Erstellen Sie ein App-Passwort mit dem Namen \"Email Sender\"", step4: "Kopieren Sie das 16-stellige Passwort und fügen Sie es unten ein", password: "Gmail App-Passwort", configured: "Konfiguriert", notConfigured: "Nicht konfiguriert", modify: "Gmail-Konfiguration ändern", configure: "Gmail zum Senden konfigurieren" },
+    send: { title: "Sendekontrolle", numberOfEmails: "Anzahl der zu sendenden E-Mails", delay: "Verzögerung zwischen Sendungen", fast: "Schnell", secure: "Sicher", sendButton: "Senden", sending: "Senden...", success: "E-Mail(s) erfolgreich gesendet", simulation: "Simulation" },
+    queue: { title: "Warteschlange", pending: "ausstehend", empty: "Fügen Sie Bewerbungen hinzu, um Ihre Kampagne zu starten.", remove: "Entfernen" },
+    results: { title: "Ergebnisse", sent: "gesendet", failed: "fehlgeschlagen" },
+    login: { title: "E-Mail-Sender", subtitle: "Automatisieren Sie Ihre professionellen Bewerbungen", secureConnection: "Sichere Verbindung mit Google", dataProtected: "Ihre Daten sind geschützt" },
+    messages: { addEmail: "Fügen Sie mindestens eine E-Mail hinzu", emailAdded: "Bewerbung erfolgreich hinzugefügt", invalidEmail: "Ungültiges E-Mail-Format", emailExists: "Diese E-Mail existiert bereits", configureSmtp: "Bitte konfigurieren Sie Ihr Gmail-App-Passwort", cvFromProfile: "Ihr Profil-Lebenslauf wird verwendet" }
+  }
+};
+
+export default baseTranslations;
