@@ -8,6 +8,25 @@ import ar from './locales/ar.json';
 import ber from './locales/ber.json';
 import es from './locales/es.json';
 import de from './locales/de.json';
+import it from './locales/it.json';
+import pt from './locales/pt.json';
+import ru from './locales/ru.json';
+import zh from './locales/zh.json';
+import ja from './locales/ja.json';
+import ko from './locales/ko.json';
+import hi from './locales/hi.json';
+import tr from './locales/tr.json';
+import nl from './locales/nl.json';
+import pl from './locales/pl.json';
+import sv from './locales/sv.json';
+import no from './locales/no.json';
+import da from './locales/da.json';
+import fi from './locales/fi.json';
+import el from './locales/el.json';
+import he from './locales/he.json';
+import th from './locales/th.json';
+import vi from './locales/vi.json';
+import id from './locales/id.json';
 
 const resources = {
   en: { translation: en },
@@ -16,25 +35,25 @@ const resources = {
   ber: { translation: ber },
   es: { translation: es },
   de: { translation: de },
-  it: { translation: en },
-  pt: { translation: en },
-  ru: { translation: en },
-  zh: { translation: en },
-  ja: { translation: en },
-  ko: { translation: en },
-  hi: { translation: en },
-  tr: { translation: en },
-  nl: { translation: en },
-  pl: { translation: en },
-  sv: { translation: en },
-  no: { translation: en },
-  da: { translation: en },
-  fi: { translation: en },
-  el: { translation: en },
-  he: { translation: en },
-  th: { translation: en },
-  vi: { translation: en },
-  id: { translation: en }
+  it: { translation: it },
+  pt: { translation: pt },
+  ru: { translation: ru },
+  zh: { translation: zh },
+  ja: { translation: ja },
+  ko: { translation: ko },
+  hi: { translation: hi },
+  tr: { translation: tr },
+  nl: { translation: nl },
+  pl: { translation: pl },
+  sv: { translation: sv },
+  no: { translation: no },
+  da: { translation: da },
+  fi: { translation: fi },
+  el: { translation: el },
+  he: { translation: he },
+  th: { translation: th },
+  vi: { translation: vi },
+  id: { translation: id }
 };
 
 i18n
