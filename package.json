@@ -1,0 +1,31 @@
+{
+  "name": "email-sender",
+  "version": "0.1.0",
+  "description": "Automated Node.js service to send job application emails and log them to Excel.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "automation",
+    "email",
+    "jobs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "exceljs": "^4.4.0",
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.9"
+  },
+  "devDependencies": {
+    "eslint": "^9.11.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "nodemon": "^3.0.2"
+  }
+}
