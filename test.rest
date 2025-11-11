@@ -1,0 +1,9 @@
+POST http://localhost:4859/applications/send
+Content-Type: application/json
+
+{
+  "to": "abdelhakimbaalla50@gmail.com",
+  "entreprise": "ACME",
+  "poste": "Développeur Full-Stack",
+  "dryRun": true
+}
