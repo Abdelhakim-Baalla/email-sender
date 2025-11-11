@@ -1,114 +1,113 @@
-﻿{
+{
   "app": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications"
+    "subtitle": "Αυτοματοποιήστε τις επαγγελματικές σας αιτήσεις"
   },
   "nav": {
-    "newApplication": "New Application",
-    "queue": "Queue",
-    "send": "Send",
-    "logout": "Logout"
+    "newApplication": "Νέα Αίτηση",
+    "queue": "Ουρά",
+    "send": "Αποστολή",
+    "logout": "Αποσύνδεση"
   },
   "hero": {
-    "title": "Job Application Assistant",
-    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
-    "getStarted": "Get Started",
-    "viewQueue": "View Queue",
-    "inQueue": "In Queue",
-    "sent": "Sent"
+    "title": "Βοηθός Αιτήσεων Εργασίας",
+    "description": "Αυτοματοποιήστε επαγγελματικές καμπάνιες email, επισυνάψτε το βιογραφικό σας και παρακολουθήστε τα πάντα στο Excel.",
+    "getStarted": "Ξεκινήστε",
+    "viewQueue": "Προβολή Ουράς",
+    "inQueue": "Στην Ουρά",
+    "sent": "Απεσταλμένα"
   },
   "form": {
-    "company": "Company",
-    "position": "Position",
-    "email": "Contact Email(s)",
-    "location": "Location",
-    "flexibility": "Flexibility",
-    "contractType": "Contract Type",
-    "applicationMethod": "Application Method",
-    "contactPerson": "Contact Person",
-    "applyDate": "Apply Date",
-    "status": "Status",
-    "responseDate": "Response Date",
-    "referral": "Referral",
-    "interviewDate": "Interview Date",
-    "inTouchPerson": "In-touch Person",
-    "salaryRange": "Salary Range",
-    "portfolio": "Portfolio",
+    "company": "Εταιρεία",
+    "position": "Θέση",
+    "email": "Email Επικοινωνίας",
+    "location": "Τοποθεσία",
+    "flexibility": "Ευελιξία",
+    "contractType": "Τύπος Σύμβασης",
+    "applicationMethod": "Μέθοδος Αίτησης",
+    "contactPerson": "Άτομο Επικοινωνίας",
+    "applyDate": "Ημερομηνία Αίτησης",
+    "status": "Κατάσταση",
+    "responseDate": "Ημερομηνία Απάντησης",
+    "referral": "Σύσταση",
+    "interviewDate": "Ημερομηνία Συνέντευξης",
+    "inTouchPerson": "Άτομο σε Επαφή",
+    "salaryRange": "Εύρος Μισθού",
+    "portfolio": "Χαρτοφυλάκιο",
     "linkedin": "LinkedIn",
-    "phone": "Phone",
-    "notes": "Notes",
-    "attachCV": "Attach CV (PDF)",
-    "dryRun": "Simulation Mode (no emails sent)",
-    "realMode": "Real Mode (emails will be sent)",
-    "addToQueue": "Add to Queue",
-    "optional": "optional"
+    "phone": "Τηλέφωνο",
+    "notes": "Σημειώσεις",
+    "attachCV": "Επισύναψη Βιογραφικού (PDF)",
+    "dryRun": "Λειτουργία Προσομοίωσης (χωρίς αποστολή email)",
+    "realMode": "Πραγματική Λειτουργία (θα σταλούν email)",
+    "addToQueue": "Προσθήκη στην Ουρά",
+    "optional": "προαιρετικό"
   },
   "profile": {
-    "title": "Profile",
-    "phone": "Phone",
+    "title": "Προφίλ",
+    "phone": "Τηλέφωνο",
     "linkedin": "LinkedIn",
-    "portfolio": "Portfolio",
-    "cv": "CV (PDF)",
-    "uploadCV": "Click to upload your CV",
-    "cancel": "Cancel",
-    "save": "Save",
-    "saving": "Saving..."
+    "portfolio": "Χαρτοφυλάκιο",
+    "cv": "Βιογραφικό (PDF)",
+    "uploadCV": "Κάντε κλικ για να ανεβάσετε το βιογραφικό σας",
+    "cancel": "Ακύρωση",
+    "save": "Αποθήκευση",
+    "saving": "Αποθήκευση..."
   },
   "smtp": {
-    "title": "Gmail SMTP Configuration",
-    "subtitle": "To send emails from your Gmail account",
-    "instructions": "Instructions:",
-    "step1": "Enable 2-factor authentication on your Google account",
-    "step2": "Go to myaccount.google.com/apppasswords",
-    "step3": "Create an app password named \"Email Sender\"",
-    "step4": "Copy the 16-character password and paste it below",
-    "password": "Gmail App Password",
-    "configured": "Configured",
-    "notConfigured": "Not Configured",
-    "modify": "Modify Gmail Configuration",
-    "configure": "Configure Gmail to Send"
+    "title": "Διαμόρφωση Gmail SMTP",
+    "subtitle": "Για αποστολή email από τον λογαριασμό Gmail σας",
+    "instructions": "Οδηγίες:",
+    "step1": "Ενεργοποιήστε τον έλεγχο ταυτότητας 2 παραγόντων στον λογαριασμό Google σας",
+    "step2": "Μεταβείτε στο myaccount.google.com/apppasswords",
+    "step3": "Δημιουργήστε έναν κωδικό πρόσβασης εφαρμογής με το όνομα \"Email Sender\"",
+    "step4": "Αντιγράψτε τον κωδικό 16 χαρακτήρων και επικολλήστε τον παρακάτω",
+    "password": "Κωδικός Εφαρμογής Gmail",
+    "configured": "Διαμορφωμένο",
+    "notConfigured": "Μη Διαμορφωμένο",
+    "modify": "Τροποποίηση Διαμόρφωσης Gmail",
+    "configure": "Διαμόρφωση Gmail για Αποστολή"
   },
   "send": {
-    "title": "Send Control",
-    "numberOfEmails": "Number of Emails to Send",
-    "delay": "Delay Between Sends",
-    "fast": "Fast",
-    "secure": "Secure",
-    "sendButton": "Send",
-    "sending": "Sending...",
-    "success": "email(s) sent successfully",
-    "simulation": "simulation"
+    "title": "Έλεγχος Αποστολής",
+    "numberOfEmails": "Αριθμός Email προς Αποστολή",
+    "delay": "Καθυστέρηση Μεταξύ Αποστολών",
+    "fast": "Γρήγορο",
+    "secure": "Ασφαλές",
+    "sendButton": "Αποστολή",
+    "sending": "Αποστολή...",
+    "success": "email στάλθηκαν επιτυχώς",
+    "simulation": "προσομοίωση"
   },
   "queue": {
-    "title": "Queue",
-    "pending": "pending",
-    "empty": "Add applications to start your campaign.",
-    "remove": "Remove"
+    "title": "Ουρά",
+    "pending": "σε αναμονή",
+    "empty": "Προσθέστε αιτήσεις για να ξεκινήσετε την καμπάνια σας.",
+    "remove": "Αφαίρεση"
   },
   "results": {
-    "title": "Results",
-    "sent": "sent",
-    "failed": "failed"
+    "title": "Αποτελέσματα",
+    "sent": "απεσταλμένο",
+    "failed": "απέτυχε"
   },
   "login": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications",
-    "secureConnection": "Secure connection with Google",
-    "dataProtected": "Your data is protected"
+    "subtitle": "Αυτοματοποιήστε τις επαγγελματικές σας αιτήσεις",
+    "secureConnection": "Ασφαλής σύνδεση με Google",
+    "dataProtected": "Τα δεδομένα σας προστατεύονται"
   },
   "messages": {
-    "addEmail": "Add at least one email",
-    "emailAdded": "Application added successfully",
-    "invalidEmail": "Invalid email format",
-    "emailExists": "This email already exists",
-    "configureSmtp": "Please configure your Gmail app password",
-    "cvFromProfile": "Your profile CV will be used"
+    "addEmail": "Προσθέστε τουλάχιστον ένα email",
+    "emailAdded": "Η αίτηση προστέθηκε επιτυχώς",
+    "invalidEmail": "Μη έγκυρη μορφή email",
+    "emailExists": "Αυτό το email υπάρχει ήδη",
+    "configureSmtp": "Παρακαλώ διαμορφώστε τον κωδικό εφαρμογής Gmail σας",
+    "cvFromProfile": "Θα χρησιμοποιηθεί το βιογραφικό του προφίλ σας"
   },
   "export": {
-    "downloadExcel": "Download Excel",
-    "downloading": "Downloading...",
-    "success": "File downloaded successfully",
-    "error": "Download error"
+    "downloadExcel": "Λήψη Excel",
+    "downloading": "Λήψη...",
+    "success": "Το αρχείο λήφθηκε επιτυχώς",
+    "error": "Σφάλμα λήψης"
   }
 }
-

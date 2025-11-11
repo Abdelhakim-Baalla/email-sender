@@ -1,114 +1,113 @@
-﻿{
+{
   "app": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications"
+    "subtitle": "Автоматизируйте ваши профессиональные заявки"
   },
   "nav": {
-    "newApplication": "New Application",
-    "queue": "Queue",
-    "send": "Send",
-    "logout": "Logout"
+    "newApplication": "Новая Заявка",
+    "queue": "Очередь",
+    "send": "Отправить",
+    "logout": "Выйти"
   },
   "hero": {
-    "title": "Job Application Assistant",
-    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
-    "getStarted": "Get Started",
-    "viewQueue": "View Queue",
-    "inQueue": "In Queue",
-    "sent": "Sent"
+    "title": "Помощник по Заявкам",
+    "description": "Автоматизируйте профессиональные email-кампании, прикрепляйте резюме и отслеживайте всё в Excel.",
+    "getStarted": "Начать",
+    "viewQueue": "Просмотр Очереди",
+    "inQueue": "В Очереди",
+    "sent": "Отправлено"
   },
   "form": {
-    "company": "Company",
-    "position": "Position",
-    "email": "Contact Email(s)",
-    "location": "Location",
-    "flexibility": "Flexibility",
-    "contractType": "Contract Type",
-    "applicationMethod": "Application Method",
-    "contactPerson": "Contact Person",
-    "applyDate": "Apply Date",
-    "status": "Status",
-    "responseDate": "Response Date",
-    "referral": "Referral",
-    "interviewDate": "Interview Date",
-    "inTouchPerson": "In-touch Person",
-    "salaryRange": "Salary Range",
-    "portfolio": "Portfolio",
+    "company": "Компания",
+    "position": "Должность",
+    "email": "Контактный Email",
+    "location": "Местоположение",
+    "flexibility": "Гибкость",
+    "contractType": "Тип Контракта",
+    "applicationMethod": "Метод Подачи",
+    "contactPerson": "Контактное Лицо",
+    "applyDate": "Дата Подачи",
+    "status": "Статус",
+    "responseDate": "Дата Ответа",
+    "referral": "Рекомендация",
+    "interviewDate": "Дата Собеседования",
+    "inTouchPerson": "Контактное Лицо",
+    "salaryRange": "Диапазон Зарплаты",
+    "portfolio": "Портфолио",
     "linkedin": "LinkedIn",
-    "phone": "Phone",
-    "notes": "Notes",
-    "attachCV": "Attach CV (PDF)",
-    "dryRun": "Simulation Mode (no emails sent)",
-    "realMode": "Real Mode (emails will be sent)",
-    "addToQueue": "Add to Queue",
-    "optional": "optional"
+    "phone": "Телефон",
+    "notes": "Заметки",
+    "attachCV": "Прикрепить Резюме (PDF)",
+    "dryRun": "Режим Симуляции (письма не отправляются)",
+    "realMode": "Реальный Режим (письма будут отправлены)",
+    "addToQueue": "Добавить в Очередь",
+    "optional": "необязательно"
   },
   "profile": {
-    "title": "Profile",
-    "phone": "Phone",
+    "title": "Профиль",
+    "phone": "Телефон",
     "linkedin": "LinkedIn",
-    "portfolio": "Portfolio",
-    "cv": "CV (PDF)",
-    "uploadCV": "Click to upload your CV",
-    "cancel": "Cancel",
-    "save": "Save",
-    "saving": "Saving..."
+    "portfolio": "Портфолио",
+    "cv": "Резюме (PDF)",
+    "uploadCV": "Нажмите для загрузки резюме",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "saving": "Сохранение..."
   },
   "smtp": {
-    "title": "Gmail SMTP Configuration",
-    "subtitle": "To send emails from your Gmail account",
-    "instructions": "Instructions:",
-    "step1": "Enable 2-factor authentication on your Google account",
-    "step2": "Go to myaccount.google.com/apppasswords",
-    "step3": "Create an app password named \"Email Sender\"",
-    "step4": "Copy the 16-character password and paste it below",
-    "password": "Gmail App Password",
-    "configured": "Configured",
-    "notConfigured": "Not Configured",
-    "modify": "Modify Gmail Configuration",
-    "configure": "Configure Gmail to Send"
+    "title": "Настройка Gmail SMTP",
+    "subtitle": "Для отправки писем с вашего аккаунта Gmail",
+    "instructions": "Инструкции:",
+    "step1": "Включите двухфакторную аутентификацию в вашем аккаунте Google",
+    "step2": "Перейдите на myaccount.google.com/apppasswords",
+    "step3": "Создайте пароль приложения с именем \"Email Sender\"",
+    "step4": "Скопируйте 16-символьный пароль и вставьте его ниже",
+    "password": "Пароль Приложения Gmail",
+    "configured": "Настроено",
+    "notConfigured": "Не Настроено",
+    "modify": "Изменить Настройки Gmail",
+    "configure": "Настроить Gmail для Отправки"
   },
   "send": {
-    "title": "Send Control",
-    "numberOfEmails": "Number of Emails to Send",
-    "delay": "Delay Between Sends",
-    "fast": "Fast",
-    "secure": "Secure",
-    "sendButton": "Send",
-    "sending": "Sending...",
-    "success": "email(s) sent successfully",
-    "simulation": "simulation"
+    "title": "Управление Отправкой",
+    "numberOfEmails": "Количество Писем для Отправки",
+    "delay": "Задержка Между Отправками",
+    "fast": "Быстро",
+    "secure": "Безопасно",
+    "sendButton": "Отправить",
+    "sending": "Отправка...",
+    "success": "письмо(а) успешно отправлено",
+    "simulation": "симуляция"
   },
   "queue": {
-    "title": "Queue",
-    "pending": "pending",
-    "empty": "Add applications to start your campaign.",
-    "remove": "Remove"
+    "title": "Очередь",
+    "pending": "ожидание",
+    "empty": "Добавьте заявки для начала кампании.",
+    "remove": "Удалить"
   },
   "results": {
-    "title": "Results",
-    "sent": "sent",
-    "failed": "failed"
+    "title": "Результаты",
+    "sent": "отправлено",
+    "failed": "не удалось"
   },
   "login": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications",
-    "secureConnection": "Secure connection with Google",
-    "dataProtected": "Your data is protected"
+    "subtitle": "Автоматизируйте ваши профессиональные заявки",
+    "secureConnection": "Безопасное соединение с Google",
+    "dataProtected": "Ваши данные защищены"
   },
   "messages": {
-    "addEmail": "Add at least one email",
-    "emailAdded": "Application added successfully",
-    "invalidEmail": "Invalid email format",
-    "emailExists": "This email already exists",
-    "configureSmtp": "Please configure your Gmail app password",
-    "cvFromProfile": "Your profile CV will be used"
+    "addEmail": "Добавьте хотя бы один email",
+    "emailAdded": "Заявка успешно добавлена",
+    "invalidEmail": "Неверный формат email",
+    "emailExists": "Этот email уже существует",
+    "configureSmtp": "Пожалуйста, настройте пароль приложения Gmail",
+    "cvFromProfile": "Будет использовано ваше резюме из профиля"
   },
   "export": {
-    "downloadExcel": "Download Excel",
-    "downloading": "Downloading...",
-    "success": "File downloaded successfully",
-    "error": "Download error"
+    "downloadExcel": "Скачать Excel",
+    "downloading": "Загрузка...",
+    "success": "Файл успешно загружен",
+    "error": "Ошибка загрузки"
   }
 }
-

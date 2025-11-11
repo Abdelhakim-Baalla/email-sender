@@ -1,114 +1,113 @@
-﻿{
+{
   "app": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications"
+    "subtitle": "Automatiseer uw professionele sollicitaties"
   },
   "nav": {
-    "newApplication": "New Application",
-    "queue": "Queue",
-    "send": "Send",
-    "logout": "Logout"
+    "newApplication": "Nieuwe Sollicitatie",
+    "queue": "Wachtrij",
+    "send": "Verzenden",
+    "logout": "Uitloggen"
   },
   "hero": {
-    "title": "Job Application Assistant",
-    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
-    "getStarted": "Get Started",
-    "viewQueue": "View Queue",
-    "inQueue": "In Queue",
-    "sent": "Sent"
+    "title": "Sollicitatie Assistent",
+    "description": "Automatiseer professionele e-mailcampagnes, voeg uw CV toe en volg alles in Excel.",
+    "getStarted": "Beginnen",
+    "viewQueue": "Wachtrij Bekijken",
+    "inQueue": "In Wachtrij",
+    "sent": "Verzonden"
   },
   "form": {
-    "company": "Company",
-    "position": "Position",
-    "email": "Contact Email(s)",
-    "location": "Location",
-    "flexibility": "Flexibility",
-    "contractType": "Contract Type",
-    "applicationMethod": "Application Method",
-    "contactPerson": "Contact Person",
-    "applyDate": "Apply Date",
+    "company": "Bedrijf",
+    "position": "Functie",
+    "email": "Contact E-mail(s)",
+    "location": "Locatie",
+    "flexibility": "Flexibiliteit",
+    "contractType": "Contracttype",
+    "applicationMethod": "Sollicitatiemethode",
+    "contactPerson": "Contactpersoon",
+    "applyDate": "Sollicitatiedatum",
     "status": "Status",
-    "responseDate": "Response Date",
-    "referral": "Referral",
-    "interviewDate": "Interview Date",
-    "inTouchPerson": "In-touch Person",
-    "salaryRange": "Salary Range",
+    "responseDate": "Responsdatum",
+    "referral": "Verwijzing",
+    "interviewDate": "Interviewdatum",
+    "inTouchPerson": "Contactpersoon",
+    "salaryRange": "Salarisindicatie",
     "portfolio": "Portfolio",
     "linkedin": "LinkedIn",
-    "phone": "Phone",
-    "notes": "Notes",
-    "attachCV": "Attach CV (PDF)",
-    "dryRun": "Simulation Mode (no emails sent)",
-    "realMode": "Real Mode (emails will be sent)",
-    "addToQueue": "Add to Queue",
-    "optional": "optional"
+    "phone": "Telefoon",
+    "notes": "Notities",
+    "attachCV": "CV Bijvoegen (PDF)",
+    "dryRun": "Simulatiemodus (geen e-mails verzonden)",
+    "realMode": "Echte Modus (e-mails worden verzonden)",
+    "addToQueue": "Toevoegen aan Wachtrij",
+    "optional": "optioneel"
   },
   "profile": {
-    "title": "Profile",
-    "phone": "Phone",
+    "title": "Profiel",
+    "phone": "Telefoon",
     "linkedin": "LinkedIn",
     "portfolio": "Portfolio",
     "cv": "CV (PDF)",
-    "uploadCV": "Click to upload your CV",
-    "cancel": "Cancel",
-    "save": "Save",
-    "saving": "Saving..."
+    "uploadCV": "Klik om uw CV te uploaden",
+    "cancel": "Annuleren",
+    "save": "Opslaan",
+    "saving": "Opslaan..."
   },
   "smtp": {
-    "title": "Gmail SMTP Configuration",
-    "subtitle": "To send emails from your Gmail account",
-    "instructions": "Instructions:",
-    "step1": "Enable 2-factor authentication on your Google account",
-    "step2": "Go to myaccount.google.com/apppasswords",
-    "step3": "Create an app password named \"Email Sender\"",
-    "step4": "Copy the 16-character password and paste it below",
-    "password": "Gmail App Password",
-    "configured": "Configured",
-    "notConfigured": "Not Configured",
-    "modify": "Modify Gmail Configuration",
-    "configure": "Configure Gmail to Send"
+    "title": "Gmail SMTP Configuratie",
+    "subtitle": "Om e-mails te verzenden vanaf uw Gmail-account",
+    "instructions": "Instructies:",
+    "step1": "Schakel 2-factor authenticatie in op uw Google-account",
+    "step2": "Ga naar myaccount.google.com/apppasswords",
+    "step3": "Maak een app-wachtwoord aan met de naam \"Email Sender\"",
+    "step4": "Kopieer het 16-tekens wachtwoord en plak het hieronder",
+    "password": "Gmail App-wachtwoord",
+    "configured": "Geconfigureerd",
+    "notConfigured": "Niet Geconfigureerd",
+    "modify": "Gmail Configuratie Wijzigen",
+    "configure": "Gmail Configureren voor Verzenden"
   },
   "send": {
-    "title": "Send Control",
-    "numberOfEmails": "Number of Emails to Send",
-    "delay": "Delay Between Sends",
-    "fast": "Fast",
-    "secure": "Secure",
-    "sendButton": "Send",
-    "sending": "Sending...",
-    "success": "email(s) sent successfully",
-    "simulation": "simulation"
+    "title": "Verzendcontrole",
+    "numberOfEmails": "Aantal Te Verzenden E-mails",
+    "delay": "Vertraging Tussen Verzendingen",
+    "fast": "Snel",
+    "secure": "Veilig",
+    "sendButton": "Verzenden",
+    "sending": "Verzenden...",
+    "success": "e-mail(s) succesvol verzonden",
+    "simulation": "simulatie"
   },
   "queue": {
-    "title": "Queue",
-    "pending": "pending",
-    "empty": "Add applications to start your campaign.",
-    "remove": "Remove"
+    "title": "Wachtrij",
+    "pending": "in behandeling",
+    "empty": "Voeg sollicitaties toe om uw campagne te starten.",
+    "remove": "Verwijderen"
   },
   "results": {
-    "title": "Results",
-    "sent": "sent",
-    "failed": "failed"
+    "title": "Resultaten",
+    "sent": "verzonden",
+    "failed": "mislukt"
   },
   "login": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications",
-    "secureConnection": "Secure connection with Google",
-    "dataProtected": "Your data is protected"
+    "subtitle": "Automatiseer uw professionele sollicitaties",
+    "secureConnection": "Beveiligde verbinding met Google",
+    "dataProtected": "Uw gegevens zijn beschermd"
   },
   "messages": {
-    "addEmail": "Add at least one email",
-    "emailAdded": "Application added successfully",
-    "invalidEmail": "Invalid email format",
-    "emailExists": "This email already exists",
-    "configureSmtp": "Please configure your Gmail app password",
-    "cvFromProfile": "Your profile CV will be used"
+    "addEmail": "Voeg minimaal één e-mail toe",
+    "emailAdded": "Sollicitatie succesvol toegevoegd",
+    "invalidEmail": "Ongeldig e-mailformaat",
+    "emailExists": "Deze e-mail bestaat al",
+    "configureSmtp": "Configureer uw Gmail app-wachtwoord",
+    "cvFromProfile": "Uw profiel CV wordt gebruikt"
   },
   "export": {
-    "downloadExcel": "Download Excel",
-    "downloading": "Downloading...",
-    "success": "File downloaded successfully",
-    "error": "Download error"
+    "downloadExcel": "Excel Downloaden",
+    "downloading": "Downloaden...",
+    "success": "Bestand succesvol gedownload",
+    "error": "Downloadfout"
   }
 }
-

@@ -1,114 +1,113 @@
-﻿{
+{
   "app": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications"
+    "subtitle": "Otomatiskan lamaran profesional Anda"
   },
   "nav": {
-    "newApplication": "New Application",
-    "queue": "Queue",
-    "send": "Send",
-    "logout": "Logout"
+    "newApplication": "Lamaran Baru",
+    "queue": "Antrian",
+    "send": "Kirim",
+    "logout": "Keluar"
   },
   "hero": {
-    "title": "Job Application Assistant",
-    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
-    "getStarted": "Get Started",
-    "viewQueue": "View Queue",
-    "inQueue": "In Queue",
-    "sent": "Sent"
+    "title": "Asisten Lamaran Kerja",
+    "description": "Otomatiskan kampanye email profesional, lampirkan CV Anda, dan lacak semuanya di Excel.",
+    "getStarted": "Mulai",
+    "viewQueue": "Lihat Antrian",
+    "inQueue": "Dalam Antrian",
+    "sent": "Terkirim"
   },
   "form": {
-    "company": "Company",
-    "position": "Position",
-    "email": "Contact Email(s)",
-    "location": "Location",
-    "flexibility": "Flexibility",
-    "contractType": "Contract Type",
-    "applicationMethod": "Application Method",
-    "contactPerson": "Contact Person",
-    "applyDate": "Apply Date",
+    "company": "Perusahaan",
+    "position": "Posisi",
+    "email": "Email Kontak",
+    "location": "Lokasi",
+    "flexibility": "Fleksibilitas",
+    "contractType": "Jenis Kontrak",
+    "applicationMethod": "Metode Lamaran",
+    "contactPerson": "Orang Kontak",
+    "applyDate": "Tanggal Lamaran",
     "status": "Status",
-    "responseDate": "Response Date",
-    "referral": "Referral",
-    "interviewDate": "Interview Date",
-    "inTouchPerson": "In-touch Person",
-    "salaryRange": "Salary Range",
-    "portfolio": "Portfolio",
+    "responseDate": "Tanggal Respons",
+    "referral": "Referensi",
+    "interviewDate": "Tanggal Wawancara",
+    "inTouchPerson": "Orang yang Dihubungi",
+    "salaryRange": "Kisaran Gaji",
+    "portfolio": "Portofolio",
     "linkedin": "LinkedIn",
-    "phone": "Phone",
-    "notes": "Notes",
-    "attachCV": "Attach CV (PDF)",
-    "dryRun": "Simulation Mode (no emails sent)",
-    "realMode": "Real Mode (emails will be sent)",
-    "addToQueue": "Add to Queue",
-    "optional": "optional"
+    "phone": "Telepon",
+    "notes": "Catatan",
+    "attachCV": "Lampirkan CV (PDF)",
+    "dryRun": "Mode Simulasi (tidak ada email terkirim)",
+    "realMode": "Mode Nyata (email akan dikirim)",
+    "addToQueue": "Tambah ke Antrian",
+    "optional": "opsional"
   },
   "profile": {
-    "title": "Profile",
-    "phone": "Phone",
+    "title": "Profil",
+    "phone": "Telepon",
     "linkedin": "LinkedIn",
-    "portfolio": "Portfolio",
+    "portfolio": "Portofolio",
     "cv": "CV (PDF)",
-    "uploadCV": "Click to upload your CV",
-    "cancel": "Cancel",
-    "save": "Save",
-    "saving": "Saving..."
+    "uploadCV": "Klik untuk mengunggah CV Anda",
+    "cancel": "Batal",
+    "save": "Simpan",
+    "saving": "Menyimpan..."
   },
   "smtp": {
-    "title": "Gmail SMTP Configuration",
-    "subtitle": "To send emails from your Gmail account",
-    "instructions": "Instructions:",
-    "step1": "Enable 2-factor authentication on your Google account",
-    "step2": "Go to myaccount.google.com/apppasswords",
-    "step3": "Create an app password named \"Email Sender\"",
-    "step4": "Copy the 16-character password and paste it below",
-    "password": "Gmail App Password",
-    "configured": "Configured",
-    "notConfigured": "Not Configured",
-    "modify": "Modify Gmail Configuration",
-    "configure": "Configure Gmail to Send"
+    "title": "Konfigurasi Gmail SMTP",
+    "subtitle": "Untuk mengirim email dari akun Gmail Anda",
+    "instructions": "Instruksi:",
+    "step1": "Aktifkan autentikasi 2 faktor di akun Google Anda",
+    "step2": "Kunjungi myaccount.google.com/apppasswords",
+    "step3": "Buat kata sandi aplikasi bernama \"Email Sender\"",
+    "step4": "Salin kata sandi 16 karakter dan tempel di bawah",
+    "password": "Kata Sandi Aplikasi Gmail",
+    "configured": "Dikonfigurasi",
+    "notConfigured": "Belum Dikonfigurasi",
+    "modify": "Ubah Konfigurasi Gmail",
+    "configure": "Konfigurasi Gmail untuk Mengirim"
   },
   "send": {
-    "title": "Send Control",
-    "numberOfEmails": "Number of Emails to Send",
-    "delay": "Delay Between Sends",
-    "fast": "Fast",
-    "secure": "Secure",
-    "sendButton": "Send",
-    "sending": "Sending...",
-    "success": "email(s) sent successfully",
-    "simulation": "simulation"
+    "title": "Kontrol Pengiriman",
+    "numberOfEmails": "Jumlah Email yang Akan Dikirim",
+    "delay": "Jeda Antar Pengiriman",
+    "fast": "Cepat",
+    "secure": "Aman",
+    "sendButton": "Kirim",
+    "sending": "Mengirim...",
+    "success": "email berhasil dikirim",
+    "simulation": "simulasi"
   },
   "queue": {
-    "title": "Queue",
-    "pending": "pending",
-    "empty": "Add applications to start your campaign.",
-    "remove": "Remove"
+    "title": "Antrian",
+    "pending": "menunggu",
+    "empty": "Tambahkan lamaran untuk memulai kampanye Anda.",
+    "remove": "Hapus"
   },
   "results": {
-    "title": "Results",
-    "sent": "sent",
-    "failed": "failed"
+    "title": "Hasil",
+    "sent": "terkirim",
+    "failed": "gagal"
   },
   "login": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications",
-    "secureConnection": "Secure connection with Google",
-    "dataProtected": "Your data is protected"
+    "subtitle": "Otomatiskan lamaran profesional Anda",
+    "secureConnection": "Koneksi aman dengan Google",
+    "dataProtected": "Data Anda dilindungi"
   },
   "messages": {
-    "addEmail": "Add at least one email",
-    "emailAdded": "Application added successfully",
-    "invalidEmail": "Invalid email format",
-    "emailExists": "This email already exists",
-    "configureSmtp": "Please configure your Gmail app password",
-    "cvFromProfile": "Your profile CV will be used"
+    "addEmail": "Tambahkan setidaknya satu email",
+    "emailAdded": "Lamaran berhasil ditambahkan",
+    "invalidEmail": "Format email tidak valid",
+    "emailExists": "Email ini sudah ada",
+    "configureSmtp": "Silakan konfigurasi kata sandi aplikasi Gmail Anda",
+    "cvFromProfile": "CV profil Anda akan digunakan"
   },
   "export": {
-    "downloadExcel": "Download Excel",
-    "downloading": "Downloading...",
-    "success": "File downloaded successfully",
-    "error": "Download error"
+    "downloadExcel": "Unduh Excel",
+    "downloading": "Mengunduh...",
+    "success": "File berhasil diunduh",
+    "error": "Kesalahan unduhan"
   }
 }
-

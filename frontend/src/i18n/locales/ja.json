@@ -1,114 +1,113 @@
-﻿{
+{
   "app": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications"
+    "subtitle": "プロフェッショナルな応募を自動化"
   },
   "nav": {
-    "newApplication": "New Application",
-    "queue": "Queue",
-    "send": "Send",
-    "logout": "Logout"
+    "newApplication": "新規応募",
+    "queue": "キュー",
+    "send": "送信",
+    "logout": "ログアウト"
   },
   "hero": {
-    "title": "Job Application Assistant",
-    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
-    "getStarted": "Get Started",
-    "viewQueue": "View Queue",
-    "inQueue": "In Queue",
-    "sent": "Sent"
+    "title": "求人応募アシスタント",
+    "description": "プロフェッショナルなメールキャンペーンを自動化し、履歴書を添付し、すべてをExcelで追跡します。",
+    "getStarted": "始める",
+    "viewQueue": "キューを表示",
+    "inQueue": "キュー内",
+    "sent": "送信済み"
   },
   "form": {
-    "company": "Company",
-    "position": "Position",
-    "email": "Contact Email(s)",
-    "location": "Location",
-    "flexibility": "Flexibility",
-    "contractType": "Contract Type",
-    "applicationMethod": "Application Method",
-    "contactPerson": "Contact Person",
-    "applyDate": "Apply Date",
-    "status": "Status",
-    "responseDate": "Response Date",
-    "referral": "Referral",
-    "interviewDate": "Interview Date",
-    "inTouchPerson": "In-touch Person",
-    "salaryRange": "Salary Range",
-    "portfolio": "Portfolio",
+    "company": "会社",
+    "position": "職位",
+    "email": "連絡先メール",
+    "location": "場所",
+    "flexibility": "柔軟性",
+    "contractType": "契約タイプ",
+    "applicationMethod": "応募方法",
+    "contactPerson": "連絡担当者",
+    "applyDate": "応募日",
+    "status": "ステータス",
+    "responseDate": "返信日",
+    "referral": "紹介",
+    "interviewDate": "面接日",
+    "inTouchPerson": "連絡中の担当者",
+    "salaryRange": "給与範囲",
+    "portfolio": "ポートフォリオ",
     "linkedin": "LinkedIn",
-    "phone": "Phone",
-    "notes": "Notes",
-    "attachCV": "Attach CV (PDF)",
-    "dryRun": "Simulation Mode (no emails sent)",
-    "realMode": "Real Mode (emails will be sent)",
-    "addToQueue": "Add to Queue",
-    "optional": "optional"
+    "phone": "電話",
+    "notes": "メモ",
+    "attachCV": "履歴書を添付 (PDF)",
+    "dryRun": "シミュレーションモード（メール送信なし）",
+    "realMode": "実際のモード（メールが送信されます）",
+    "addToQueue": "キューに追加",
+    "optional": "オプション"
   },
   "profile": {
-    "title": "Profile",
-    "phone": "Phone",
+    "title": "プロフィール",
+    "phone": "電話",
     "linkedin": "LinkedIn",
-    "portfolio": "Portfolio",
-    "cv": "CV (PDF)",
-    "uploadCV": "Click to upload your CV",
-    "cancel": "Cancel",
-    "save": "Save",
-    "saving": "Saving..."
+    "portfolio": "ポートフォリオ",
+    "cv": "履歴書 (PDF)",
+    "uploadCV": "クリックして履歴書をアップロード",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "saving": "保存中..."
   },
   "smtp": {
-    "title": "Gmail SMTP Configuration",
-    "subtitle": "To send emails from your Gmail account",
-    "instructions": "Instructions:",
-    "step1": "Enable 2-factor authentication on your Google account",
-    "step2": "Go to myaccount.google.com/apppasswords",
-    "step3": "Create an app password named \"Email Sender\"",
-    "step4": "Copy the 16-character password and paste it below",
-    "password": "Gmail App Password",
-    "configured": "Configured",
-    "notConfigured": "Not Configured",
-    "modify": "Modify Gmail Configuration",
-    "configure": "Configure Gmail to Send"
+    "title": "Gmail SMTP設定",
+    "subtitle": "Gmailアカウントからメールを送信するため",
+    "instructions": "手順:",
+    "step1": "Googleアカウントで2段階認証を有効にする",
+    "step2": "myaccount.google.com/apppasswords にアクセス",
+    "step3": "「Email Sender」という名前のアプリパスワードを作成",
+    "step4": "16文字のパスワードをコピーして以下に貼り付け",
+    "password": "Gmailアプリパスワード",
+    "configured": "設定済み",
+    "notConfigured": "未設定",
+    "modify": "Gmail設定を変更",
+    "configure": "送信用にGmailを設定"
   },
   "send": {
-    "title": "Send Control",
-    "numberOfEmails": "Number of Emails to Send",
-    "delay": "Delay Between Sends",
-    "fast": "Fast",
-    "secure": "Secure",
-    "sendButton": "Send",
-    "sending": "Sending...",
-    "success": "email(s) sent successfully",
-    "simulation": "simulation"
+    "title": "送信コントロール",
+    "numberOfEmails": "送信するメール数",
+    "delay": "送信間の遅延",
+    "fast": "高速",
+    "secure": "安全",
+    "sendButton": "送信",
+    "sending": "送信中...",
+    "success": "メールが正常に送信されました",
+    "simulation": "シミュレーション"
   },
   "queue": {
-    "title": "Queue",
-    "pending": "pending",
-    "empty": "Add applications to start your campaign.",
-    "remove": "Remove"
+    "title": "キュー",
+    "pending": "保留中",
+    "empty": "キャンペーンを開始するには応募を追加してください。",
+    "remove": "削除"
   },
   "results": {
-    "title": "Results",
-    "sent": "sent",
-    "failed": "failed"
+    "title": "結果",
+    "sent": "送信済み",
+    "failed": "失敗"
   },
   "login": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications",
-    "secureConnection": "Secure connection with Google",
-    "dataProtected": "Your data is protected"
+    "subtitle": "プロフェッショナルな応募を自動化",
+    "secureConnection": "Googleとの安全な接続",
+    "dataProtected": "データは保護されています"
   },
   "messages": {
-    "addEmail": "Add at least one email",
-    "emailAdded": "Application added successfully",
-    "invalidEmail": "Invalid email format",
-    "emailExists": "This email already exists",
-    "configureSmtp": "Please configure your Gmail app password",
-    "cvFromProfile": "Your profile CV will be used"
+    "addEmail": "少なくとも1つのメールを追加してください",
+    "emailAdded": "応募が正常に追加されました",
+    "invalidEmail": "無効なメール形式",
+    "emailExists": "このメールは既に存在します",
+    "configureSmtp": "Gmailアプリパスワードを設定してください",
+    "cvFromProfile": "プロフィールの履歴書が使用されます"
   },
   "export": {
-    "downloadExcel": "Download Excel",
-    "downloading": "Downloading...",
-    "success": "File downloaded successfully",
-    "error": "Download error"
+    "downloadExcel": "Excelをダウンロード",
+    "downloading": "ダウンロード中...",
+    "success": "ファイルが正常にダウンロードされました",
+    "error": "ダウンロードエラー"
   }
 }
-

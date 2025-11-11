@@ -1,114 +1,113 @@
-﻿{
+{
   "app": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications"
+    "subtitle": "अपने पेशेवर आवेदनों को स्वचालित करें"
   },
   "nav": {
-    "newApplication": "New Application",
-    "queue": "Queue",
-    "send": "Send",
-    "logout": "Logout"
+    "newApplication": "नया आवेदन",
+    "queue": "कतार",
+    "send": "भेजें",
+    "logout": "लॉग आउट"
   },
   "hero": {
-    "title": "Job Application Assistant",
-    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
-    "getStarted": "Get Started",
-    "viewQueue": "View Queue",
-    "inQueue": "In Queue",
-    "sent": "Sent"
+    "title": "नौकरी आवेदन सहायक",
+    "description": "पेशेवर ईमेल अभियानों को स्वचालित करें, अपना CV संलग्न करें और Excel में सब कुछ ट्रैक करें।",
+    "getStarted": "शुरू करें",
+    "viewQueue": "कतार देखें",
+    "inQueue": "कतार में",
+    "sent": "भेजा गया"
   },
   "form": {
-    "company": "Company",
-    "position": "Position",
-    "email": "Contact Email(s)",
-    "location": "Location",
-    "flexibility": "Flexibility",
-    "contractType": "Contract Type",
-    "applicationMethod": "Application Method",
-    "contactPerson": "Contact Person",
-    "applyDate": "Apply Date",
-    "status": "Status",
-    "responseDate": "Response Date",
-    "referral": "Referral",
-    "interviewDate": "Interview Date",
-    "inTouchPerson": "In-touch Person",
-    "salaryRange": "Salary Range",
-    "portfolio": "Portfolio",
+    "company": "कंपनी",
+    "position": "पद",
+    "email": "संपर्क ईमेल",
+    "location": "स्थान",
+    "flexibility": "लचीलापन",
+    "contractType": "अनुबंध प्रकार",
+    "applicationMethod": "आवेदन विधि",
+    "contactPerson": "संपर्क व्यक्ति",
+    "applyDate": "आवेदन तिथि",
+    "status": "स्थिति",
+    "responseDate": "प्रतिक्रिया तिथि",
+    "referral": "संदर्भ",
+    "interviewDate": "साक्षात्कार तिथि",
+    "inTouchPerson": "संपर्क में व्यक्ति",
+    "salaryRange": "वेतन सीमा",
+    "portfolio": "पोर्टफोलियो",
     "linkedin": "LinkedIn",
-    "phone": "Phone",
-    "notes": "Notes",
-    "attachCV": "Attach CV (PDF)",
-    "dryRun": "Simulation Mode (no emails sent)",
-    "realMode": "Real Mode (emails will be sent)",
-    "addToQueue": "Add to Queue",
-    "optional": "optional"
+    "phone": "फोन",
+    "notes": "नोट्स",
+    "attachCV": "CV संलग्न करें (PDF)",
+    "dryRun": "सिमुलेशन मोड (कोई ईमेल नहीं भेजा गया)",
+    "realMode": "वास्तविक मोड (ईमेल भेजे जाएंगे)",
+    "addToQueue": "कतार में जोड़ें",
+    "optional": "वैकल्पिक"
   },
   "profile": {
-    "title": "Profile",
-    "phone": "Phone",
+    "title": "प्रोफ़ाइल",
+    "phone": "फोन",
     "linkedin": "LinkedIn",
-    "portfolio": "Portfolio",
+    "portfolio": "पोर्टफोलियो",
     "cv": "CV (PDF)",
-    "uploadCV": "Click to upload your CV",
-    "cancel": "Cancel",
-    "save": "Save",
-    "saving": "Saving..."
+    "uploadCV": "अपना CV अपलोड करने के लिए क्लिक करें",
+    "cancel": "रद्द करें",
+    "save": "सहेजें",
+    "saving": "सहेजा जा रहा है..."
   },
   "smtp": {
-    "title": "Gmail SMTP Configuration",
-    "subtitle": "To send emails from your Gmail account",
-    "instructions": "Instructions:",
-    "step1": "Enable 2-factor authentication on your Google account",
-    "step2": "Go to myaccount.google.com/apppasswords",
-    "step3": "Create an app password named \"Email Sender\"",
-    "step4": "Copy the 16-character password and paste it below",
-    "password": "Gmail App Password",
-    "configured": "Configured",
-    "notConfigured": "Not Configured",
-    "modify": "Modify Gmail Configuration",
-    "configure": "Configure Gmail to Send"
+    "title": "Gmail SMTP कॉन्फ़िगरेशन",
+    "subtitle": "अपने Gmail खाते से ईमेल भेजने के लिए",
+    "instructions": "निर्देश:",
+    "step1": "अपने Google खाते पर 2-कारक प्रमाणीकरण सक्षम करें",
+    "step2": "myaccount.google.com/apppasswords पर जाएं",
+    "step3": "\"Email Sender\" नाम से एक ऐप पासवर्ड बनाएं",
+    "step4": "16-वर्ण पासवर्ड कॉपी करें और नीचे पेस्ट करें",
+    "password": "Gmail ऐप पासवर्ड",
+    "configured": "कॉन्फ़िगर किया गया",
+    "notConfigured": "कॉन्फ़िगर नहीं किया गया",
+    "modify": "Gmail कॉन्फ़िगरेशन संशोधित करें",
+    "configure": "भेजने के लिए Gmail कॉन्फ़िगर करें"
   },
   "send": {
-    "title": "Send Control",
-    "numberOfEmails": "Number of Emails to Send",
-    "delay": "Delay Between Sends",
-    "fast": "Fast",
-    "secure": "Secure",
-    "sendButton": "Send",
-    "sending": "Sending...",
-    "success": "email(s) sent successfully",
-    "simulation": "simulation"
+    "title": "भेजने का नियंत्रण",
+    "numberOfEmails": "भेजने के लिए ईमेल की संख्या",
+    "delay": "भेजने के बीच विलंब",
+    "fast": "तेज़",
+    "secure": "सुरक्षित",
+    "sendButton": "भेजें",
+    "sending": "भेजा जा रहा है...",
+    "success": "ईमेल सफलतापूर्वक भेजा गया",
+    "simulation": "सिमुलेशन"
   },
   "queue": {
-    "title": "Queue",
-    "pending": "pending",
-    "empty": "Add applications to start your campaign.",
-    "remove": "Remove"
+    "title": "कतार",
+    "pending": "लंबित",
+    "empty": "अपना अभियान शुरू करने के लिए आवेदन जोड़ें।",
+    "remove": "हटाएं"
   },
   "results": {
-    "title": "Results",
-    "sent": "sent",
-    "failed": "failed"
+    "title": "परिणाम",
+    "sent": "भेजा गया",
+    "failed": "विफल"
   },
   "login": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications",
-    "secureConnection": "Secure connection with Google",
-    "dataProtected": "Your data is protected"
+    "subtitle": "अपने पेशेवर आवेदनों को स्वचालित करें",
+    "secureConnection": "Google के साथ सुरक्षित कनेक्शन",
+    "dataProtected": "आपका डेटा सुरक्षित है"
   },
   "messages": {
-    "addEmail": "Add at least one email",
-    "emailAdded": "Application added successfully",
-    "invalidEmail": "Invalid email format",
-    "emailExists": "This email already exists",
-    "configureSmtp": "Please configure your Gmail app password",
-    "cvFromProfile": "Your profile CV will be used"
+    "addEmail": "कम से कम एक ईमेल जोड़ें",
+    "emailAdded": "आवेदन सफलतापूर्वक जोड़ा गया",
+    "invalidEmail": "अमान्य ईमेल प्रारूप",
+    "emailExists": "यह ईमेल पहले से मौजूद है",
+    "configureSmtp": "कृपया अपना Gmail ऐप पासवर्ड कॉन्फ़िगर करें",
+    "cvFromProfile": "आपकी प्रोफ़ाइल CV का उपयोग किया जाएगा"
   },
   "export": {
-    "downloadExcel": "Download Excel",
-    "downloading": "Downloading...",
-    "success": "File downloaded successfully",
-    "error": "Download error"
+    "downloadExcel": "Excel डाउनलोड करें",
+    "downloading": "डाउनलोड हो रहा है...",
+    "success": "फ़ाइल सफलतापूर्वक डाउनलोड की गई",
+    "error": "डाउनलोड त्रुटि"
   }
 }
-

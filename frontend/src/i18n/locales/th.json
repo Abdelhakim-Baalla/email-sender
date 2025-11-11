@@ -1,114 +1,113 @@
-﻿{
+{
   "app": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications"
+    "subtitle": "ทำให้การสมัครงานของคุณเป็นอัตโนมัติ"
   },
   "nav": {
-    "newApplication": "New Application",
-    "queue": "Queue",
-    "send": "Send",
-    "logout": "Logout"
+    "newApplication": "ใบสมัครใหม่",
+    "queue": "คิว",
+    "send": "ส่ง",
+    "logout": "ออกจากระบบ"
   },
   "hero": {
-    "title": "Job Application Assistant",
-    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
-    "getStarted": "Get Started",
-    "viewQueue": "View Queue",
-    "inQueue": "In Queue",
-    "sent": "Sent"
+    "title": "ผู้ช่วยสมัครงาน",
+    "description": "ทำให้แคมเปญอีเมลมีความเป็นมืออาชีพโดยอัตโนมัติ แนบ CV และติดตามทุกอย่างใน Excel",
+    "getStarted": "เริ่มต้น",
+    "viewQueue": "ดูคิว",
+    "inQueue": "ในคิว",
+    "sent": "ส่งแล้ว"
   },
   "form": {
-    "company": "Company",
-    "position": "Position",
-    "email": "Contact Email(s)",
-    "location": "Location",
-    "flexibility": "Flexibility",
-    "contractType": "Contract Type",
-    "applicationMethod": "Application Method",
-    "contactPerson": "Contact Person",
-    "applyDate": "Apply Date",
-    "status": "Status",
-    "responseDate": "Response Date",
-    "referral": "Referral",
-    "interviewDate": "Interview Date",
-    "inTouchPerson": "In-touch Person",
-    "salaryRange": "Salary Range",
-    "portfolio": "Portfolio",
+    "company": "บริษัท",
+    "position": "ตำแหน่ง",
+    "email": "อีเมลติดต่อ",
+    "location": "สถานที่",
+    "flexibility": "ความยืดหยุ่น",
+    "contractType": "ประเภทสัญญา",
+    "applicationMethod": "วิธีการสมัคร",
+    "contactPerson": "ผู้ติดต่อ",
+    "applyDate": "วันที่สมัคร",
+    "status": "สถานะ",
+    "responseDate": "วันที่ตอบกลับ",
+    "referral": "การแนะนำ",
+    "interviewDate": "วันที่สัมภาษณ์",
+    "inTouchPerson": "ผู้ติดต่อ",
+    "salaryRange": "ช่วงเงินเดือน",
+    "portfolio": "ผลงาน",
     "linkedin": "LinkedIn",
-    "phone": "Phone",
-    "notes": "Notes",
-    "attachCV": "Attach CV (PDF)",
-    "dryRun": "Simulation Mode (no emails sent)",
-    "realMode": "Real Mode (emails will be sent)",
-    "addToQueue": "Add to Queue",
-    "optional": "optional"
+    "phone": "โทรศัพท์",
+    "notes": "หมายเหตุ",
+    "attachCV": "แนบ CV (PDF)",
+    "dryRun": "โหมดจำลอง (ไม่ส่งอีเมล)",
+    "realMode": "โหมดจริง (จะส่งอีเมล)",
+    "addToQueue": "เพิ่มในคิว",
+    "optional": "ไม่บังคับ"
   },
   "profile": {
-    "title": "Profile",
-    "phone": "Phone",
+    "title": "โปรไฟล์",
+    "phone": "โทรศัพท์",
     "linkedin": "LinkedIn",
-    "portfolio": "Portfolio",
+    "portfolio": "ผลงาน",
     "cv": "CV (PDF)",
-    "uploadCV": "Click to upload your CV",
-    "cancel": "Cancel",
-    "save": "Save",
-    "saving": "Saving..."
+    "uploadCV": "คลิกเพื่ออัปโหลด CV ของคุณ",
+    "cancel": "ยกเลิก",
+    "save": "บันทึก",
+    "saving": "กำลังบันทึก..."
   },
   "smtp": {
-    "title": "Gmail SMTP Configuration",
-    "subtitle": "To send emails from your Gmail account",
-    "instructions": "Instructions:",
-    "step1": "Enable 2-factor authentication on your Google account",
-    "step2": "Go to myaccount.google.com/apppasswords",
-    "step3": "Create an app password named \"Email Sender\"",
-    "step4": "Copy the 16-character password and paste it below",
-    "password": "Gmail App Password",
-    "configured": "Configured",
-    "notConfigured": "Not Configured",
-    "modify": "Modify Gmail Configuration",
-    "configure": "Configure Gmail to Send"
+    "title": "การกำหนดค่า Gmail SMTP",
+    "subtitle": "เพื่อส่งอีเมลจากบัญชี Gmail ของคุณ",
+    "instructions": "คำแนะนำ:",
+    "step1": "เปิดใช้งานการยืนยันตัวตน 2 ปัจจัยในบัญชี Google ของคุณ",
+    "step2": "ไปที่ myaccount.google.com/apppasswords",
+    "step3": "สร้างรหัสผ่านแอปชื่อ \"Email Sender\"",
+    "step4": "คัดลอกรหัสผ่าน 16 ตัวอักษรและวางด้านล่าง",
+    "password": "รหัสผ่านแอป Gmail",
+    "configured": "กำหนดค่าแล้ว",
+    "notConfigured": "ยังไม่ได้กำหนดค่า",
+    "modify": "แก้ไขการกำหนดค่า Gmail",
+    "configure": "กำหนดค่า Gmail เพื่อส่ง"
   },
   "send": {
-    "title": "Send Control",
-    "numberOfEmails": "Number of Emails to Send",
-    "delay": "Delay Between Sends",
-    "fast": "Fast",
-    "secure": "Secure",
-    "sendButton": "Send",
-    "sending": "Sending...",
-    "success": "email(s) sent successfully",
-    "simulation": "simulation"
+    "title": "การควบคุมการส่ง",
+    "numberOfEmails": "จำนวนอีเมลที่จะส่ง",
+    "delay": "ความล่าช้าระหว่างการส่ง",
+    "fast": "เร็ว",
+    "secure": "ปลอดภัย",
+    "sendButton": "ส่ง",
+    "sending": "กำลังส่ง...",
+    "success": "ส่งอีเมลสำเร็จ",
+    "simulation": "จำลอง"
   },
   "queue": {
-    "title": "Queue",
-    "pending": "pending",
-    "empty": "Add applications to start your campaign.",
-    "remove": "Remove"
+    "title": "คิว",
+    "pending": "รอดำเนินการ",
+    "empty": "เพิ่มใบสมัครเพื่อเริ่มแคมเปญของคุณ",
+    "remove": "ลบ"
   },
   "results": {
-    "title": "Results",
-    "sent": "sent",
-    "failed": "failed"
+    "title": "ผลลัพธ์",
+    "sent": "ส่งแล้ว",
+    "failed": "ล้มเหลว"
   },
   "login": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications",
-    "secureConnection": "Secure connection with Google",
-    "dataProtected": "Your data is protected"
+    "subtitle": "ทำให้การสมัครงานของคุณเป็นอัตโนมัติ",
+    "secureConnection": "การเชื่อมต่อที่ปลอดภัยกับ Google",
+    "dataProtected": "ข้อมูลของคุณได้รับการปกป้อง"
   },
   "messages": {
-    "addEmail": "Add at least one email",
-    "emailAdded": "Application added successfully",
-    "invalidEmail": "Invalid email format",
-    "emailExists": "This email already exists",
-    "configureSmtp": "Please configure your Gmail app password",
-    "cvFromProfile": "Your profile CV will be used"
+    "addEmail": "เพิ่มอีเมลอย่างน้อยหนึ่งรายการ",
+    "emailAdded": "เพิ่มใบสมัครสำเร็จ",
+    "invalidEmail": "รูปแบบอีเมลไม่ถูกต้อง",
+    "emailExists": "อีเมลนี้มีอยู่แล้ว",
+    "configureSmtp": "โปรดกำหนดค่ารหัสผ่านแอป Gmail ของคุณ",
+    "cvFromProfile": "จะใช้ CV จากโปรไฟล์ของคุณ"
   },
   "export": {
-    "downloadExcel": "Download Excel",
-    "downloading": "Downloading...",
-    "success": "File downloaded successfully",
-    "error": "Download error"
+    "downloadExcel": "ดาวน์โหลด Excel",
+    "downloading": "กำลังดาวน์โหลด...",
+    "success": "ดาวน์โหลดไฟล์สำเร็จ",
+    "error": "ข้อผิดพลาดในการดาวน์โหลด"
   }
 }
-

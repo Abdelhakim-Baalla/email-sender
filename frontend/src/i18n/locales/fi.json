@@ -1,114 +1,113 @@
-﻿{
+{
   "app": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications"
+    "subtitle": "Automatisoi ammatilliset hakemuksesi"
   },
   "nav": {
-    "newApplication": "New Application",
-    "queue": "Queue",
-    "send": "Send",
-    "logout": "Logout"
+    "newApplication": "Uusi Hakemus",
+    "queue": "Jono",
+    "send": "Lähetä",
+    "logout": "Kirjaudu ulos"
   },
   "hero": {
-    "title": "Job Application Assistant",
-    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
-    "getStarted": "Get Started",
-    "viewQueue": "View Queue",
-    "inQueue": "In Queue",
-    "sent": "Sent"
+    "title": "Työhakemusavustaja",
+    "description": "Automatisoi ammatilliset sähköpostikampanjat, liitä CV ja seuraa kaikkea Excelissä.",
+    "getStarted": "Aloita",
+    "viewQueue": "Näytä Jono",
+    "inQueue": "Jonossa",
+    "sent": "Lähetetty"
   },
   "form": {
-    "company": "Company",
-    "position": "Position",
-    "email": "Contact Email(s)",
-    "location": "Location",
-    "flexibility": "Flexibility",
-    "contractType": "Contract Type",
-    "applicationMethod": "Application Method",
-    "contactPerson": "Contact Person",
-    "applyDate": "Apply Date",
-    "status": "Status",
-    "responseDate": "Response Date",
-    "referral": "Referral",
-    "interviewDate": "Interview Date",
-    "inTouchPerson": "In-touch Person",
-    "salaryRange": "Salary Range",
+    "company": "Yritys",
+    "position": "Asema",
+    "email": "Yhteystiedot Sähköposti",
+    "location": "Sijainti",
+    "flexibility": "Joustavuus",
+    "contractType": "Sopimustyyppi",
+    "applicationMethod": "Hakumenetelmä",
+    "contactPerson": "Yhteyshenkilö",
+    "applyDate": "Hakupäivä",
+    "status": "Tila",
+    "responseDate": "Vastauspäivä",
+    "referral": "Suositus",
+    "interviewDate": "Haastattelupäivä",
+    "inTouchPerson": "Yhteydessä oleva henkilö",
+    "salaryRange": "Palkkaluokka",
     "portfolio": "Portfolio",
     "linkedin": "LinkedIn",
-    "phone": "Phone",
-    "notes": "Notes",
-    "attachCV": "Attach CV (PDF)",
-    "dryRun": "Simulation Mode (no emails sent)",
-    "realMode": "Real Mode (emails will be sent)",
-    "addToQueue": "Add to Queue",
-    "optional": "optional"
+    "phone": "Puhelin",
+    "notes": "Muistiinpanot",
+    "attachCV": "Liitä CV (PDF)",
+    "dryRun": "Simulaatiotila (ei sähköposteja lähetetty)",
+    "realMode": "Todellinen Tila (sähköpostit lähetetään)",
+    "addToQueue": "Lisää Jonoon",
+    "optional": "valinnainen"
   },
   "profile": {
-    "title": "Profile",
-    "phone": "Phone",
+    "title": "Profiili",
+    "phone": "Puhelin",
     "linkedin": "LinkedIn",
     "portfolio": "Portfolio",
     "cv": "CV (PDF)",
-    "uploadCV": "Click to upload your CV",
-    "cancel": "Cancel",
-    "save": "Save",
-    "saving": "Saving..."
+    "uploadCV": "Napsauta ladataksesi CV:si",
+    "cancel": "Peruuta",
+    "save": "Tallenna",
+    "saving": "Tallennetaan..."
   },
   "smtp": {
-    "title": "Gmail SMTP Configuration",
-    "subtitle": "To send emails from your Gmail account",
-    "instructions": "Instructions:",
-    "step1": "Enable 2-factor authentication on your Google account",
-    "step2": "Go to myaccount.google.com/apppasswords",
-    "step3": "Create an app password named \"Email Sender\"",
-    "step4": "Copy the 16-character password and paste it below",
-    "password": "Gmail App Password",
-    "configured": "Configured",
-    "notConfigured": "Not Configured",
-    "modify": "Modify Gmail Configuration",
-    "configure": "Configure Gmail to Send"
+    "title": "Gmail SMTP -määritys",
+    "subtitle": "Sähköpostien lähettämiseen Gmail-tililtäsi",
+    "instructions": "Ohjeet:",
+    "step1": "Ota käyttöön kaksivaiheinen todennus Google-tililläsi",
+    "step2": "Siirry osoitteeseen myaccount.google.com/apppasswords",
+    "step3": "Luo sovellussalasana nimellä \"Email Sender\"",
+    "step4": "Kopioi 16-merkkinen salasana ja liitä se alle",
+    "password": "Gmail-sovellussalasana",
+    "configured": "Määritetty",
+    "notConfigured": "Ei Määritetty",
+    "modify": "Muokkaa Gmail-määritystä",
+    "configure": "Määritä Gmail Lähettämään"
   },
   "send": {
-    "title": "Send Control",
-    "numberOfEmails": "Number of Emails to Send",
-    "delay": "Delay Between Sends",
-    "fast": "Fast",
-    "secure": "Secure",
-    "sendButton": "Send",
-    "sending": "Sending...",
-    "success": "email(s) sent successfully",
-    "simulation": "simulation"
+    "title": "Lähetysohjaus",
+    "numberOfEmails": "Lähetettävien Sähköpostien Määrä",
+    "delay": "Viive Lähetysten Välillä",
+    "fast": "Nopea",
+    "secure": "Turvallinen",
+    "sendButton": "Lähetä",
+    "sending": "Lähetetään...",
+    "success": "sähköposti(t) lähetetty onnistuneesti",
+    "simulation": "simulaatio"
   },
   "queue": {
-    "title": "Queue",
-    "pending": "pending",
-    "empty": "Add applications to start your campaign.",
-    "remove": "Remove"
+    "title": "Jono",
+    "pending": "odottaa",
+    "empty": "Lisää hakemuksia aloittaaksesi kampanjasi.",
+    "remove": "Poista"
   },
   "results": {
-    "title": "Results",
-    "sent": "sent",
-    "failed": "failed"
+    "title": "Tulokset",
+    "sent": "lähetetty",
+    "failed": "epäonnistui"
   },
   "login": {
     "title": "Email Sender",
-    "subtitle": "Automate your professional applications",
-    "secureConnection": "Secure connection with Google",
-    "dataProtected": "Your data is protected"
+    "subtitle": "Automatisoi ammatilliset hakemuksesi",
+    "secureConnection": "Turvallinen yhteys Googleen",
+    "dataProtected": "Tietosi ovat suojattuja"
   },
   "messages": {
-    "addEmail": "Add at least one email",
-    "emailAdded": "Application added successfully",
-    "invalidEmail": "Invalid email format",
-    "emailExists": "This email already exists",
-    "configureSmtp": "Please configure your Gmail app password",
-    "cvFromProfile": "Your profile CV will be used"
+    "addEmail": "Lisää vähintään yksi sähköposti",
+    "emailAdded": "Hakemus lisätty onnistuneesti",
+    "invalidEmail": "Virheellinen sähköpostimuoto",
+    "emailExists": "Tämä sähköposti on jo olemassa",
+    "configureSmtp": "Määritä Gmail-sovellussalasanasi",
+    "cvFromProfile": "Profiilisi CV:tä käytetään"
   },
   "export": {
-    "downloadExcel": "Download Excel",
-    "downloading": "Downloading...",
-    "success": "File downloaded successfully",
-    "error": "Download error"
+    "downloadExcel": "Lataa Excel",
+    "downloading": "Ladataan...",
+    "success": "Tiedosto ladattu onnistuneesti",
+    "error": "Latausvirhe"
   }
 }
-
