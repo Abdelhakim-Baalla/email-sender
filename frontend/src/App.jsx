@@ -44,7 +44,7 @@ function getStatusBadgeClass(status) {
   return "status-badge";
 }
 
-function AppContent({ setShowProfile, showSmtpConfig, setShowSmtpConfig, smtpConfigured, setSmtpConfigured }) {
+function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpConfig, smtpConfigured, setSmtpConfigured }) {
   const [darkMode, setDarkMode] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState(emptyForm);
@@ -76,9 +76,28 @@ function AppContent({ setShowProfile, showSmtpConfig, setShowSmtpConfig, smtpCon
 
   useEffect(() => {
     if (user && token) {
-      checkSmtpConfig();
+      checkFirstLogin();
     }
   }, [user, token]);
+
+  const checkFirstLogin = async () => {
+    try {
+      const { data } = await axios.get(`${API_BASE_URL}/auth/profile`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      
+      // Vérifier si c'est la première connexion (pas d'infos personnelles)
+      const isFirstLogin = !data.personalInfo?.phone && !data.personalInfo?.linkedin && !data.cvPath;
+      
+      if (isFirstLogin) {
+        setShowProfile(true);
+      } else {
+        checkSmtpConfig();
+      }
+    } catch (error) {
+      console.error('Erreur vérification profil:', error);
+    }
+  };
 
   const checkSmtpConfig = async () => {
     try {
@@ -1251,13 +1270,21 @@ export default function App() {
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <AuthProvider>
         <AppContent 
-          setShowProfile={setShowProfile} 
+          setShowProfile={setShowProfile}
+          showProfile={showProfile}
           showSmtpConfig={showSmtpConfig}
           setShowSmtpConfig={setShowSmtpConfig}
           smtpConfigured={smtpConfigured}
           setSmtpConfigured={setSmtpConfigured}
         />
-        <ProfileModal isOpen={showProfile} onClose={() => setShowProfile(false)} />
+        <ProfileModal 
+          isOpen={showProfile} 
+          onClose={() => {
+            setShowProfile(false);
+            // Après fermeture du profil, vérifier SMTP
+            setShowSmtpConfig(true);
+          }} 
+        />
         <SmtpConfigModal 
           isOpen={showSmtpConfig} 
           onClose={() => setShowSmtpConfig(false)}
