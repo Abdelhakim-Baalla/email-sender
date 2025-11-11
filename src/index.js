@@ -3,10 +3,12 @@ import fs from "fs";
 import path from "path";
 import express from "express";
 import cors from "cors";
+import { OAuth2Client } from 'google-auth-library';
 import { sendEmail } from "./services/emailService.js";
 import { appendApplicationRecord } from "./services/excelService.js";
 import { delay } from "./utils/delay.js";
 import { buildApplicationEmail } from "./templates/applicationEmail.js";
+import { authenticateToken, generateToken } from "./middleware/auth.js";
 
 const app = express();
 const port = Number(process.env.PORT ?? 4859);
@@ -15,8 +17,10 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
 
-app.use(cors(allowedOrigins?.length ? { origin: allowedOrigins } : {}));
+app.use(cors(allowedOrigins?.length ? { origin: allowedOrigins, credentials: true } : { credentials: true }));
 app.use(express.json({ limit: "10mb" }));
+
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 function extractBase64Payload(rawContent) {
   if (!rawContent) return null;
@@ -198,6 +202,35 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
+app.post("/auth/google", async (req, res) => {
+  try {
+    const { credential } = req.body;
+    
+    const ticket = await googleClient.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    
+    const payload = ticket.getPayload();
+    const user = {
+      email: payload.email,
+      name: payload.name,
+      picture: payload.picture,
+    };
+    
+    const token = generateToken(user);
+    
+    res.json({ token, user });
+  } catch (error) {
+    console.error('Google auth error:', error);
+    res.status(401).json({ error: 'Invalid Google token' });
+  }
+});
+
+app.get("/auth/me", authenticateToken, (req, res) => {
+  res.json({ user: req.user });
+});
+
 /**
  * POST /applications/send
  * body: {
@@ -206,7 +239,7 @@ app.get("/health", (_req, res) => {
  *   delayMs, dryRun, cvPath
  * }
  */
-app.post("/applications/send", async (req, res) => {
+app.post("/applications/send", authenticateToken, async (req, res) => {
   const body = req.body ?? {};
   const { delayMs, dryRun } = body;
 
@@ -220,7 +253,7 @@ app.post("/applications/send", async (req, res) => {
   }
 });
 
-app.post("/applications/send-batch", async (req, res) => {
+app.post("/applications/send-batch", authenticateToken, async (req, res) => {
   const body = req.body ?? {};
   const { applications, limit, delayMs, dryRun } = body;
 

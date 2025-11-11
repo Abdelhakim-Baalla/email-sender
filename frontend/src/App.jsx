@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
+import GoogleAuth from "./components/GoogleAuth.jsx";
 import "./scripts.js";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:4859";
@@ -59,6 +60,8 @@ export default function App() {
   const [emailList, setEmailList] = useState([]);
   const [editingEmail, setEditingEmail] = useState(null);
   const [savedPersonalInfo, setSavedPersonalInfo] = useState(null);
+  const [user, setUser] = useState(null);
+  const [authToken, setAuthToken] = useState(null);
 
   useEffect(() => {
     if (applications.length === 0) {
@@ -77,6 +80,15 @@ export default function App() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       setDarkMode(savedTheme === 'dark');
+    }
+
+    const token = localStorage.getItem('authToken');
+    const userData = localStorage.getItem('user');
+    
+    if (token && userData) {
+      setAuthToken(token);
+      setUser(JSON.parse(userData));
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
 
     const savedInfo = localStorage.getItem('personalInfo');
@@ -268,7 +280,39 @@ export default function App() {
     }
   };
 
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const { data } = await axios.post(`${API_BASE_URL}/auth/google`, {
+        credential: credentialResponse.credential
+      });
+      
+      setUser(data.user);
+      setAuthToken(data.token);
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+    } catch (err) {
+      setError('Erreur d\'authentification');
+    }
+  };
+
+  const handleGoogleError = () => {
+    setError('Échec de la connexion Google');
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    setAuthToken(null);
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
+    delete axios.defaults.headers.common['Authorization'];
+  };
+
   const totalToSend = Math.min(limit, applications.length);
+
+  if (!user) {
+    return <GoogleAuth onSuccess={handleGoogleSuccess} onError={handleGoogleError} />;
+  }
 
   return (
     <div className="app-shell">
@@ -290,6 +334,39 @@ export default function App() {
             </button>
           </nav>
           <div className="site-header__actions">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', marginRight: 'var(--space-3)' }}>
+              <img 
+                src={user.picture} 
+                alt={user.name}
+                style={{ 
+                  width: '32px', 
+                  height: '32px', 
+                  borderRadius: '50%',
+                  border: '2px solid var(--color-accent)'
+                }}
+              />
+              <span style={{ fontSize: '0.875rem', color: 'var(--color-text)', fontWeight: 500 }}>{user.name}</span>
+            </div>
+            
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleLogout}
+              style={{
+                padding: 'var(--space-2) var(--space-3)',
+                background: 'var(--color-error)',
+                color: 'white',
+                border: 'none',
+                borderRadius: 'var(--radius-xs)',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+                cursor: 'pointer',
+                marginRight: 'var(--space-2)'
+              }}
+            >
+              Déconnexion
+            </motion.button>
+            
             <button 
               className="theme-toggle" 
               onClick={() => setDarkMode(!darkMode)} 
