@@ -89,6 +89,11 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
       // Vérifier si c'est la première connexion (pas d'infos personnelles)
       const isFirstLogin = !data.personalInfo?.phone && !data.personalInfo?.linkedin && !data.cvPath;
       
+      // Sauvegarder le chemin du CV si disponible
+      if (data.cvPath) {
+        localStorage.setItem('userCvPath', data.cvPath);
+      }
+      
       if (isFirstLogin) {
         setShowProfile(true);
       } else {
@@ -256,11 +261,15 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
 
     const companyName = formData.company.trim() || emailList[0].split('@')[1].split('.')[0];
 
+    // Utiliser le CV uploadé ou le CV du profil utilisateur
+    const userCvPath = localStorage.getItem('userCvPath');
+    
     const entry = {
       ...formData,
       company: companyName,
       to: emailList.join(', '),
-      cvFile,
+      cvFile: cvFile,
+      cvPath: userCvPath, // Ajouter le chemin du CV utilisateur
       createdAt: Date.now(),
     };
 
@@ -992,8 +1001,8 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                 <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
               </svg>
-              <span>{cvName ? `✓ ${cvName}` : "📄 Joindre CV (PDF)"}</span>
-              {cvName && (
+              <span>{cvName ? `✓ ${cvName}` : (localStorage.getItem('userCvPath') ? "✓ CV du profil" : "📄 Joindre CV (PDF)")}</span>
+              {(cvName || localStorage.getItem('userCvPath')) && (
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: '100%' }}
@@ -1007,15 +1016,27 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
                 />
               )}
             </motion.label>
+            {localStorage.getItem('userCvPath') && !cvName && (
+              <small style={{ color: 'var(--color-success)', fontSize: '0.75rem' }}>
+                ✓ Votre CV du profil sera utilisé
+              </small>
+            )}
 
-            <div className="toggle-group">
+            <div className="toggle-group" style={{ 
+              padding: 'var(--space-2) var(--space-3)', 
+              background: dryRun ? 'var(--color-warning-soft)' : 'var(--color-success-soft)',
+              border: `2px solid ${dryRun ? 'var(--color-warning)' : 'var(--color-success)'}`,
+              borderRadius: 'var(--radius-xs)'
+            }}>
               <input
                 type="checkbox"
                 id="dryRun"
                 checked={dryRun}
                 onChange={(event) => setDryRun(event.target.checked)}
               />
-              <label htmlFor="dryRun">Dry Run (simulation)</label>
+              <label htmlFor="dryRun" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+                {dryRun ? '🧪 Mode Simulation (aucun email envoyé)' : '✉️ Mode Réel (emails seront envoyés)'}
+              </label>
             </div>
 
             <motion.button 

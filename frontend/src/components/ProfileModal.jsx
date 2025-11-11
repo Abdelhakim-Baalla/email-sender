@@ -43,6 +43,14 @@ const ProfileModal = ({ isOpen, onClose }) => {
         linkedinUrl: profile.linkedin,
         phoneNumber: profile.phone
       }));
+      
+      // Récupérer le nouveau chemin du CV
+      const profileData = await axios.get(`${import.meta.env.VITE_API_URL}/auth/profile`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (profileData.data.cvPath) {
+        localStorage.setItem('userCvPath', profileData.data.cvPath);
+      }
 
       if (cvFile) {
         const reader = new FileReader();

@@ -59,13 +59,18 @@ async function buildAttachmentsFromPayload(payload, dryRun, userId = null) {
   }
 
   // Priorité au CV de l'utilisateur authentifié
-  let preferredCvPath = payload.cvPath ?? process.env.CV_PATH ?? "";
+  let preferredCvPath = null;
   
   if (userId) {
     const userCvPath = await User.getCvPath(userId);
     if (userCvPath) {
       preferredCvPath = userCvPath;
     }
+  }
+  
+  // Utiliser le CV du payload si fourni
+  if (!preferredCvPath && payload.cvPath) {
+    preferredCvPath = payload.cvPath;
   }
   
   if (preferredCvPath) {
@@ -78,10 +83,6 @@ async function buildAttachmentsFromPayload(payload, dryRun, userId = null) {
         filename: path.basename(absoluteCvPath),
         path: absoluteCvPath,
       });
-    } else if (!dryRun) {
-      throw new Error(
-        `CV introuvable au chemin ${absoluteCvPath}. Fournis un cvPath valide ou active dryRun.`
-      );
     }
   }
 
