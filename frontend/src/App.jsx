@@ -58,6 +58,7 @@ export default function App() {
   const [emailInput, setEmailInput] = useState("");
   const [emailList, setEmailList] = useState([]);
   const [editingEmail, setEditingEmail] = useState(null);
+  const [savedPersonalInfo, setSavedPersonalInfo] = useState(null);
 
   useEffect(() => {
     if (applications.length === 0) {
@@ -76,6 +77,25 @@ export default function App() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       setDarkMode(savedTheme === 'dark');
+    }
+
+    const savedInfo = localStorage.getItem('personalInfo');
+    if (savedInfo) {
+      const parsed = JSON.parse(savedInfo);
+      setSavedPersonalInfo(parsed);
+      setFormData(prev => ({
+        ...prev,
+        portfolioUrl: parsed.portfolioUrl || import.meta.env.VITE_PORTFOLIO_URL || '',
+        linkedinUrl: parsed.linkedinUrl || import.meta.env.VITE_LINKEDIN_URL || '',
+        phoneNumber: parsed.phoneNumber || import.meta.env.VITE_PHONE_NUMBER || ''
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        portfolioUrl: import.meta.env.VITE_PORTFOLIO_URL || '',
+        linkedinUrl: import.meta.env.VITE_LINKEDIN_URL || '',
+        phoneNumber: import.meta.env.VITE_PHONE_NUMBER || ''
+      }));
     }
   }, []);
 
@@ -157,6 +177,18 @@ export default function App() {
     setCvName("");
   };
 
+  const savePersonalInfo = () => {
+    const info = {
+      portfolioUrl: formData.portfolioUrl,
+      linkedinUrl: formData.linkedinUrl,
+      phoneNumber: formData.phoneNumber
+    };
+    localStorage.setItem('personalInfo', JSON.stringify(info));
+    setSavedPersonalInfo(info);
+    setSuccessMessage('✓ Informations personnelles enregistrées');
+    setTimeout(() => setSuccessMessage(''), 2000);
+  };
+
   const handleAddApplication = () => {
     setError("");
     setSuccessMessage("");
@@ -166,13 +198,11 @@ export default function App() {
       return;
     }
 
-    if (!formData.company.trim()) {
-      setError("Le nom de l'entreprise est obligatoire.");
-      return;
-    }
+    const companyName = formData.company.trim() || emailList[0].split('@')[1].split('.')[0];
 
     const entry = {
       ...formData,
+      company: companyName,
       to: emailList.join(', '),
       cvFile,
       createdAt: Date.now(),
@@ -180,8 +210,21 @@ export default function App() {
 
     setApplications((prev) => [...prev, entry]);
     setSuccessMessage(`✓ Candidature ajoutée avec succès (${emailList.length} email${emailList.length > 1 ? 's' : ''})`);
+    
+    if (formData.portfolioUrl || formData.linkedinUrl || formData.phoneNumber) {
+      if (!savedPersonalInfo) {
+        savePersonalInfo();
+      }
+    }
+    
     resetForm();
     setEmailList([]);
+    setFormData(prev => ({
+      ...emptyForm,
+      portfolioUrl: savedPersonalInfo?.portfolioUrl || import.meta.env.VITE_PORTFOLIO_URL || '',
+      linkedinUrl: savedPersonalInfo?.linkedinUrl || import.meta.env.VITE_LINKEDIN_URL || '',
+      phoneNumber: savedPersonalInfo?.phoneNumber || import.meta.env.VITE_PHONE_NUMBER || ''
+    }));
   };
 
   const handleRemoveApplication = (index) => {
@@ -375,22 +418,53 @@ export default function App() {
                 </button>
               </div>
             </div>
-            <motion.div
-              className="hero__media"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 200 }}
-            >
-              <div style={{ textAlign: 'center' }}>
-                <svg className="hero__media-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 3v18h18"/>
-                  <path d="M18 17V9"/>
-                  <path d="M13 17V5"/>
-                  <path d="M8 17v-3"/>
-                </svg>
-                <div className="hero__media-value">{applications.length}</div>
-                <div className="hero__media-label">Applications Queued</div>
-              </div>
-            </motion.div>
+            <div style={{ display: 'flex', gap: 'var(--space-4)' }}>
+              <motion.div
+                className="hero__media"
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                transition={{ type: "spring", stiffness: 200 }}
+              >
+                <div style={{ textAlign: 'center' }}>
+                  <svg className="hero__media-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M3 3v18h18"/>
+                    <path d="M18 17V9"/>
+                    <path d="M13 17V5"/>
+                    <path d="M8 17v-3"/>
+                  </svg>
+                  <motion.div 
+                    className="hero__media-value"
+                    key={applications.length}
+                    initial={{ scale: 1.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                  >
+                    {applications.length}
+                  </motion.div>
+                  <div className="hero__media-label">En file</div>
+                </div>
+              </motion.div>
+              
+              <motion.div
+                className="hero__media"
+                whileHover={{ scale: 1.05, rotate: -2 }}
+                transition={{ type: "spring", stiffness: 200 }}
+              >
+                <div style={{ textAlign: 'center' }}>
+                  <svg className="hero__media-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  <motion.div 
+                    className="hero__media-value"
+                    key={results.filter(r => r.status === 'sent').length}
+                    initial={{ scale: 1.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                  >
+                    {results.filter(r => r.status === 'sent').length}
+                  </motion.div>
+                  <div className="hero__media-label">Envoyés</div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </motion.section>
 
@@ -439,10 +513,13 @@ export default function App() {
 
         <div className="form-grid">
           <div className="input-group">
-            <label>Company *</label>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+              <span>Company</span>
+              <small style={{ color: 'var(--color-text-soft)', fontSize: '0.7rem', fontWeight: 'normal' }}>(optionnel)</small>
+            </label>
             <input
               name="company"
-              placeholder="e.g., ACME Corp"
+              placeholder="Auto-détecté depuis l'email si vide"
               value={formData.company}
               onChange={handleInputChange}
             />
@@ -718,7 +795,10 @@ export default function App() {
           </div>
 
           <div className="input-group">
-            <label>Portfolio URL</label>
+            <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span>Portfolio URL</span>
+              {savedPersonalInfo?.portfolioUrl && <span style={{ fontSize: '0.7rem', color: 'var(--color-success)' }}>✓ Enregistré</span>}
+            </label>
             <input
               name="portfolioUrl"
               placeholder="https://..."
@@ -728,7 +808,10 @@ export default function App() {
           </div>
 
           <div className="input-group">
-            <label>LinkedIn</label>
+            <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span>LinkedIn</span>
+              {savedPersonalInfo?.linkedinUrl && <span style={{ fontSize: '0.7rem', color: 'var(--color-success)' }}>✓ Enregistré</span>}
+            </label>
             <input
               name="linkedinUrl"
               placeholder="https://linkedin.com/in/..."
@@ -738,7 +821,10 @@ export default function App() {
           </div>
 
           <div className="input-group">
-            <label>Phone</label>
+            <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span>Phone</span>
+              {savedPersonalInfo?.phoneNumber && <span style={{ fontSize: '0.7rem', color: 'var(--color-success)' }}>✓ Enregistré</span>}
+            </label>
             <input
               name="phoneNumber"
               placeholder="+212..."
@@ -759,14 +845,46 @@ export default function App() {
           </div>
         </div>
 
+          <div className="span-full" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 'var(--space-3)', background: 'var(--color-panel)', borderRadius: 'var(--radius-xs)', border: '1px solid var(--color-border)' }}>
+            <span style={{ fontSize: '0.875rem', color: 'var(--color-text-soft)' }}>💾 Infos personnelles</span>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              type="button"
+              className="btn btn--ghost"
+              onClick={savePersonalInfo}
+              style={{ fontSize: '0.8rem', padding: 'var(--space-1) var(--space-3)' }}
+            >
+              {savedPersonalInfo ? '✓ Mis à jour' : 'Enregistrer'}
+            </motion.button>
+          </div>
+
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-3)', alignItems: 'center', marginTop: 'var(--space-4)' }}>
-            <label className="file-upload">
+            <motion.label 
+              className="file-upload"
+              whileHover={{ scale: 1.02, boxShadow: 'var(--shadow-soft)' }}
+              whileTap={{ scale: 0.98 }}
+              style={{ position: 'relative', overflow: 'hidden' }}
+            >
               <input type="file" accept="application/pdf" onChange={handleFileChange} />
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                 <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
               </svg>
-              <span>{cvName || "Attach CV (PDF)"}</span>
-            </label>
+              <span>{cvName ? `✓ ${cvName}` : "📄 Joindre CV (PDF)"}</span>
+              {cvName && (
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: '100%' }}
+                  style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    height: '2px',
+                    background: 'var(--color-success)'
+                  }}
+                />
+              )}
+            </motion.label>
 
             <div className="toggle-group">
               <input
@@ -784,7 +902,7 @@ export default function App() {
               type="button" 
               className="btn btn--primary" 
               onClick={handleAddApplication}
-              disabled={emailList.length === 0 || !formData.company}
+              disabled={emailList.length === 0}
               style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
