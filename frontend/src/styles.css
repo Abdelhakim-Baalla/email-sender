@@ -31,7 +31,7 @@
   --radius-md: 24px;
   --radius-lg: 32px;
   --radius-xl: 48px;
-  --header-height: 68px;
+  --header-height: 79px;
   --transition-base: 240ms cubic-bezier(0.22,1,0.36,1);
   --shadow-soft: 0 18px 36px -26px rgba(15,23,42,0.24);
 
@@ -118,6 +118,7 @@ html:not(.dark) {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: var(--header-height);
 }
 
 .brand {
@@ -153,6 +154,8 @@ html:not(.dark) {
   letter-spacing: 0.08em;
   transition: all var(--transition-base);
   cursor: pointer;
+  white-space: nowrap;
+  height: 40px;
 }
 
 .nav-link:hover {
