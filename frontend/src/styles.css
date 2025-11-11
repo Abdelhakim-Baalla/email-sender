@@ -46,14 +46,21 @@
 }
 
 html.dark {
-  --color-background: #04060b;
-  --color-panel: rgba(10,16,28,0.82);
-  --color-panel-solid: #0f1729;
-  --color-border: rgba(220,235,255,0.08);
-  --color-text: rgba(232,240,255,0.94);
-  --color-accent: #4cc9ff;
-  --color-accent-soft: rgba(76,201,255,0.18);
-  --gradient-hero: radial-gradient(120% 120% at 0% 12%, rgba(40,132,255,0.38), transparent 64%), linear-gradient(140deg,#071120 0%,#050b16 48%,#03060f 100%);
+  --color-background: #0a0e17;
+  --color-background-alt: #0d1117;
+  --color-panel: rgba(22,27,34,0.85);
+  --color-panel-solid: #161b22;
+  --color-border: rgba(240,246,252,0.1);
+  --color-text: #e6edf3;
+  --color-text-soft: rgba(230,237,243,0.65);
+  --color-accent: #58a6ff;
+  --color-accent-strong: #79c0ff;
+  --color-accent-soft: rgba(88,166,255,0.15);
+  --color-ink-contrast: #0d1117;
+  --gradient-hero: radial-gradient(120% 120% at 0% 12%, rgba(88,166,255,0.12), transparent 64%), linear-gradient(140deg,#0d1117 0%,#0a0e17 48%,#010409 100%);
+  --shadow-soft: 0 18px 36px -26px rgba(0,0,0,0.6);
+  --color-success: #3fb950;
+  --color-error: #f85149;
 }
 
 /* ==================== Base Styles ==================== */
@@ -61,6 +68,10 @@ html.dark {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  color-scheme: dark;
 }
 
 body {
@@ -72,6 +83,10 @@ body {
   transition: background var(--transition-base), color var(--transition-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html:not(.dark) {
+  color-scheme: light;
 }
 
 #root {
@@ -283,9 +298,10 @@ body {
 /* ==================== Hero Section ==================== */
 .hero {
   background: var(--gradient-hero);
-  padding: var(--space-8) var(--space-4);
+  padding: var(--space-9) var(--space-4);
   position: relative;
   overflow: hidden;
+  border-radius: var(--radius-lg);
 }
 
 .hero__inner {
@@ -321,11 +337,31 @@ body {
 .hero__media {
   background: var(--color-panel);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
   backdrop-filter: blur(var(--blur-medium));
   -webkit-backdrop-filter: blur(var(--blur-medium));
   box-shadow: var(--shadow-soft);
+  min-width: 200px;
+}
+
+.hero__media-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-3);
+  opacity: 0.8;
+}
+
+.hero__media-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: var(--space-1);
+}
+
+.hero__media-label {
+  font-size: 0.875rem;
+  color: var(--color-text-soft);
+  font-weight: 500;
 }
 
 /* ==================== Cards ==================== */
@@ -378,7 +414,9 @@ body {
 }
 
 .btn--ghost:hover {
-  background: var(--color-panel);
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
   transform: translateY(-1px);
 }
 
@@ -391,7 +429,7 @@ body {
 /* ==================== App Layout ==================== */
 .app-shell {
   min-height: 100vh;
-  background: var(--color-background-alt);
+  background: var(--color-background);
 }
 
 .main-content {
@@ -401,6 +439,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
+  background: var(--color-background-alt);
 }
 
 .section {
@@ -421,7 +460,7 @@ body {
 }
 
 .section__title {
-  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 600;
   color: var(--color-text);
 }
@@ -471,6 +510,7 @@ body {
 .input-group select:focus {
   outline: none;
   border-color: var(--color-accent);
+  background: var(--color-background);
   box-shadow: 0 0 0 3px var(--color-accent-soft);
 }
 
@@ -533,7 +573,7 @@ body {
 }
 
 .queue-item {
-  background: var(--color-panel-solid);
+  background: var(--color-panel);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: var(--space-4);
@@ -542,6 +582,8 @@ body {
   justify-content: space-between;
   gap: var(--space-4);
   transition: all var(--transition-base);
+  backdrop-filter: blur(var(--blur-medium));
+  -webkit-backdrop-filter: blur(var(--blur-medium));
 }
 
 .queue-item:hover {
@@ -651,7 +693,11 @@ body {
   }
   
   .hero {
-    padding: var(--space-6) var(--space-3);
+    padding: var(--space-7) var(--space-3);
+  }
+  
+  .hero__media {
+    width: 100%;
   }
   
   .hero__actions {

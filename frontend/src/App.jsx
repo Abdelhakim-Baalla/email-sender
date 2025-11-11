@@ -40,7 +40,7 @@ function getStatusBadgeClass(status) {
 }
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState(emptyForm);
   const [applications, setApplications] = useState([]);
@@ -68,10 +68,9 @@ export default function App() {
   }, [darkMode]);
 
   useEffect(() => {
-    // Load saved theme on mount
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      setDarkMode(true);
+    if (savedTheme) {
+      setDarkMode(savedTheme === 'dark');
     }
   }, []);
 
@@ -189,20 +188,20 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <header className="site-header" data-nav-toggle>
+      <header className="site-header">
         <div className="site-header__inner">
           <a href="#" className="brand">
             <span className="brand__text">Email Sender</span>
           </a>
           <nav className="primary-nav">
             <button className="nav-link" onClick={() => document.getElementById("form-section")?.scrollIntoView({ behavior: "smooth" })}>
-              📝 New Application
+              New Application
             </button>
             <button className="nav-link" onClick={() => document.getElementById("queue-section")?.scrollIntoView({ behavior: "smooth" })}>
-              📋 Queue
+              Queue
             </button>
             <button className="nav-link" onClick={() => document.getElementById("send-section")?.scrollIntoView({ behavior: "smooth" })}>
-              🚀 Send
+              Send
             </button>
           </nav>
           <div className="site-header__actions">
@@ -212,7 +211,23 @@ export default function App() {
               aria-label="Toggle theme"
               data-theme-toggle
             >
-              {darkMode ? "☀️" : "🌙"}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                {darkMode ? (
+                  <>
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                  </>
+                ) : (
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                )}
+              </svg>
             </button>
             <button 
               className="nav-toggle" 
@@ -220,7 +235,11 @@ export default function App() {
               aria-expanded={mobileMenuOpen}
               data-nav-toggle
             >
-              ☰
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
             </button>
           </div>
         </div>
@@ -248,7 +267,10 @@ export default function App() {
                 onClick={() => setMobileMenuOpen(false)}
                 data-nav-close
               >
-                ✕
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
               </button>
               <div className="mobile-nav__groups">
                 <div className="mobile-nav__group">
@@ -256,17 +278,17 @@ export default function App() {
                   <ul className="mobile-nav__list">
                     <li>
                       <button className="mobile-nav__link" onClick={() => { document.getElementById("form-section")?.scrollIntoView({ behavior: "smooth" }); setMobileMenuOpen(false); }}>
-                        📝 New Application
+                        New Application
                       </button>
                     </li>
                     <li>
                       <button className="mobile-nav__link" onClick={() => { document.getElementById("queue-section")?.scrollIntoView({ behavior: "smooth" }); setMobileMenuOpen(false); }}>
-                        📋 Queue
+                        Queue
                       </button>
                     </li>
                     <li>
                       <button className="mobile-nav__link" onClick={() => { document.getElementById("send-section")?.scrollIntoView({ behavior: "smooth" }); setMobileMenuOpen(false); }}>
-                        🚀 Send
+                        Send
                       </button>
                     </li>
                   </ul>
@@ -276,7 +298,7 @@ export default function App() {
                   <ul className="mobile-nav__list">
                     <li>
                       <button className="mobile-nav__link" onClick={() => setDarkMode(!darkMode)}>
-                        {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+                        {darkMode ? "Light Mode" : "Dark Mode"}
                       </button>
                     </li>
                   </ul>
@@ -316,10 +338,15 @@ export default function App() {
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 200 }}
             >
-              <div style={{ textAlign: 'center', padding: 'var(--space-4)' }}>
-                <div style={{ fontSize: '2rem', marginBottom: 'var(--space-2)' }}>📊</div>
-                <div style={{ fontSize: '1.5rem', fontWeight: '600', color: 'var(--color-accent)' }}>{applications.length}</div>
-                <div style={{ fontSize: '0.875rem', color: 'var(--color-text-soft)' }}>Applications Queued</div>
+              <div style={{ textAlign: 'center' }}>
+                <svg className="hero__media-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 3v18h18"/>
+                  <path d="M18 17V9"/>
+                  <path d="M13 17V5"/>
+                  <path d="M8 17v-3"/>
+                </svg>
+                <div className="hero__media-value">{applications.length}</div>
+                <div className="hero__media-label">Applications Queued</div>
               </div>
             </motion.div>
           </div>
@@ -534,7 +561,10 @@ export default function App() {
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-3)', alignItems: 'center', marginTop: 'var(--space-4)' }}>
             <label className="file-upload">
               <input type="file" accept="application/pdf" onChange={handleFileChange} />
-              <span>{cvName ? `📎 ${cvName}` : "📎 Attach CV (PDF)"}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+              </svg>
+              <span>{cvName || "Attach CV (PDF)"}</span>
             </label>
 
             <div className="toggle-group">
@@ -663,9 +693,19 @@ export default function App() {
                 className="btn btn--primary"
                 onClick={handleSendBatch}
                 disabled={!canSend}
-                style={{ width: '100%', padding: 'var(--space-4)', fontSize: '1rem' }}
+                style={{ width: '100%', padding: 'var(--space-4)', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-2)' }}
               >
-                {sending ? "Sending..." : `🚀 Send ${totalToSend} Email${totalToSend > 1 ? "s" : ""}`}
+                {sending ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="22" y1="2" x2="11" y2="13"/>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                    Send {totalToSend} Email{totalToSend > 1 ? "s" : ""}
+                  </>
+                )}
               </button>
             </div>
           </div>
@@ -700,7 +740,7 @@ export default function App() {
                     animate={{ opacity: 1, y: 0 }}
                   >
                     <span className={getStatusBadgeClass(item.status)}>
-                      {item.status === "sent" ? "✓ Sent" : "✕ Failed"}
+                      {item.status === "sent" ? "Sent" : "Failed"}
                     </span>
                     <div className="queue-info">
                       <h4>{item.to ?? "(Unknown email)"}</h4>
