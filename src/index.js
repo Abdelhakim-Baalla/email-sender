@@ -82,9 +82,15 @@ async function processApplication(payload, options = {}) {
     throw new Error("Missing required field: to");
   }
 
+  const emails = to.split(',').map(e => e.trim()).filter(Boolean);
+  
+  if (emails.length === 0) {
+    throw new Error("No valid email addresses provided");
+  }
+
   const template = buildApplicationEmail({
-    companyName: payload.company, // updated to new field naming
-    jobTitle: payload.position, // updated to new field naming
+    companyName: payload.company,
+    jobTitle: payload.position,
     applicant: payload.applicant,
     portfolioUrl: payload.portfolioUrl,
     linkedinUrl: payload.linkedinUrl,
@@ -100,7 +106,6 @@ async function processApplication(payload, options = {}) {
   try {
     attachments = buildAttachmentsFromPayload(payload, dryRun);
   } catch (attachmentError) {
-    // Attachment errors should result in failure logging but still propagate.
     await logApplicationAttempt({
       company: payload.company,
       position: payload.position,
@@ -122,58 +127,71 @@ async function processApplication(payload, options = {}) {
     throw attachmentError;
   }
 
-  try {
-    const info = await sendEmail(
-      {
-        to,
-        subject: composedSubject,
-        text: composedText,
-        html: composedHtml,
-        attachments,
-      },
-      { dryRun }
-    );
+  const results = [];
+  const emailDelay = options.emailDelay || 1000;
 
-    await logApplicationAttempt({
-      company: payload.company,
-      position: payload.position,
-      location: payload.location,
-      flexibility: payload.flexibility,
-      type_contrat: payload.type_contrat,
-      application_method: payload.application_method,
-      contact: payload.contact,
-      apply_date: payload.apply_date,
-      status: info && info.accepted ? "Sent" : "Failed",
-      response_date: "",
-      referral: payload.referral,
-      interview_date: "",
-      in_touch_person: "",
-      salary_range: "",
-      notes: composedText ?? composedHtml ?? "",
-    });
+  for (let i = 0; i < emails.length; i++) {
+    const email = emails[i];
+    
+    try {
+      const info = await sendEmail(
+        {
+          to: email,
+          subject: composedSubject,
+          text: composedText,
+          html: composedHtml,
+          attachments,
+        },
+        { dryRun }
+      );
 
-    return { info, composedSubject, composedText, composedHtml };
-  } catch (err) {
-    await logApplicationAttempt({
-      company: payload.company,
-      position: payload.position,
-      location: payload.location,
-      flexibility: payload.flexibility,
-      type_contrat: payload.type_contrat,
-      application_method: payload.application_method,
-      contact: payload.contact,
-      apply_date: payload.apply_date,
-      status: "Failed",
-      response_date: "",
-      referral: payload.referral,
-      interview_date: "",
-      in_touch_person: "",
-      salary_range: "",
-      notes: err.message ?? String(err),
-    });
+      await logApplicationAttempt({
+        company: payload.company,
+        position: payload.position,
+        location: payload.location,
+        flexibility: payload.flexibility,
+        type_contrat: payload.type_contrat,
+        application_method: payload.application_method,
+        contact: email,
+        apply_date: payload.apply_date,
+        status: info && info.accepted ? "Sent" : "Failed",
+        response_date: "",
+        referral: payload.referral,
+        interview_date: "",
+        in_touch_person: "",
+        salary_range: "",
+        notes: composedText ?? composedHtml ?? "",
+      });
 
-    throw err;
+      results.push({ email, status: 'sent', info });
+    } catch (err) {
+      await logApplicationAttempt({
+        company: payload.company,
+        position: payload.position,
+        location: payload.location,
+        flexibility: payload.flexibility,
+        type_contrat: payload.type_contrat,
+        application_method: payload.application_method,
+        contact: email,
+        apply_date: payload.apply_date,
+        status: "Failed",
+        response_date: "",
+        referral: payload.referral,
+        interview_date: "",
+        in_touch_person: "",
+        salary_range: "",
+        notes: err.message ?? String(err),
+      });
+
+      results.push({ email, status: 'failed', error: err.message });
+    }
+
+    if (i < emails.length - 1) {
+      await delay(emailDelay);
+    }
   }
+
+  return { results, composedSubject, composedText, composedHtml };
 }
 
 app.get("/health", (_req, res) => {
@@ -193,13 +211,9 @@ app.post("/applications/send", async (req, res) => {
   const { delayMs, dryRun } = body;
 
   try {
-    const result = await processApplication(body, { dryRun });
+    const result = await processApplication(body, { dryRun, emailDelay: Number(delayMs) || 1000 });
 
-    if (delayMs && Number(delayMs) > 0) {
-      await delay(Number(delayMs));
-    }
-
-    return res.json({ ok: true, info: result.info });
+    return res.json({ ok: true, results: result.results });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: err.message ?? "send error" });
@@ -216,7 +230,7 @@ app.post("/applications/send-batch", async (req, res) => {
     });
   }
 
-  const safeDelay = Number(delayMs) || 0;
+  const safeDelay = Number(delayMs) || 1000;
   const maxToSend = limit
     ? Math.min(Number(limit), applications.length)
     : applications.length;
@@ -230,12 +244,17 @@ app.post("/applications/send-batch", async (req, res) => {
     try {
       const result = await processApplication(application, {
         dryRun: effectiveDryRun,
+        emailDelay: safeDelay,
       });
-      results.push({
-        status: "sent",
-        index,
-        to: application.to ?? null,
-        info: result.info,
+      
+      result.results.forEach(emailResult => {
+        results.push({
+          status: emailResult.status,
+          index,
+          to: emailResult.email,
+          info: emailResult.info,
+          error: emailResult.error,
+        });
       });
     } catch (error) {
       results.push({

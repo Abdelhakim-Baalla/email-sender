@@ -386,14 +386,15 @@ export default function App() {
           </div>
 
           <div className="input-group">
-            <label>Contact Email *</label>
+            <label>Contact Email(s) *</label>
             <input
               name="to"
-              type="email"
-              placeholder="recruiter@company.com"
+              type="text"
+              placeholder="email1@company.com, email2@company.com"
               value={formData.to}
               onChange={handleInputChange}
             />
+            <small style={{ color: 'var(--color-text-soft)', fontSize: '0.875rem', marginTop: '0.25rem' }}>Séparez plusieurs emails par des virgules</small>
           </div>
 
           <div className="input-group">
