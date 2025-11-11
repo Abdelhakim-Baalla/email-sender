@@ -1,8 +1,11 @@
 import "dotenv/config";
+import fs from "fs";
+import path from "path";
 import express from "express";
 import { sendEmail } from "./services/emailService.js";
 import { appendApplicationRecord } from "./services/excelService.js";
 import { delay } from "./utils/delay.js";
+import { buildApplicationEmail } from "./templates/applicationEmail.js";
 
 const app = express();
 const port = process.env.PORT ?? 4859;
@@ -18,7 +21,7 @@ app.get("/health", (_req, res) => {
  * body: {
  *   to, subject, text, html,
  *   entreprise, poste, localisation, type_contrat, statut_candid, date_candid, site_web, remarques,
- *   delayMs, dryRun
+ *   delayMs, dryRun, cvPath
  * }
  */
 app.post("/applications/send", async (req, res) => {
@@ -38,17 +41,52 @@ app.post("/applications/send", async (req, res) => {
     remarques,
     delayMs,
     dryRun,
+    cvPath,
   } = body;
 
-  if (!to || !subject) {
-    return res
-      .status(400)
-      .json({ error: "Missing required fields: to, subject" });
+  if (!to) {
+    return res.status(400).json({ error: "Missing required field: to" });
+  }
+
+  const template = buildApplicationEmail({
+    companyName: entreprise,
+    jobTitle: poste,
+  });
+
+  const composedSubject = subject ?? template.subject;
+  const composedText = text ?? template.text;
+  const composedHtml = html ?? template.html;
+
+  let attachments = [];
+  const preferredCvPath = cvPath ?? process.env.CV_PATH ?? "";
+  if (preferredCvPath) {
+    const absoluteCvPath = path.isAbsolute(preferredCvPath)
+      ? preferredCvPath
+      : path.resolve(process.cwd(), preferredCvPath);
+
+    if (fs.existsSync(absoluteCvPath)) {
+      attachments = [
+        {
+          filename: path.basename(absoluteCvPath),
+          path: absoluteCvPath,
+        },
+      ];
+    } else if (!dryRun) {
+      return res.status(400).json({
+        error: `CV introuvable au chemin ${absoluteCvPath}. Fournis un cvPath valide ou active dryRun.`,
+      });
+    }
   }
 
   try {
     const info = await sendEmail(
-      { to, subject, text, html },
+      {
+        to,
+        subject: composedSubject,
+        text: composedText,
+        html: composedHtml,
+        attachments,
+      },
       { dryRun: !!dryRun }
     );
 
@@ -63,7 +101,7 @@ app.post("/applications/send", async (req, res) => {
       remarques,
       email_envoye: info && info.accepted ? "Oui" : "Non",
       date_envoi: new Date().toISOString(),
-      message: text ?? html ?? "",
+      message: composedText ?? composedHtml ?? "",
     };
 
     await appendApplicationRecord(record);
