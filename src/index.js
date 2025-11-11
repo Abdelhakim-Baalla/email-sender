@@ -211,11 +211,9 @@ app.post("/applications/send-batch", async (req, res) => {
   const { applications, limit, delayMs, dryRun } = body;
 
   if (!Array.isArray(applications) || applications.length === 0) {
-    return res
-      .status(400)
-      .json({
-        error: "La liste 'applications' doit contenir au moins un élément.",
-      });
+    return res.status(400).json({
+      error: "La liste 'applications' doit contenir au moins un élément.",
+    });
   }
 
   const safeDelay = Number(delayMs) || 0;
