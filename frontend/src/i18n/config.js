@@ -15,14 +15,27 @@ const resources = {
   ar: { translation: ar },
   ber: { translation: ber },
   es: { translation: es },
-  de: { translation: de }
+  de: { translation: de },
+  it: { translation: en },
+  pt: { translation: en },
+  ru: { translation: en },
+  zh: { translation: en },
+  ja: { translation: en },
+  ko: { translation: en },
+  hi: { translation: en },
+  tr: { translation: en },
+  nl: { translation: en },
+  pl: { translation: en },
+  sv: { translation: en },
+  no: { translation: en },
+  da: { translation: en },
+  fi: { translation: en },
+  el: { translation: en },
+  he: { translation: en },
+  th: { translation: en },
+  vi: { translation: en },
+  id: { translation: en }
 };
-
-// Add other languages with English as fallback
-const otherLangs = ['it', 'pt', 'ru', 'zh', 'ja', 'ko', 'hi', 'tr', 'nl', 'pl', 'sv', 'no', 'da', 'fi', 'el', 'he', 'th', 'vi', 'id'];
-otherLangs.forEach(lang => {
-  resources[lang] = { translation: en };
-});
 
 i18n
   .use(initReactI18next)
