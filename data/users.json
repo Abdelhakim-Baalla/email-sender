@@ -10,6 +10,8 @@
       "phone": "",
       "linkedin": "",
       "portfolio": ""
-    }
+    },
+    "smtpPassword": "U2FsdGVkX19pWzAxh36eldB7YiiW/ZfOsfH+u+pTRlSGujlHGL++tVqly4jlZUe9",
+    "smtpConfigured": true
   }
 ]
