@@ -2,7 +2,9 @@ import nodemailer from "nodemailer";
 
 function createTransporter() {
   const host = process.env.SMTP_HOST;
-  const port = process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : undefined;
+  const port = process.env.SMTP_PORT
+    ? Number(process.env.SMTP_PORT)
+    : undefined;
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
 
@@ -42,7 +44,9 @@ export async function sendEmail(message, options = { dryRun: false }) {
   }
 
   const mailOptions = {
-    from: `${process.env.SENDER_NAME ?? ""} <${process.env.SENDER_EMAIL ?? process.env.SMTP_USER}>`,
+    from: `${process.env.SENDER_NAME ?? ""} <${
+      process.env.SENDER_EMAIL ?? process.env.SMTP_USER
+    }>`,
     to: message.to,
     subject: message.subject,
     text: message.text,
