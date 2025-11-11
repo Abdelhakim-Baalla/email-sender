@@ -1,0 +1,107 @@
+{
+  "app": {
+    "title": "Email Sender",
+    "subtitle": "Automatisez vos candidatures professionnelles"
+  },
+  "nav": {
+    "newApplication": "Nouvelle Candidature",
+    "queue": "File d'attente",
+    "send": "Envoyer",
+    "logout": "Déconnexion"
+  },
+  "hero": {
+    "title": "Assistant de Candidature",
+    "description": "Automatisez vos campagnes d'emails professionnels, joignez votre CV et suivez tout dans Excel.",
+    "getStarted": "Commencer",
+    "viewQueue": "Voir la file",
+    "inQueue": "En file",
+    "sent": "Envoyés"
+  },
+  "form": {
+    "company": "Entreprise",
+    "position": "Poste",
+    "email": "Email(s) de contact",
+    "location": "Localisation",
+    "flexibility": "Flexibilité",
+    "contractType": "Type de contrat",
+    "applicationMethod": "Méthode de candidature",
+    "contactPerson": "Personne de contact",
+    "applyDate": "Date de candidature",
+    "status": "Statut",
+    "responseDate": "Date de réponse",
+    "referral": "Recommandation",
+    "interviewDate": "Date d'entretien",
+    "inTouchPerson": "Personne en contact",
+    "salaryRange": "Fourchette salariale",
+    "portfolio": "Portfolio",
+    "linkedin": "LinkedIn",
+    "phone": "Téléphone",
+    "notes": "Notes",
+    "attachCV": "Joindre CV (PDF)",
+    "dryRun": "Mode Simulation (aucun email envoyé)",
+    "realMode": "Mode Réel (emails seront envoyés)",
+    "addToQueue": "Ajouter à la file",
+    "optional": "optionnel"
+  },
+  "profile": {
+    "title": "Profil",
+    "phone": "Téléphone",
+    "linkedin": "LinkedIn",
+    "portfolio": "Portfolio",
+    "cv": "CV (PDF)",
+    "uploadCV": "Cliquez pour uploader votre CV",
+    "cancel": "Annuler",
+    "save": "Sauvegarder",
+    "saving": "Sauvegarde..."
+  },
+  "smtp": {
+    "title": "Configuration SMTP Gmail",
+    "subtitle": "Pour envoyer des emails depuis votre compte Gmail",
+    "instructions": "Instructions :",
+    "step1": "Activez l'authentification à 2 facteurs sur votre compte Google",
+    "step2": "Allez sur myaccount.google.com/apppasswords",
+    "step3": "Créez un mot de passe d'application nommé \"Email Sender\"",
+    "step4": "Copiez le mot de passe de 16 caractères et collez-le ci-dessous",
+    "password": "Mot de passe d'application Gmail",
+    "configured": "Configuré",
+    "notConfigured": "Non configuré",
+    "modify": "Modifier la configuration Gmail",
+    "configure": "Configurer Gmail pour envoyer"
+  },
+  "send": {
+    "title": "Contrôle d'envoi",
+    "numberOfEmails": "Nombre d'emails à envoyer",
+    "delay": "Délai entre envois",
+    "fast": "Rapide",
+    "secure": "Sécurisé",
+    "sendButton": "Envoyer",
+    "sending": "Envoi...",
+    "success": "e-mail(s) envoyé(s) avec succès",
+    "simulation": "simulation"
+  },
+  "queue": {
+    "title": "File d'attente",
+    "pending": "en attente",
+    "empty": "Ajoutez des candidatures pour commencer votre campagne.",
+    "remove": "Retirer"
+  },
+  "results": {
+    "title": "Résultats",
+    "sent": "envoyé",
+    "failed": "échoué"
+  },
+  "login": {
+    "title": "Email Sender",
+    "subtitle": "Automatisez vos candidatures professionnelles",
+    "secureConnection": "Connexion sécurisée avec Google",
+    "dataProtected": "Vos données sont protégées"
+  },
+  "messages": {
+    "addEmail": "Ajoutez au moins un email",
+    "emailAdded": "Candidature ajoutée avec succès",
+    "invalidEmail": "Format d'email invalide",
+    "emailExists": "Cet email existe déjà",
+    "configureSmtp": "Veuillez configurer votre mot de passe d'application Gmail",
+    "cvFromProfile": "Votre CV du profil sera utilisé"
+  }
+}

@@ -3,9 +3,11 @@ import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { useTranslation } from 'react-i18next';
 import LoginForm from './components/LoginForm';
 import ProfileModal from './components/ProfileModal';
 import SmtpConfigModal from './components/SmtpConfigModal';
+import LanguageSwitcher from './components/LanguageSwitcher';
 import "./scripts.js";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:4859";
@@ -45,6 +47,7 @@ function getStatusBadgeClass(status) {
 }
 
 function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpConfig, smtpConfigured, setSmtpConfigured }) {
+  const { t, i18n } = useTranslation();
   const [darkMode, setDarkMode] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState(emptyForm);
@@ -362,16 +365,17 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           </a>
           <nav className="primary-nav">
             <button className="nav-link" onClick={() => document.getElementById("form-section")?.scrollIntoView({ behavior: "smooth" })}>
-              New Application
+              {t('nav.newApplication')}
             </button>
             <button className="nav-link" onClick={() => document.getElementById("queue-section")?.scrollIntoView({ behavior: "smooth" })}>
-              Queue
+              {t('nav.queue')}
             </button>
             <button className="nav-link" onClick={() => document.getElementById("send-section")?.scrollIntoView({ behavior: "smooth" })}>
-              Send
+              {t('nav.send')}
             </button>
           </nav>
           <div className="site-header__actions">
+            <LanguageSwitcher />
             <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', marginRight: 'var(--space-3)' }}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -418,7 +422,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
                 marginRight: 'var(--space-2)'
               }}
             >
-              Déconnexion
+              {t('nav.logout')}
             </motion.button>
             
             <button 
@@ -536,16 +540,16 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
           <div className="hero__inner">
             <div className="hero__content">
               <div className="eyebrow">Professional Email Automation</div>
-              <h1>Job Application Assistant</h1>
+              <h1>{t('hero.title')}</h1>
               <p>
-                Automate professional email campaigns, attach your CV, and track everything in Excel with our premium dashboard.
+                {t('hero.description')}
               </p>
               <div className="hero__actions">
                 <button className="btn btn--primary" onClick={() => document.getElementById("form-section")?.scrollIntoView({ behavior: "smooth" })}>
-                  Get Started
+                  {t('hero.getStarted')}
                 </button>
                 <button className="btn btn--ghost" onClick={() => document.getElementById("queue-section")?.scrollIntoView({ behavior: "smooth" })}>
-                  View Queue
+                  {t('hero.viewQueue')}
                 </button>
               </div>
             </div>
@@ -570,7 +574,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
                   >
                     {applications.length}
                   </motion.div>
-                  <div className="hero__media-label">En file</div>
+                  <div className="hero__media-label">{t('hero.inQueue')}</div>
                 </div>
               </motion.div>
               
@@ -592,7 +596,7 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
                   >
                     {results.filter(r => r.status === 'sent').length}
                   </motion.div>
-                  <div className="hero__media-label">Envoyés</div>
+                  <div className="hero__media-label">{t('hero.sent')}</div>
                 </div>
               </motion.div>
             </div>
