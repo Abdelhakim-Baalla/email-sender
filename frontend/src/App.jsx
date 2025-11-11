@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
+import "./scripts.js";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:4859";
 
@@ -62,8 +63,17 @@ export default function App() {
   }, [applications.length, limit]);
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
+    document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
   }, [darkMode]);
+
+  useEffect(() => {
+    // Load saved theme on mount
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      setDarkMode(true);
+    }
+  }, []);
 
   const canSend = useMemo(
     () => applications.length > 0 && !sending,
@@ -179,96 +189,154 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <nav className="navbar glass">
-        <div className="navbar-content">
-          <h1 className="brand">Email Sender</h1>
-          <div className="nav-desktop">
+      <header className="site-header" data-nav-toggle>
+        <div className="site-header__inner">
+          <a href="#" className="brand">
+            <span className="brand__text">Email Sender</span>
+          </a>
+          <nav className="primary-nav">
             <button className="nav-link" onClick={() => document.getElementById("form-section")?.scrollIntoView({ behavior: "smooth" })}>
-              New Application
+              📝 New Application
             </button>
             <button className="nav-link" onClick={() => document.getElementById("queue-section")?.scrollIntoView({ behavior: "smooth" })}>
-              Queue
+              📋 Queue
             </button>
             <button className="nav-link" onClick={() => document.getElementById("send-section")?.scrollIntoView({ behavior: "smooth" })}>
-              Send
+              🚀 Send
             </button>
-            <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)} aria-label="Toggle theme">
+          </nav>
+          <div className="site-header__actions">
+            <button 
+              className="theme-toggle" 
+              onClick={() => setDarkMode(!darkMode)} 
+              aria-label="Toggle theme"
+              data-theme-toggle
+            >
               {darkMode ? "☀️" : "🌙"}
             </button>
+            <button 
+              className="nav-toggle" 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-expanded={mobileMenuOpen}
+              data-nav-toggle
+            >
+              ☰
+            </button>
           </div>
-          <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            ☰
-          </button>
         </div>
-      </nav>
+      </header>
 
       <AnimatePresence>
         {mobileMenuOpen && (
-          <>
-            <motion.div 
-              className="mobile-backdrop" 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMobileMenuOpen(false)}
-            />
+          <motion.div
+            className={`mobile-nav ${mobileMenuOpen ? 'is-open' : ''}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setMobileMenuOpen(false)}
+            data-nav-drawer
+          >
             <motion.div
-              className="mobile-drawer glass"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="mobile-nav__inner"
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <button className="mobile-close" onClick={() => setMobileMenuOpen(false)}>✕</button>
-              <div className="mobile-nav">
-                <button className="nav-link" onClick={() => { document.getElementById("form-section")?.scrollIntoView({ behavior: "smooth" }); setMobileMenuOpen(false); }}>
-                  New Application
-                </button>
-                <button className="nav-link" onClick={() => { document.getElementById("queue-section")?.scrollIntoView({ behavior: "smooth" }); setMobileMenuOpen(false); }}>
-                  Queue
-                </button>
-                <button className="nav-link" onClick={() => { document.getElementById("send-section")?.scrollIntoView({ behavior: "smooth" }); setMobileMenuOpen(false); }}>
-                  Send
-                </button>
-                <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
-                  {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
-                </button>
+              <button 
+                className="mobile-nav__close" 
+                onClick={() => setMobileMenuOpen(false)}
+                data-nav-close
+              >
+                ✕
+              </button>
+              <div className="mobile-nav__groups">
+                <div className="mobile-nav__group">
+                  <div className="mobile-nav__label">Navigation</div>
+                  <ul className="mobile-nav__list">
+                    <li>
+                      <button className="mobile-nav__link" onClick={() => { document.getElementById("form-section")?.scrollIntoView({ behavior: "smooth" }); setMobileMenuOpen(false); }}>
+                        📝 New Application
+                      </button>
+                    </li>
+                    <li>
+                      <button className="mobile-nav__link" onClick={() => { document.getElementById("queue-section")?.scrollIntoView({ behavior: "smooth" }); setMobileMenuOpen(false); }}>
+                        📋 Queue
+                      </button>
+                    </li>
+                    <li>
+                      <button className="mobile-nav__link" onClick={() => { document.getElementById("send-section")?.scrollIntoView({ behavior: "smooth" }); setMobileMenuOpen(false); }}>
+                        🚀 Send
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+                <div className="mobile-nav__group">
+                  <div className="mobile-nav__label">Settings</div>
+                  <ul className="mobile-nav__list">
+                    <li>
+                      <button className="mobile-nav__link" onClick={() => setDarkMode(!darkMode)}>
+                        {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+                      </button>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </motion.div>
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
 
-      <motion.header
-        className="hero glass"
-        initial={{ opacity: 0, y: -25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="hero-text">
-          <h2>Job Application Assistant</h2>
-          <p>
-            Automate professional email campaigns, attach your CV, and track everything in Excel.
-          </p>
-        </div>
-        <motion.div
-          className="stats-chip glass"
-          whileHover={{ scale: 1.03 }}
-          transition={{ type: "spring", stiffness: 200 }}
+      <div className="main-content">
+        <motion.section
+          className="hero"
+          initial={{ opacity: 0, y: -25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          data-reveal
         >
-          <span className="stat-value">{applications.length}</span>
-          <small className="stat-label">Applications Queued</small>
-        </motion.div>
-      </motion.header>
+          <div className="hero__inner">
+            <div className="hero__content">
+              <div className="eyebrow">Professional Email Automation</div>
+              <h1>Job Application Assistant</h1>
+              <p>
+                Automate professional email campaigns, attach your CV, and track everything in Excel with our premium dashboard.
+              </p>
+              <div className="hero__actions">
+                <button className="btn btn--primary" onClick={() => document.getElementById("form-section")?.scrollIntoView({ behavior: "smooth" })}>
+                  Get Started
+                </button>
+                <button className="btn btn--ghost" onClick={() => document.getElementById("queue-section")?.scrollIntoView({ behavior: "smooth" })}>
+                  View Queue
+                </button>
+              </div>
+            </div>
+            <motion.div
+              className="hero__media"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 200 }}
+            >
+              <div style={{ textAlign: 'center', padding: 'var(--space-4)' }}>
+                <div style={{ fontSize: '2rem', marginBottom: 'var(--space-2)' }}>📊</div>
+                <div style={{ fontSize: '1.5rem', fontWeight: '600', color: 'var(--color-accent)' }}>{applications.length}</div>
+                <div style={{ fontSize: '0.875rem', color: 'var(--color-text-soft)' }}>Applications Queued</div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
 
-      <motion.section
-        id="form-section"
-        className="section glass"
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1, duration: 0.5 }}
-      >
-        <h3 className="section-title">New Application</h3>
+        <motion.section
+          id="form-section"
+          className="section"
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          data-reveal
+        >
+          <div className="section__header">
+            <h2 className="section__title">New Application</h2>
+            <div className="eyebrow">Add to Campaign</div>
+          </div>
         <div className="form-grid">
           <div className="input-group">
             <label>Company *</label>
@@ -463,42 +531,43 @@ export default function App() {
           </div>
         </div>
 
-        <div className="form-actions">
-          <label className="file-upload glass">
-            <input type="file" accept="application/pdf" onChange={handleFileChange} />
-            <span>{cvName ? `CV: ${cvName}` : "📎 Attach CV (PDF)"}</span>
-          </label>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-3)', alignItems: 'center', marginTop: 'var(--space-4)' }}>
+            <label className="file-upload">
+              <input type="file" accept="application/pdf" onChange={handleFileChange} />
+              <span>{cvName ? `📎 ${cvName}` : "📎 Attach CV (PDF)"}</span>
+            </label>
 
-          <div className="toggle-group">
-            <input
-              type="checkbox"
-              id="dryRun"
-              checked={dryRun}
-              onChange={(event) => setDryRun(event.target.checked)}
-            />
-            <label htmlFor="dryRun">Dry Run (simulation)</label>
+            <div className="toggle-group">
+              <input
+                type="checkbox"
+                id="dryRun"
+                checked={dryRun}
+                onChange={(event) => setDryRun(event.target.checked)}
+              />
+              <label htmlFor="dryRun">Dry Run (simulation)</label>
+            </div>
+
+            <button type="button" className="btn btn--primary" onClick={handleAddApplication}>
+              Add to Queue
+            </button>
           </div>
 
-          <button type="button" className="btn-primary" onClick={handleAddApplication}>
-            Add to Queue
-          </button>
-        </div>
+          {error && <div className="feedback error">{error}</div>}
+          {successMessage && <div className="feedback success">{successMessage}</div>}
+        </motion.section>
 
-        {error && <p className="feedback error">{error}</p>}
-        {successMessage && <p className="feedback success">{successMessage}</p>}
-      </motion.section>
-
-      <motion.section
-        id="queue-section"
-        className="section glass"
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-      >
-        <div className="section-header">
-          <h3 className="section-title">Queue</h3>
-          <span className="badge">{applications.length} pending</span>
-        </div>
+        <motion.section
+          id="queue-section"
+          className="section"
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          data-reveal
+        >
+          <div className="section__header">
+            <h2 className="section__title">Queue</h2>
+            <span className="status-badge success">{applications.length} pending</span>
+          </div>
         <AnimatePresence>
           {applications.length === 0 ? (
             <motion.p
@@ -513,7 +582,7 @@ export default function App() {
               {applications.map((item, index) => (
                 <motion.div
                   key={item.createdAt}
-                  className="queue-item glass"
+                  className="queue-item"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
@@ -525,7 +594,7 @@ export default function App() {
                   </div>
                   <button
                     type="button"
-                    className="btn-ghost"
+                    className="btn btn--ghost"
                     onClick={() => handleRemoveApplication(index)}
                   >
                     Remove
@@ -534,18 +603,22 @@ export default function App() {
               ))}
             </div>
           )}
-        </AnimatePresence>
-      </motion.section>
+          </AnimatePresence>
+        </motion.section>
 
-      <motion.section
-        id="send-section"
-        className="section glass"
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-      >
-        <h3 className="section-title">Send Control</h3>
-        <div className="controls-grid">
+        <motion.section
+          id="send-section"
+          className="section"
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          data-reveal
+        >
+          <div className="section__header">
+            <h2 className="section__title">Send Control</h2>
+            <div className="eyebrow">Campaign Settings</div>
+          </div>
+          <div className="form-grid">
           <div className="input-group">
             <label>Number of Emails to Send</label>
             <input
@@ -569,65 +642,80 @@ export default function App() {
             />
           </div>
 
-          <div className="input-group api-info">
-            <label>Backend API</label>
-            <code>{API_BASE_URL}</code>
-          </div>
-
-          <button
-            type="button"
-            className="btn-primary btn-large"
-            onClick={handleSendBatch}
-            disabled={!canSend}
-          >
-            {sending ? "Sending..." : `Send ${totalToSend} Email${totalToSend > 1 ? "s" : ""}`}
-          </button>
-        </div>
-      </motion.section>
-
-      <AnimatePresence>
-        {results.length > 0 && (
-          <motion.section
-            className="section glass"
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 25 }}
-          >
-            <div className="section-header">
-              <h3 className="section-title">Results</h3>
-              <div className="result-badges">
-                <span className="badge success">
-                  {results.filter((res) => res.status === "sent").length} sent
-                </span>
-                <span className="badge error">
-                  {results.filter((res) => res.status === "failed").length} failed
-                </span>
+            <div className="input-group">
+              <label>Backend API</label>
+              <div style={{ 
+                padding: 'var(--space-2)', 
+                background: 'var(--color-panel-solid)', 
+                border: '1px solid var(--color-border)', 
+                borderRadius: 'var(--radius-xs)', 
+                fontFamily: 'var(--font-mono)', 
+                fontSize: '0.875rem',
+                color: 'var(--color-text-soft)'
+              }}>
+                {API_BASE_URL}
               </div>
             </div>
-            <div className="result-list">
-              {results.map((item) => (
-                <motion.div
-                  key={`${item.index}-${item.to}-${item.status}`}
-                  className="result-item glass"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  <span className={getStatusBadgeClass(item.status)}>
-                    {item.status === "sent" ? "✓ Sent" : "✕ Failed"}
-                  </span>
-                  <div className="result-info">
-                    <h4>{item.to ?? "(Unknown email)"}</h4>
-                    {item.info && item.info.messageId && (
-                      <small>Message ID: {item.info.messageId}</small>
-                    )}
-                    {item.error && <small className="error-text">{item.error}</small>}
-                  </div>
-                </motion.div>
-              ))}
+
+            <div className="span-full">
+              <button
+                type="button"
+                className="btn btn--primary"
+                onClick={handleSendBatch}
+                disabled={!canSend}
+                style={{ width: '100%', padding: 'var(--space-4)', fontSize: '1rem' }}
+              >
+                {sending ? "Sending..." : `🚀 Send ${totalToSend} Email${totalToSend > 1 ? "s" : ""}`}
+              </button>
             </div>
-          </motion.section>
-        )}
-      </AnimatePresence>
+          </div>
+        </motion.section>
+
+        <AnimatePresence>
+          {results.length > 0 && (
+            <motion.section
+              className="section"
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 25 }}
+              data-reveal
+            >
+              <div className="section__header">
+                <h2 className="section__title">Results</h2>
+                <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+                  <span className="status-badge success">
+                    {results.filter((res) => res.status === "sent").length} sent
+                  </span>
+                  <span className="status-badge error">
+                    {results.filter((res) => res.status === "failed").length} failed
+                  </span>
+                </div>
+              </div>
+              <div className="queue-list">
+                {results.map((item) => (
+                  <motion.div
+                    key={`${item.index}-${item.to}-${item.status}`}
+                    className="queue-item"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <span className={getStatusBadgeClass(item.status)}>
+                      {item.status === "sent" ? "✓ Sent" : "✕ Failed"}
+                    </span>
+                    <div className="queue-info">
+                      <h4>{item.to ?? "(Unknown email)"}</h4>
+                      {item.info && item.info.messageId && (
+                        <small>Message ID: {item.info.messageId}</small>
+                      )}
+                      {item.error && <small style={{ color: 'var(--color-error)' }}>{item.error}</small>}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.section>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
