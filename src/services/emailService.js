@@ -31,22 +31,46 @@ function createTransporter() {
  * options: { dryRun: boolean }
  */
 export async function sendEmail(message, options = { dryRun: false }) {
-  const transporter = createTransporter();
-
-  if (!transporter) {
-    if (options.dryRun) {
-      // simulate success when running in dryRun mode
-      return { accepted: [message.to], messageId: "dry-run" };
-    }
-    throw new Error(
-      "SMTP configuration is missing. Set SMTP_HOST/SMTP_PORT/SMTP_USER/SMTP_PASS or use dryRun."
-    );
+  if (options.dryRun) {
+    return { accepted: [message.to], messageId: "dry-run" };
   }
 
+  // Utiliser les credentials de l'utilisateur
+  if (options.userEmail && options.userSmtpPassword) {
+    const userTransporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      auth: {
+        user: options.userEmail,
+        pass: options.userSmtpPassword,
+      },
+    });
+
+    const mailOptions = {
+      from: `${options.userName || ''} <${options.userEmail}>`,
+      to: message.to,
+      subject: message.subject,
+      text: message.text,
+      html: message.html,
+      attachments: message.attachments,
+    };
+
+    const info = await userTransporter.sendMail(mailOptions);
+    return info;
+  }
+
+  // Fallback sur .env (pour compatibilité)
+  const transporter = createTransporter();
+  if (!transporter) {
+    throw new Error("Configuration SMTP manquante. Configurez votre mot de passe d'application Gmail.");
+  }
+
+  const fromEmail = options.userEmail || process.env.SENDER_EMAIL || process.env.SMTP_USER;
+  const fromName = options.userName || process.env.SENDER_NAME || "";
+
   const mailOptions = {
-    from: `${process.env.SENDER_NAME ?? ""} <${
-      process.env.SENDER_EMAIL ?? process.env.SMTP_USER
-    }>`,
+    from: `${fromName} <${fromEmail}>`,
     to: message.to,
     subject: message.subject,
     text: message.text,
@@ -54,7 +78,6 @@ export async function sendEmail(message, options = { dryRun: false }) {
     attachments: message.attachments,
   };
 
-  // sendMail throws on fatal errors
   const info = await transporter.sendMail(mailOptions);
   return info;
 }

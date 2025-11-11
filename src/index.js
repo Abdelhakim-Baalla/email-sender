@@ -3,12 +3,14 @@ import fs from "fs";
 import path from "path";
 import express from "express";
 import cors from "cors";
-import { OAuth2Client } from 'google-auth-library';
+
 import { sendEmail } from "./services/emailService.js";
 import { appendApplicationRecord } from "./services/excelService.js";
 import { delay } from "./utils/delay.js";
 import { buildApplicationEmail } from "./templates/applicationEmail.js";
 import { authenticateToken, generateToken } from "./middleware/auth.js";
+import authRoutes from "./routes/auth.js";
+import User from "./models/User.js";
 
 const app = express();
 const port = Number(process.env.PORT ?? 4859);
@@ -20,7 +22,10 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",")
 app.use(cors(allowedOrigins?.length ? { origin: allowedOrigins, credentials: true } : { credentials: true }));
 app.use(express.json({ limit: "10mb" }));
 
-const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+// Routes d'authentification
+app.use('/auth', authRoutes);
+
+
 
 function extractBase64Payload(rawContent) {
   if (!rawContent) return null;
@@ -30,7 +35,7 @@ function extractBase64Payload(rawContent) {
   return data;
 }
 
-function buildAttachmentsFromPayload(payload, dryRun) {
+async function buildAttachmentsFromPayload(payload, dryRun, userId = null) {
   const attachments = [];
   const { cvFile } = payload;
 
@@ -53,7 +58,16 @@ function buildAttachmentsFromPayload(payload, dryRun) {
     }
   }
 
-  const preferredCvPath = payload.cvPath ?? process.env.CV_PATH ?? "";
+  // Priorité au CV de l'utilisateur authentifié
+  let preferredCvPath = payload.cvPath ?? process.env.CV_PATH ?? "";
+  
+  if (userId) {
+    const userCvPath = await User.getCvPath(userId);
+    if (userCvPath) {
+      preferredCvPath = userCvPath;
+    }
+  }
+  
   if (preferredCvPath) {
     const absoluteCvPath = path.isAbsolute(preferredCvPath)
       ? preferredCvPath
@@ -80,6 +94,7 @@ async function logApplicationAttempt(record, override = {}) {
 
 async function processApplication(payload, options = {}) {
   const dryRun = !!options.dryRun;
+  const userId = options.userId;
   const to = payload.to?.trim();
 
   if (!to) {
@@ -92,13 +107,27 @@ async function processApplication(payload, options = {}) {
     throw new Error("No valid email addresses provided");
   }
 
+  // Récupérer les infos utilisateur pour le template
+  let userInfo = {};
+  if (userId) {
+    const user = await User.findByEmail(options.userEmail);
+    if (user) {
+      userInfo = {
+        applicant: user.name,
+        portfolioUrl: user.personalInfo?.portfolio || payload.portfolioUrl,
+        linkedinUrl: user.personalInfo?.linkedin || payload.linkedinUrl,
+        phoneNumber: user.personalInfo?.phone || payload.phoneNumber,
+      };
+    }
+  }
+
   const template = buildApplicationEmail({
     companyName: payload.company,
     jobTitle: payload.position,
-    applicant: payload.applicant,
-    portfolioUrl: payload.portfolioUrl,
-    linkedinUrl: payload.linkedinUrl,
-    phoneNumber: payload.phoneNumber,
+    applicant: payload.applicant || userInfo.applicant,
+    portfolioUrl: payload.portfolioUrl || userInfo.portfolioUrl,
+    linkedinUrl: payload.linkedinUrl || userInfo.linkedinUrl,
+    phoneNumber: payload.phoneNumber || userInfo.phoneNumber,
   });
 
   const composedSubject = payload.subject ?? template.subject;
@@ -108,7 +137,7 @@ async function processApplication(payload, options = {}) {
   let attachments = [];
 
   try {
-    attachments = buildAttachmentsFromPayload(payload, dryRun);
+    attachments = await buildAttachmentsFromPayload(payload, dryRun, userId);
   } catch (attachmentError) {
     await logApplicationAttempt({
       company: payload.company,
@@ -138,6 +167,16 @@ async function processApplication(payload, options = {}) {
     const email = emails[i];
     
     try {
+      // Récupérer le mot de passe SMTP de l'utilisateur
+      let userSmtpPassword = null;
+      if (userId && !dryRun) {
+        const smtpConfig = await User.getSmtpConfig(userId);
+        if (smtpConfig.configured && smtpConfig.password) {
+          const { decrypt } = await import('./utils/encryption.js');
+          userSmtpPassword = decrypt(smtpConfig.password);
+        }
+      }
+
       const info = await sendEmail(
         {
           to: email,
@@ -146,7 +185,12 @@ async function processApplication(payload, options = {}) {
           html: composedHtml,
           attachments,
         },
-        { dryRun }
+        { 
+          dryRun,
+          userEmail: options.userEmail,
+          userName: userInfo.applicant,
+          userSmtpPassword
+        }
       );
 
       await logApplicationAttempt({
@@ -202,34 +246,7 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
-app.post("/auth/google", async (req, res) => {
-  try {
-    const { credential } = req.body;
-    
-    const ticket = await googleClient.verifyIdToken({
-      idToken: credential,
-      audience: process.env.GOOGLE_CLIENT_ID,
-    });
-    
-    const payload = ticket.getPayload();
-    const user = {
-      email: payload.email,
-      name: payload.name,
-      picture: payload.picture,
-    };
-    
-    const token = generateToken(user);
-    
-    res.json({ token, user });
-  } catch (error) {
-    console.error('Google auth error:', error);
-    res.status(401).json({ error: 'Invalid Google token' });
-  }
-});
 
-app.get("/auth/me", authenticateToken, (req, res) => {
-  res.json({ user: req.user });
-});
 
 /**
  * POST /applications/send
@@ -244,7 +261,12 @@ app.post("/applications/send", authenticateToken, async (req, res) => {
   const { delayMs, dryRun } = body;
 
   try {
-    const result = await processApplication(body, { dryRun, emailDelay: Number(delayMs) || 1000 });
+    const result = await processApplication(body, { 
+      dryRun, 
+      emailDelay: Number(delayMs) || 1000,
+      userId: req.user.id,
+      userEmail: req.user.email
+    });
 
     return res.json({ ok: true, results: result.results });
   } catch (err) {
@@ -278,6 +300,8 @@ app.post("/applications/send-batch", authenticateToken, async (req, res) => {
       const result = await processApplication(application, {
         dryRun: effectiveDryRun,
         emailDelay: safeDelay,
+        userId: req.user.id,
+        userEmail: req.user.email
       });
       
       result.results.forEach(emailResult => {

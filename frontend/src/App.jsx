@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
-import GoogleAuth from "./components/GoogleAuth.jsx";
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import LoginForm from './components/LoginForm';
+import ProfileModal from './components/ProfileModal';
+import SmtpConfigModal from './components/SmtpConfigModal';
 import "./scripts.js";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:4859";
@@ -40,7 +44,7 @@ function getStatusBadgeClass(status) {
   return "status-badge";
 }
 
-export default function App() {
+function AppContent({ setShowProfile, showSmtpConfig, setShowSmtpConfig, smtpConfigured, setSmtpConfigured }) {
   const [darkMode, setDarkMode] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState(emptyForm);
@@ -60,8 +64,7 @@ export default function App() {
   const [emailList, setEmailList] = useState([]);
   const [editingEmail, setEditingEmail] = useState(null);
   const [savedPersonalInfo, setSavedPersonalInfo] = useState(null);
-  const [user, setUser] = useState(null);
-  const [authToken, setAuthToken] = useState(null);
+  const { user, token, logout, isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (applications.length === 0) {
@@ -70,6 +73,26 @@ export default function App() {
       setLimit(applications.length);
     }
   }, [applications.length, limit]);
+
+  useEffect(() => {
+    if (user && token) {
+      checkSmtpConfig();
+    }
+  }, [user, token]);
+
+  const checkSmtpConfig = async () => {
+    try {
+      const { data } = await axios.get(`${API_BASE_URL}/auth/smtp-config`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setSmtpConfigured(data.configured);
+      if (!data.configured) {
+        setShowSmtpConfig(true);
+      }
+    } catch (error) {
+      console.error('Erreur vérification SMTP:', error);
+    }
+  };
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
@@ -81,15 +104,17 @@ export default function App() {
     if (savedTheme) {
       setDarkMode(savedTheme === 'dark');
     }
+  }, []);
 
-    const token = localStorage.getItem('authToken');
-    const userData = localStorage.getItem('user');
-    
-    if (token && userData) {
-      setAuthToken(token);
-      setUser(JSON.parse(userData));
+  useEffect(() => {
+    if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    } else {
+      delete axios.defaults.headers.common['Authorization'];
     }
+  }, [token]);
+
+  useEffect(() => {
 
     const savedInfo = localStorage.getItem('personalInfo');
     if (savedInfo) {
@@ -109,7 +134,7 @@ export default function App() {
         phoneNumber: import.meta.env.VITE_PHONE_NUMBER || ''
       }));
     }
-  }, []);
+  }, [user]);
 
   const canSend = useMemo(
     () => applications.length > 0 && !sending,
@@ -244,6 +269,12 @@ export default function App() {
   };
 
   const handleSendBatch = async () => {
+    if (!smtpConfigured && !dryRun) {
+      setError('Veuillez configurer votre mot de passe d\'application Gmail');
+      setShowSmtpConfig(true);
+      return;
+    }
+
     setError("");
     setSuccessMessage("");
     setResults([]);
@@ -262,7 +293,12 @@ export default function App() {
     try {
       const { data } = await axios.post(
         `${API_BASE_URL}/applications/send-batch`,
-        payload
+        payload,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
       );
 
       setResults(data.results ?? []);
@@ -280,38 +316,12 @@ export default function App() {
     }
   };
 
-  const handleGoogleSuccess = async (credentialResponse) => {
-    try {
-      const { data } = await axios.post(`${API_BASE_URL}/auth/google`, {
-        credential: credentialResponse.credential
-      });
-      
-      setUser(data.user);
-      setAuthToken(data.token);
-      localStorage.setItem('authToken', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-    } catch (err) {
-      setError('Erreur d\'authentification');
-    }
-  };
 
-  const handleGoogleError = () => {
-    setError('Échec de la connexion Google');
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-    setAuthToken(null);
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('user');
-    delete axios.defaults.headers.common['Authorization'];
-  };
 
   const totalToSend = Math.min(limit, applications.length);
 
-  if (!user) {
-    return <GoogleAuth onSuccess={handleGoogleSuccess} onError={handleGoogleError} />;
+  if (!isAuthenticated) {
+    return <LoginForm />;
   }
 
   return (
@@ -335,23 +345,39 @@ export default function App() {
           </nav>
           <div className="site-header__actions">
             <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', marginRight: 'var(--space-3)' }}>
-              <img 
-                src={user.picture} 
-                alt={user.name}
-                style={{ 
-                  width: '32px', 
-                  height: '32px', 
-                  borderRadius: '50%',
-                  border: '2px solid var(--color-accent)'
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setShowProfile && setShowProfile(true)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--space-2)',
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 'var(--space-1)',
+                  borderRadius: 'var(--radius-xs)'
                 }}
-              />
-              <span style={{ fontSize: '0.875rem', color: 'var(--color-text)', fontWeight: 500 }}>{user.name}</span>
+              >
+                <img 
+                  src={user.picture} 
+                  alt={user.name}
+                  style={{ 
+                    width: '32px', 
+                    height: '32px', 
+                    borderRadius: '50%',
+                    border: '2px solid var(--color-accent)'
+                  }}
+                />
+                <span style={{ fontSize: '0.875rem', color: 'var(--color-text)', fontWeight: 500 }}>{user.name}</span>
+              </motion.button>
             </div>
             
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={handleLogout}
+              onClick={logout}
               style={{
                 padding: 'var(--space-2) var(--space-3)',
                 background: 'var(--color-error)',
@@ -1098,18 +1124,44 @@ export default function App() {
           </div>
 
             <div className="input-group">
-              <label>Backend API</label>
-              <div style={{ 
-                padding: 'var(--space-2)', 
-                background: 'var(--color-panel-solid)', 
-                border: '1px solid var(--color-border)', 
-                borderRadius: 'var(--radius-xs)', 
-                fontFamily: 'var(--font-mono)', 
-                fontSize: '0.875rem',
-                color: 'var(--color-text-soft)'
-              }}>
-                {API_BASE_URL}
-              </div>
+              <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span>Configuration SMTP</span>
+                {smtpConfigured ? (
+                  <span style={{ fontSize: '0.75rem', color: 'var(--color-success)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    Configuré
+                  </span>
+                ) : (
+                  <span style={{ fontSize: '0.75rem', color: 'var(--color-warning)' }}>⚠️ Non configuré</span>
+                )}
+              </label>
+              <button
+                type="button"
+                onClick={() => setShowSmtpConfig(true)}
+                style={{
+                  width: '100%',
+                  padding: 'var(--space-3)',
+                  background: smtpConfigured ? 'var(--color-panel)' : 'var(--color-warning-soft)',
+                  border: `1px solid ${smtpConfigured ? 'var(--color-border)' : 'var(--color-warning)'}`,
+                  borderRadius: 'var(--radius-xs)',
+                  cursor: 'pointer',
+                  fontSize: '0.875rem',
+                  color: 'var(--color-text)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 'var(--space-2)'
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5"/>
+                  <path d="M2 12l10 5 10-5"/>
+                </svg>
+                {smtpConfigured ? 'Modifier la configuration Gmail' : 'Configurer Gmail pour envoyer'}
+              </button>
             </div>
 
             <div className="span-full">
@@ -1117,7 +1169,7 @@ export default function App() {
                 type="button"
                 className="btn btn--primary"
                 onClick={handleSendBatch}
-                disabled={!canSend}
+                disabled={!canSend || (!smtpConfigured && !dryRun)}
                 style={{ width: '100%', padding: 'var(--space-4)', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-2)' }}
               >
                 {sending ? (
@@ -1132,6 +1184,11 @@ export default function App() {
                   </>
                 )}
               </button>
+              {!smtpConfigured && !dryRun && (
+                <p style={{ textAlign: 'center', color: 'var(--color-warning)', fontSize: '0.875rem', marginTop: 'var(--space-2)' }}>
+                  ⚠️ Configurez votre Gmail pour envoyer des emails réels
+                </p>
+              )}
             </div>
           </div>
         </motion.section>
@@ -1182,5 +1239,34 @@ export default function App() {
         </AnimatePresence>
       </div>
     </div>
+  );
+}
+
+export default function App() {
+  const [showProfile, setShowProfile] = useState(false);
+  const [showSmtpConfig, setShowSmtpConfig] = useState(false);
+  const [smtpConfigured, setSmtpConfigured] = useState(false);
+  
+  return (
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <AuthProvider>
+        <AppContent 
+          setShowProfile={setShowProfile} 
+          showSmtpConfig={showSmtpConfig}
+          setShowSmtpConfig={setShowSmtpConfig}
+          smtpConfigured={smtpConfigured}
+          setSmtpConfigured={setSmtpConfigured}
+        />
+        <ProfileModal isOpen={showProfile} onClose={() => setShowProfile(false)} />
+        <SmtpConfigModal 
+          isOpen={showSmtpConfig} 
+          onClose={() => setShowSmtpConfig(false)}
+          onConfigured={() => {
+            setSmtpConfigured(true);
+            setShowSmtpConfig(false);
+          }}
+        />
+      </AuthProvider>
+    </GoogleOAuthProvider>
   );
 }
