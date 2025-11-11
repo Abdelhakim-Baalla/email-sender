@@ -11,8 +11,7 @@ import { buildApplicationEmail } from "./templates/applicationEmail.js";
 const app = express();
 const port = Number(process.env.PORT ?? 4859);
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS
-  ?.split(",")
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
 
@@ -21,7 +20,9 @@ app.use(express.json({ limit: "10mb" }));
 
 function extractBase64Payload(rawContent) {
   if (!rawContent) return null;
-  const [, data] = rawContent.includes(",") ? rawContent.split(",", 2) : [null, rawContent];
+  const [, data] = rawContent.includes(",")
+    ? rawContent.split(",", 2)
+    : [null, rawContent];
   return data;
 }
 
@@ -82,8 +83,8 @@ async function processApplication(payload, options = {}) {
   }
 
   const template = buildApplicationEmail({
-    companyName: payload.entreprise,
-    jobTitle: payload.poste,
+    companyName: payload.company, // updated to new field naming
+    jobTitle: payload.position, // updated to new field naming
     applicant: payload.applicant,
     portfolioUrl: payload.portfolioUrl,
     linkedinUrl: payload.linkedinUrl,
@@ -100,21 +101,23 @@ async function processApplication(payload, options = {}) {
     attachments = buildAttachmentsFromPayload(payload, dryRun);
   } catch (attachmentError) {
     // Attachment errors should result in failure logging but still propagate.
-    await logApplicationAttempt(
-      {
-        entreprise: payload.entreprise,
-        poste: payload.poste,
-        localisation: payload.localisation,
-        type_contrat: payload.type_contrat,
-        statut_candid: payload.statut_candid,
-        date_candid: payload.date_candid,
-        site_web: payload.site_web,
-        remarques: payload.remarques,
-        email_envoye: "Non",
-        date_envoi: new Date().toISOString(),
-        message: attachmentError.message,
-      }
-    );
+    await logApplicationAttempt({
+      company: payload.company,
+      position: payload.position,
+      location: payload.location,
+      flexibility: payload.flexibility,
+      type_contrat: payload.type_contrat,
+      application_method: payload.application_method,
+      contact: payload.contact,
+      apply_date: payload.apply_date,
+      status: "Failed",
+      response_date: "",
+      referral: payload.referral,
+      interview_date: "",
+      in_touch_person: "",
+      salary_range: "",
+      notes: attachmentError.message,
+    });
 
     throw attachmentError;
   }
@@ -132,33 +135,41 @@ async function processApplication(payload, options = {}) {
     );
 
     await logApplicationAttempt({
-      entreprise: payload.entreprise,
-      poste: payload.poste,
-      localisation: payload.localisation,
+      company: payload.company,
+      position: payload.position,
+      location: payload.location,
+      flexibility: payload.flexibility,
       type_contrat: payload.type_contrat,
-      statut_candid: payload.statut_candid,
-      date_candid: payload.date_candid,
-      site_web: payload.site_web,
-      remarques: payload.remarques,
-      email_envoye: info && info.accepted ? "Oui" : "Non",
-      date_envoi: new Date().toISOString(),
-      message: composedText ?? composedHtml ?? "",
+      application_method: payload.application_method,
+      contact: payload.contact,
+      apply_date: payload.apply_date,
+      status: info && info.accepted ? "Sent" : "Failed",
+      response_date: "",
+      referral: payload.referral,
+      interview_date: "",
+      in_touch_person: "",
+      salary_range: "",
+      notes: composedText ?? composedHtml ?? "",
     });
 
     return { info, composedSubject, composedText, composedHtml };
   } catch (err) {
     await logApplicationAttempt({
-      entreprise: payload.entreprise,
-      poste: payload.poste,
-      localisation: payload.localisation,
+      company: payload.company,
+      position: payload.position,
+      location: payload.location,
+      flexibility: payload.flexibility,
       type_contrat: payload.type_contrat,
-      statut_candid: payload.statut_candid,
-      date_candid: payload.date_candid,
-      site_web: payload.site_web,
-      remarques: payload.remarques,
-      email_envoye: "Non",
-      date_envoi: new Date().toISOString(),
-      message: err.message ?? String(err),
+      application_method: payload.application_method,
+      contact: payload.contact,
+      apply_date: payload.apply_date,
+      status: "Failed",
+      response_date: "",
+      referral: payload.referral,
+      interview_date: "",
+      in_touch_person: "",
+      salary_range: "",
+      notes: err.message ?? String(err),
     });
 
     throw err;
@@ -200,11 +211,17 @@ app.post("/applications/send-batch", async (req, res) => {
   const { applications, limit, delayMs, dryRun } = body;
 
   if (!Array.isArray(applications) || applications.length === 0) {
-    return res.status(400).json({ error: "La liste 'applications' doit contenir au moins un élément." });
+    return res
+      .status(400)
+      .json({
+        error: "La liste 'applications' doit contenir au moins un élément.",
+      });
   }
 
   const safeDelay = Number(delayMs) || 0;
-  const maxToSend = limit ? Math.min(Number(limit), applications.length) : applications.length;
+  const maxToSend = limit
+    ? Math.min(Number(limit), applications.length)
+    : applications.length;
   const results = [];
 
   for (let index = 0; index < maxToSend; index += 1) {
@@ -213,7 +230,9 @@ app.post("/applications/send-batch", async (req, res) => {
       application.dryRun !== undefined ? !!application.dryRun : !!dryRun;
 
     try {
-      const result = await processApplication(application, { dryRun: effectiveDryRun });
+      const result = await processApplication(application, {
+        dryRun: effectiveDryRun,
+      });
       results.push({
         status: "sent",
         index,
