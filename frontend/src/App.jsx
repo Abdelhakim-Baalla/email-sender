@@ -53,6 +53,8 @@ export default function App() {
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [emailValidation, setEmailValidation] = useState({ valid: true, count: 0 });
+  const [showQuickFill, setShowQuickFill] = useState(false);
 
   useEffect(() => {
     if (applications.length === 0) {
@@ -82,6 +84,13 @@ export default function App() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    
+    if (name === 'to') {
+      const emails = value.split(',').map(e => e.trim()).filter(Boolean);
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const allValid = emails.every(e => emailRegex.test(e));
+      setEmailValidation({ valid: value === '' || allValid, count: emails.length });
+    }
   };
 
   const handleFileChange = (event) => {
@@ -128,6 +137,11 @@ export default function App() {
       return;
     }
 
+    if (!emailValidation.valid) {
+      setError("Veuillez entrer des adresses e-mail valides.");
+      return;
+    }
+
     if (!formData.company.trim()) {
       setError("Le nom de l'entreprise est obligatoire.");
       return;
@@ -140,7 +154,9 @@ export default function App() {
     };
 
     setApplications((prev) => [...prev, entry]);
+    setSuccessMessage(`✓ Candidature ajoutée avec succès (${emailValidation.count} email${emailValidation.count > 1 ? 's' : ''})`);
     resetForm();
+    setEmailValidation({ valid: true, count: 0 });
   };
 
   const handleRemoveApplication = (index) => {
@@ -364,6 +380,37 @@ export default function App() {
             <h2 className="section__title">New Application</h2>
             <div className="eyebrow">Add to Campaign</div>
           </div>
+
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            type="button"
+            className="btn btn--ghost"
+            onClick={() => setShowQuickFill(!showQuickFill)}
+            style={{ fontSize: '0.85rem', marginBottom: 'var(--space-3)' }}
+          >
+            {showQuickFill ? '✕ Fermer' : '⚡ Remplissage rapide'}
+          </motion.button>
+
+          <AnimatePresence>
+            {showQuickFill && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                style={{ overflow: 'hidden', marginBottom: 'var(--space-4)', padding: 'var(--space-4)', background: 'var(--color-accent-soft)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-accent)' }}
+              >
+                <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
+                  <button type="button" className="btn btn--ghost" style={{ fontSize: '0.75rem', padding: 'var(--space-1) var(--space-2)' }} onClick={() => setFormData(prev => ({ ...prev, flexibility: 'Remote' }))}>🏠 Remote</button>
+                  <button type="button" className="btn btn--ghost" style={{ fontSize: '0.75rem', padding: 'var(--space-1) var(--space-2)' }} onClick={() => setFormData(prev => ({ ...prev, flexibility: 'Hybrid' }))}>🔄 Hybrid</button>
+                  <button type="button" className="btn btn--ghost" style={{ fontSize: '0.75rem', padding: 'var(--space-1) var(--space-2)' }} onClick={() => setFormData(prev => ({ ...prev, type_contrat: 'CDI' }))}>📝 CDI</button>
+                  <button type="button" className="btn btn--ghost" style={{ fontSize: '0.75rem', padding: 'var(--space-1) var(--space-2)' }} onClick={() => setFormData(prev => ({ ...prev, type_contrat: 'Freelance' }))}>💼 Freelance</button>
+                  <button type="button" className="btn btn--ghost" style={{ fontSize: '0.75rem', padding: 'var(--space-1) var(--space-2)' }} onClick={() => setFormData(prev => ({ ...prev, apply_date: new Date().toISOString().split('T')[0] }))}>📅 Aujourd'hui</button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
         <div className="form-grid">
           <div className="input-group">
             <label>Company *</label>
@@ -386,15 +433,32 @@ export default function App() {
           </div>
 
           <div className="input-group">
-            <label>Contact Email(s) *</label>
+            <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span>Contact Email(s) *</span>
+              {emailValidation.count > 0 && (
+                <motion.span 
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="status-badge success" 
+                  style={{ fontSize: '0.7rem' }}
+                >
+                  {emailValidation.count} email{emailValidation.count > 1 ? 's' : ''}
+                </motion.span>
+              )}
+            </label>
             <input
               name="to"
               type="text"
               placeholder="email1@company.com, email2@company.com"
               value={formData.to}
               onChange={handleInputChange}
+              style={{
+                borderColor: formData.to && !emailValidation.valid ? 'var(--color-error)' : undefined
+              }}
             />
-            <small style={{ color: 'var(--color-text-soft)', fontSize: '0.875rem', marginTop: '0.25rem' }}>Séparez plusieurs emails par des virgules</small>
+            <small style={{ color: formData.to && !emailValidation.valid ? 'var(--color-error)' : 'var(--color-text-soft)', fontSize: '0.875rem', marginTop: '0.25rem' }}>
+              {formData.to && !emailValidation.valid ? '⚠ Format invalide' : '💡 Séparez par des virgules'}
+            </small>
           </div>
 
           <div className="input-group">
@@ -578,9 +642,21 @@ export default function App() {
               <label htmlFor="dryRun">Dry Run (simulation)</label>
             </div>
 
-            <button type="button" className="btn btn--primary" onClick={handleAddApplication}>
-              Add to Queue
-            </button>
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              type="button" 
+              className="btn btn--primary" 
+              onClick={handleAddApplication}
+              disabled={!formData.to || !formData.company || !emailValidation.valid}
+              style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              Ajouter
+            </motion.button>
           </div>
 
           {error && <div className="feedback error">{error}</div>}
@@ -623,13 +699,20 @@ export default function App() {
                     <p>{item.position}</p>
                     <small>{item.to}</small>
                   </div>
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     type="button"
                     className="btn btn--ghost"
                     onClick={() => handleRemoveApplication(index)}
+                    style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-1)' }}
                   >
-                    Remove
-                  </button>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="3 6 5 6 21 6"/>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    </svg>
+                    Retirer
+                  </motion.button>
                 </motion.div>
               ))}
             </div>
@@ -663,14 +746,24 @@ export default function App() {
           </div>
 
           <div className="input-group">
-            <label>Delay Between Sends (ms)</label>
+            <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span>Délai entre envois</span>
+              <span style={{ fontSize: '0.85rem', color: 'var(--color-accent)', fontWeight: 600 }}>{(delayMs / 1000).toFixed(1)}s</span>
+            </label>
             <input
-              type="number"
-              min="0"
-              step="100"
+              type="range"
+              min="500"
+              max="10000"
+              step="500"
               value={delayMs}
-              onChange={(event) => setDelayMs(Number(event.target.value) || 0)}
+              onChange={(event) => setDelayMs(Number(event.target.value))}
+              style={{ width: '100%', accentColor: 'var(--color-accent)', cursor: 'pointer' }}
             />
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: 'var(--color-text-soft)', marginTop: '0.5rem' }}>
+              <span>0.5s</span>
+              <span style={{ color: delayMs < 3000 ? 'var(--color-warning)' : 'var(--color-success)' }}>{delayMs < 3000 ? '⚡ Rapide' : '🛡️ Sécurisé'}</span>
+              <span>10s</span>
+            </div>
           </div>
 
             <div className="input-group">
