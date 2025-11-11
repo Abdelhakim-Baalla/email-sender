@@ -299,6 +299,34 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
     setApplications((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const [downloading, setDownloading] = useState(false);
+
+  const handleDownloadExcel = async () => {
+    setDownloading(true);
+    try {
+      const response = await axios.get(`${API_BASE_URL}/applications/download-excel`, {
+        headers: { Authorization: `Bearer ${token}` },
+        responseType: 'blob'
+      });
+      
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'applications.xlsx');
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+      
+      setSuccessMessage(t('export.success'));
+      setTimeout(() => setSuccessMessage(''), 3000);
+    } catch (error) {
+      setError(t('export.error'));
+    } finally {
+      setDownloading(false);
+    }
+  };
+
   const handleSendBatch = async () => {
     if (!smtpConfigured && !dryRun) {
       setError(t('messages.configureSmtp'));
@@ -1247,13 +1275,28 @@ function AppContent({ setShowProfile, showProfile, showSmtpConfig, setShowSmtpCo
             >
               <div className="section__header">
                 <h2 className="section__title">{t('results.title')}</h2>
-                <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+                <div style={{ display: 'flex', gap: 'var(--space-2)', alignItems: 'center', flexWrap: 'wrap' }}>
                   <span className="status-badge success">
                     {results.filter((res) => res.status === "sent").length} {t('results.sent')}
                   </span>
                   <span className="status-badge error">
                     {results.filter((res) => res.status === "failed").length} {t('results.failed')}
                   </span>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleDownloadExcel}
+                    disabled={downloading}
+                    className="btn btn--ghost"
+                    style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', fontSize: '0.875rem', padding: 'var(--space-2) var(--space-3)' }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="7 10 12 15 17 10"/>
+                      <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    {downloading ? t('export.downloading') : t('export.downloadExcel')}
+                  </motion.button>
                 </div>
               </div>
               <div className="queue-list">

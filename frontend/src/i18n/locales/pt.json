@@ -1,13 +1,114 @@
-{
-  "app": { "title": "Envio de Email", "subtitle": "Automatize suas candidaturas profissionais" },
-  "nav": { "newApplication": "Nova Candidatura", "queue": "Fila", "send": "Enviar", "logout": "Sair" },
-  "hero": { "title": "Assistente de Candidaturas", "description": "Automatize campanhas de email profissionais, anexe seu CV e acompanhe tudo no Excel.", "getStarted": "Começar", "viewQueue": "Ver Fila", "inQueue": "Na Fila", "sent": "Enviado" },
-  "form": { "company": "Empresa", "position": "Cargo", "email": "Email de Contato", "location": "Localização", "flexibility": "Flexibilidade", "contractType": "Tipo de Contrato", "applicationMethod": "Método de Candidatura", "contactPerson": "Pessoa de Contato", "applyDate": "Data de Candidatura", "status": "Status", "responseDate": "Data de Resposta", "referral": "Referência", "interviewDate": "Data da Entrevista", "inTouchPerson": "Pessoa de Contato", "salaryRange": "Faixa Salarial", "portfolio": "Portfólio", "linkedin": "LinkedIn", "phone": "Telefone", "notes": "Notas", "attachCV": "Anexar CV (PDF)", "dryRun": "Modo Simulação (sem envio de emails)", "realMode": "Modo Real (emails serão enviados)", "addToQueue": "Adicionar à Fila", "optional": "opcional" },
-  "profile": { "title": "Perfil", "phone": "Telefone", "linkedin": "LinkedIn", "portfolio": "Portfólio", "cv": "CV (PDF)", "uploadCV": "Clique para carregar seu CV", "cancel": "Cancelar", "save": "Salvar", "saving": "Salvando..." },
-  "smtp": { "title": "Configuração SMTP Gmail", "subtitle": "Para enviar emails da sua conta Gmail", "instructions": "Instruções:", "step1": "Ative a autenticação de 2 fatores na sua conta Google", "step2": "Acesse myaccount.google.com/apppasswords", "step3": "Crie uma senha de app chamada \"Email Sender\"", "step4": "Copie a senha de 16 caracteres e cole abaixo", "password": "Senha de App Gmail", "configured": "Configurado", "notConfigured": "Não Configurado", "modify": "Modificar Configuração Gmail", "configure": "Configurar Gmail para Envio" },
-  "send": { "title": "Controle de Envio", "numberOfEmails": "Número de Emails para Enviar", "delay": "Atraso Entre Envios", "fast": "Rápido", "secure": "Seguro", "sendButton": "Enviar", "sending": "Enviando...", "success": "email(s) enviado(s) com sucesso", "simulation": "simulação" },
-  "queue": { "title": "Fila", "pending": "pendente", "empty": "Adicione candidaturas para iniciar sua campanha.", "remove": "Remover" },
-  "results": { "title": "Resultados", "sent": "enviado", "failed": "falhou" },
-  "login": { "title": "Envio de Email", "subtitle": "Automatize suas candidaturas profissionais", "secureConnection": "Conexão segura com Google", "dataProtected": "Seus dados estão protegidos" },
-  "messages": { "addEmail": "Adicione pelo menos um email", "emailAdded": "Candidatura adicionada com sucesso", "invalidEmail": "Formato de email inválido", "emailExists": "Este email já existe", "configureSmtp": "Configure sua senha de app Gmail", "cvFromProfile": "Seu CV do perfil será usado" }
+﻿{
+  "app": {
+    "title": "Email Sender",
+    "subtitle": "Automate your professional applications"
+  },
+  "nav": {
+    "newApplication": "New Application",
+    "queue": "Queue",
+    "send": "Send",
+    "logout": "Logout"
+  },
+  "hero": {
+    "title": "Job Application Assistant",
+    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
+    "getStarted": "Get Started",
+    "viewQueue": "View Queue",
+    "inQueue": "In Queue",
+    "sent": "Sent"
+  },
+  "form": {
+    "company": "Company",
+    "position": "Position",
+    "email": "Contact Email(s)",
+    "location": "Location",
+    "flexibility": "Flexibility",
+    "contractType": "Contract Type",
+    "applicationMethod": "Application Method",
+    "contactPerson": "Contact Person",
+    "applyDate": "Apply Date",
+    "status": "Status",
+    "responseDate": "Response Date",
+    "referral": "Referral",
+    "interviewDate": "Interview Date",
+    "inTouchPerson": "In-touch Person",
+    "salaryRange": "Salary Range",
+    "portfolio": "Portfolio",
+    "linkedin": "LinkedIn",
+    "phone": "Phone",
+    "notes": "Notes",
+    "attachCV": "Attach CV (PDF)",
+    "dryRun": "Simulation Mode (no emails sent)",
+    "realMode": "Real Mode (emails will be sent)",
+    "addToQueue": "Add to Queue",
+    "optional": "optional"
+  },
+  "profile": {
+    "title": "Profile",
+    "phone": "Phone",
+    "linkedin": "LinkedIn",
+    "portfolio": "Portfolio",
+    "cv": "CV (PDF)",
+    "uploadCV": "Click to upload your CV",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "smtp": {
+    "title": "Gmail SMTP Configuration",
+    "subtitle": "To send emails from your Gmail account",
+    "instructions": "Instructions:",
+    "step1": "Enable 2-factor authentication on your Google account",
+    "step2": "Go to myaccount.google.com/apppasswords",
+    "step3": "Create an app password named \"Email Sender\"",
+    "step4": "Copy the 16-character password and paste it below",
+    "password": "Gmail App Password",
+    "configured": "Configured",
+    "notConfigured": "Not Configured",
+    "modify": "Modify Gmail Configuration",
+    "configure": "Configure Gmail to Send"
+  },
+  "send": {
+    "title": "Send Control",
+    "numberOfEmails": "Number of Emails to Send",
+    "delay": "Delay Between Sends",
+    "fast": "Fast",
+    "secure": "Secure",
+    "sendButton": "Send",
+    "sending": "Sending...",
+    "success": "email(s) sent successfully",
+    "simulation": "simulation"
+  },
+  "queue": {
+    "title": "Queue",
+    "pending": "pending",
+    "empty": "Add applications to start your campaign.",
+    "remove": "Remove"
+  },
+  "results": {
+    "title": "Results",
+    "sent": "sent",
+    "failed": "failed"
+  },
+  "login": {
+    "title": "Email Sender",
+    "subtitle": "Automate your professional applications",
+    "secureConnection": "Secure connection with Google",
+    "dataProtected": "Your data is protected"
+  },
+  "messages": {
+    "addEmail": "Add at least one email",
+    "emailAdded": "Application added successfully",
+    "invalidEmail": "Invalid email format",
+    "emailExists": "This email already exists",
+    "configureSmtp": "Please configure your Gmail app password",
+    "cvFromProfile": "Your profile CV will be used"
+  },
+  "export": {
+    "downloadExcel": "Download Excel",
+    "downloading": "Downloading...",
+    "success": "File downloaded successfully",
+    "error": "Download error"
+  }
 }
+

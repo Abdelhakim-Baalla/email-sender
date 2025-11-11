@@ -1,107 +1,114 @@
-{
+﻿{
   "app": {
-    "title": "ⴰⵙⴰⵣⵏ ⵏ ⵉⵎⴰⵢⵍⵏ",
-    "subtitle": "ⴰⵡⵜⵎⴰⵜ ⵏ ⵜⵓⵣⵏⴰ ⵏ ⵉⵎⴰⵢⵍⵏ"
+    "title": "Email Sender",
+    "subtitle": "Automate your professional applications"
   },
   "nav": {
-    "newApplication": "ⴰⵙⵓⵜⵔ ⴰⵎⴰⵢⵏⵓ",
-    "queue": "ⵓⵎⵓⵖ",
-    "send": "ⴰⵣⵏ",
-    "logout": "ⴼⴼⵖ"
+    "newApplication": "New Application",
+    "queue": "Queue",
+    "send": "Send",
+    "logout": "Logout"
   },
   "hero": {
-    "title": "ⴰⵎⵄⵉⵡⵏ ⵏ ⵓⵙⵓⵜⵔ",
-    "description": "ⴰⵡⵜⵎⴰⵜ ⵏ ⵜⵓⵣⵏⴰ ⵏ ⵉⵎⴰⵢⵍⵏ, ⵔⵏⵓ CV-ⵉⵏⴽ, ⵙⵄⵓ ⵖⴼ ⴽⵓⵍⵛ ⴷⴳ Excel.",
-    "getStarted": "ⴱⴷⵓ ⵜⵓⵔⴰ",
-    "viewQueue": "ⵥⵔ ⵓⵎⵓⵖ",
-    "inQueue": "ⴷⴳ ⵓⵎⵓⵖ",
-    "sent": "ⵢⵜⵜⵡⴰⵣⵏ"
+    "title": "Job Application Assistant",
+    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
+    "getStarted": "Get Started",
+    "viewQueue": "View Queue",
+    "inQueue": "In Queue",
+    "sent": "Sent"
   },
   "form": {
-    "company": "ⵜⴽⴱⴱⴰⵏⵉⵜ",
-    "position": "ⴰⴷⴳ",
-    "email": "ⵉⵎⴰⵢⵍ ⵏ ⵓⵏⵔⵎⵙ",
-    "location": "ⴰⴷⴳ",
-    "flexibility": "ⵜⴰⴼⵔⴰⵡⴰⵏⵜ",
-    "contractType": "ⴰⵏⴰⵡ ⵏ ⵓⵎⵜⴰⵡⴰ",
-    "applicationMethod": "ⵜⴰⵔⵔⴰⵢⵜ ⵏ ⵓⵙⵓⵜⵔ",
-    "contactPerson": "ⴰⵎⴷⴰⵏ ⵏ ⵓⵏⵔⵎⵙ",
-    "applyDate": "ⴰⵣⵎⵣ ⵏ ⵓⵙⵓⵜⵔ",
-    "status": "ⴰⴷⴷⴰⴷ",
-    "responseDate": "ⴰⵣⵎⵣ ⵏ ⵜⵔⵉⵔⵉⵜ",
-    "referral": "ⴰⵙⵓⵎⵔ",
-    "interviewDate": "ⴰⵣⵎⵣ ⵏ ⵓⴷⵉⵡⵏⵏⵉ",
-    "inTouchPerson": "ⴰⵎⴷⴰⵏ ⵢⵜⵜⵎⵙⵍⴰⵢⵏ",
-    "salaryRange": "ⴰⵣⴰⵍ ⵏ ⵕⵕⴱⵃ",
+    "company": "Company",
+    "position": "Position",
+    "email": "Contact Email(s)",
+    "location": "Location",
+    "flexibility": "Flexibility",
+    "contractType": "Contract Type",
+    "applicationMethod": "Application Method",
+    "contactPerson": "Contact Person",
+    "applyDate": "Apply Date",
+    "status": "Status",
+    "responseDate": "Response Date",
+    "referral": "Referral",
+    "interviewDate": "Interview Date",
+    "inTouchPerson": "In-touch Person",
+    "salaryRange": "Salary Range",
     "portfolio": "Portfolio",
     "linkedin": "LinkedIn",
-    "phone": "ⵜⵉⵍⵉⵖⵔⵉ",
-    "notes": "ⵜⵉⵣⵎⵉⵍⵉⵏ",
-    "attachCV": "ⵔⵏⵓ CV (PDF)",
-    "dryRun": "ⴰⵙⴽⵢⴷ (ⵓⵔ ⴷ-ⵢⵜⵜⵡⴰⵣⵏ ⴰⵔⴰ)",
-    "realMode": "ⴰⵙⴽⵢⴷ ⵏ ⵜⵉⴷⵜ (ⴰⴷ ⵢⵜⵜⵡⴰⵣⵏ)",
-    "addToQueue": "ⵔⵏⵓ ⵖⵔ ⵓⵎⵓⵖ",
-    "optional": "ⴰⴼⵔⴰⵢⴰⵏ"
+    "phone": "Phone",
+    "notes": "Notes",
+    "attachCV": "Attach CV (PDF)",
+    "dryRun": "Simulation Mode (no emails sent)",
+    "realMode": "Real Mode (emails will be sent)",
+    "addToQueue": "Add to Queue",
+    "optional": "optional"
   },
   "profile": {
-    "title": "ⴰⵎⴰⵖⵏⵓ",
-    "phone": "ⵜⵉⵍⵉⵖⵔⵉ",
+    "title": "Profile",
+    "phone": "Phone",
     "linkedin": "LinkedIn",
     "portfolio": "Portfolio",
     "cv": "CV (PDF)",
-    "uploadCV": "ⵙⵉⵜ ⵉ ⵓⵙⴰⵍⵉ ⵏ CV-ⵉⵏⴽ",
-    "cancel": "ⵙⴼⵙⵅ",
-    "save": "ⵙⴽⵍⵙ",
-    "saving": "ⴰⵙⴽⵍⵙ..."
+    "uploadCV": "Click to upload your CV",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
   },
   "smtp": {
-    "title": "ⴰⵙⵡⵍ SMTP Gmail",
-    "subtitle": "ⵉ ⵜⵓⵣⵏⴰ ⵏ ⵉⵎⴰⵢⵍⵏ ⵙ Gmail-ⵉⵏⴽ",
-    "instructions": "ⵉⵡⵍⵍⵉⵀⵏ:",
-    "step1": "ⵔⵎⴷ ⴰⵙⵙⵜⴱ ⵙ ⵙⵉⵏ ⵏ ⵜⴰⵔⵔⴰⵢⵉⵏ ⴷⴳ Google",
-    "step2": "ⴷⴷⵓ ⵖⵔ myaccount.google.com/apppasswords",
-    "step3": "ⵔⵏⵓ ⴰⵡⴰⵍ ⵓⴼⴼⵉⵔ ⵏ ⵓⵙⵏⴰⵙ ⵙ ⵢⵉⵙⵎ \"Email Sender\"",
-    "step4": "ⵏⵖⵍ ⴰⵡⴰⵍ ⵓⴼⴼⵉⵔ ⵏ 16 ⵏ ⵢⵉⵙⴽⴽⵉⵍⵏ ⵙⵢⵏ ⵙⵏⵜⴹ-ⵜ ⴷⴰⵡ-ⴰ",
-    "password": "ⴰⵡⴰⵍ ⵓⴼⴼⵉⵔ ⵏ ⵓⵙⵏⴰⵙ Gmail",
-    "configured": "ⵢⵜⵜⵓⵙⵡⵍ",
-    "notConfigured": "ⵓⵔ ⵢⵜⵜⵓⵙⵡⵍ ⴰⵔⴰ",
-    "modify": "ⴱⴷⴷⵍ ⴰⵙⵡⵍ Gmail",
-    "configure": "ⵙⵡⵍ Gmail ⵉ ⵜⵓⵣⵏⴰ"
+    "title": "Gmail SMTP Configuration",
+    "subtitle": "To send emails from your Gmail account",
+    "instructions": "Instructions:",
+    "step1": "Enable 2-factor authentication on your Google account",
+    "step2": "Go to myaccount.google.com/apppasswords",
+    "step3": "Create an app password named \"Email Sender\"",
+    "step4": "Copy the 16-character password and paste it below",
+    "password": "Gmail App Password",
+    "configured": "Configured",
+    "notConfigured": "Not Configured",
+    "modify": "Modify Gmail Configuration",
+    "configure": "Configure Gmail to Send"
   },
   "send": {
-    "title": "ⴰⵙⵏⵇⴷ ⵏ ⵜⵓⵣⵏⴰ",
-    "numberOfEmails": "ⴰⵎⴹⴰⵏ ⵏ ⵉⵎⴰⵢⵍⵏ",
-    "delay": "ⴰⵖⴱⴰⵍⵓ ⴳⴰⵔ ⵜⵓⵣⵏⵉⵡⵉⵏ",
-    "fast": "ⴰⵔⵓⵔⴰⴷ",
-    "secure": "ⴰⵖⵍⵙⴰⵏ",
-    "sendButton": "ⴰⵣⵏ",
-    "sending": "ⵜⵓⵣⵏⴰ...",
-    "success": "ⵉⵎⴰⵢⵍⵏ ⵜⵜⵡⴰⵣⵏ ⵙ ⵍⵊⵀⴷ",
-    "simulation": "ⴰⵙⴽⵢⴷ"
+    "title": "Send Control",
+    "numberOfEmails": "Number of Emails to Send",
+    "delay": "Delay Between Sends",
+    "fast": "Fast",
+    "secure": "Secure",
+    "sendButton": "Send",
+    "sending": "Sending...",
+    "success": "email(s) sent successfully",
+    "simulation": "simulation"
   },
   "queue": {
-    "title": "ⵓⵎⵓⵖ",
-    "pending": "ⵢⵜⵜⵕⴰⵊⵓ",
-    "empty": "ⵔⵏⵓ ⵉⵙⵓⵜⵔⵏ ⵉ ⵜⴱⴷⵓⵜ ⵏ ⵍⵃⵎⵍⴰ-ⵉⵏⴽ.",
-    "remove": "ⴽⴽⵙ"
+    "title": "Queue",
+    "pending": "pending",
+    "empty": "Add applications to start your campaign.",
+    "remove": "Remove"
   },
   "results": {
-    "title": "ⵉⴳⵎⴰⴹ",
-    "sent": "ⵢⵜⵜⵡⴰⵣⵏ",
-    "failed": "ⵢⵓⴳⵉ"
+    "title": "Results",
+    "sent": "sent",
+    "failed": "failed"
   },
   "login": {
-    "title": "ⴰⵙⴰⵣⵏ ⵏ ⵉⵎⴰⵢⵍⵏ",
-    "subtitle": "ⴰⵡⵜⵎⴰⵜ ⵏ ⵜⵓⵣⵏⴰ ⵏ ⵉⵎⴰⵢⵍⵏ",
-    "secureConnection": "ⵜⵓⵇⵇⵏⴰ ⵜⴰⵖⵍⵙⴰⵏⵜ ⵙ Google",
-    "dataProtected": "ⵉⵙⴼⴽⴰ-ⵉⵏⴽ ⵜⵜⵡⴰⵃⵔⵣⵏ"
+    "title": "Email Sender",
+    "subtitle": "Automate your professional applications",
+    "secureConnection": "Secure connection with Google",
+    "dataProtected": "Your data is protected"
   },
   "messages": {
-    "addEmail": "ⵔⵏⵓ ⵢⵉⵡⵏ ⵏ ⵉⵎⴰⵢⵍ ⵅⵉⵔ",
-    "emailAdded": "ⴰⵙⵓⵜⵔ ⵢⵜⵜⵡⴰⵔⵏⴰ ⵙ ⵍⵊⵀⴷ",
-    "invalidEmail": "ⵜⴰⵍⵖⴰ ⵏ ⵉⵎⴰⵢⵍ ⴷ ⵜⴰⵔⴰⵎⵖⵜⵓⵜ",
-    "emailExists": "ⵉⵎⴰⵢⵍ-ⴰ ⵢⵍⵍⴰ ⵢⴰⴽⴰⵏ",
-    "configureSmtp": "ⵜⵜⵅⵉⵍ-ⴽ ⵙⵡⵍ ⴰⵡⴰⵍ ⵓⴼⴼⵉⵔ ⵏ ⵓⵙⵏⴰⵙ Gmail",
-    "cvFromProfile": "CV-ⵉⵏⴽ ⵏ ⵓⵎⴰⵖⵏⵓ ⴰⴷ ⵢⵜⵜⵡⴰⵙⵇⴷⵛ"
+    "addEmail": "Add at least one email",
+    "emailAdded": "Application added successfully",
+    "invalidEmail": "Invalid email format",
+    "emailExists": "This email already exists",
+    "configureSmtp": "Please configure your Gmail app password",
+    "cvFromProfile": "Your profile CV will be used"
+  },
+  "export": {
+    "downloadExcel": "Download Excel",
+    "downloading": "Downloading...",
+    "success": "File downloaded successfully",
+    "error": "Download error"
   }
 }
+

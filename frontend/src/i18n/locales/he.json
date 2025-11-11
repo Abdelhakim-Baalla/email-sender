@@ -1,13 +1,114 @@
-{
-  "app": { "title": "שולח דואר אלקטרוני", "subtitle": "אוטומציה של בקשות מקצועיות" },
-  "nav": { "newApplication": "בקשה חדשה", "queue": "תור", "send": "שלח", "logout": "התנתק" },
-  "hero": { "title": "עוזר בקשות עבודה", "description": "אוטומציה של קמפיינים מקצועיים, צרף קורות חיים ועקוב אחר הכל ב-Excel.", "getStarted": "התחל", "viewQueue": "הצג תור", "inQueue": "בתור", "sent": "נשלח" },
-  "form": { "company": "חברה", "position": "תפקיד", "email": "דוא\"ל ליצירת קשר", "location": "מיקום", "flexibility": "גמישות", "contractType": "סוג חוזה", "applicationMethod": "שיטת הגשה", "contactPerson": "איש קשר", "applyDate": "תאריך הגשה", "status": "סטטוס", "responseDate": "תאריך תגובה", "referral": "המלצה", "interviewDate": "תאריך ראיון", "inTouchPerson": "איש קשר", "salaryRange": "טווח שכר", "portfolio": "תיק עבודות", "linkedin": "לינקדאין", "phone": "טלפון", "notes": "הערות", "attachCV": "צרף קורות חיים (PDF)", "dryRun": "מצב סימולציה (ללא שליחת מיילים)", "realMode": "מצב אמיתי (מיילים יישלחו)", "addToQueue": "הוסף לתור", "optional": "אופציונלי" },
-  "profile": { "title": "פרופיל", "phone": "טלפון", "linkedin": "לינקדאין", "portfolio": "תיק עבודות", "cv": "קורות חיים (PDF)", "uploadCV": "לחץ להעלאת קורות חיים", "cancel": "ביטול", "save": "שמור", "saving": "שומר..." },
-  "smtp": { "title": "הגדרת SMTP של Gmail", "subtitle": "לשליחת מיילים מחשבון Gmail שלך", "instructions": "הוראות:", "step1": "הפעל אימות דו-שלבי בחשבון Google", "step2": "עבור ל-myaccount.google.com/apppasswords", "step3": "צור סיסמת אפליקציה בשם \"Email Sender\"", "step4": "העתק את הסיסמה בת 16 התווים והדבק למטה", "password": "סיסמת אפליקציה Gmail", "configured": "מוגדר", "notConfigured": "לא מוגדר", "modify": "שנה הגדרות Gmail", "configure": "הגדר Gmail לשליחה" },
-  "send": { "title": "בקרת שליחה", "numberOfEmails": "מספר מיילים לשליחה", "delay": "השהיה בין שליחות", "fast": "מהיר", "secure": "מאובטח", "sendButton": "שלח", "sending": "שולח...", "success": "מיילים נשלחו בהצלחה", "simulation": "סימולציה" },
-  "queue": { "title": "תור", "pending": "ממתין", "empty": "הוסף בקשות כדי להתחיל את הקמפיין שלך.", "remove": "הסר" },
-  "results": { "title": "תוצאות", "sent": "נשלח", "failed": "נכשל" },
-  "login": { "title": "שולח דואר אלקטרוני", "subtitle": "אוטומציה של בקשות מקצועיות", "secureConnection": "חיבור מאובטח עם Google", "dataProtected": "הנתונים שלך מוגנים" },
-  "messages": { "addEmail": "הוסף לפחות מייל אחד", "emailAdded": "בקשה נוספה בהצלחה", "invalidEmail": "פורמט מייל לא תקין", "emailExists": "מייל זה כבר קיים", "configureSmtp": "אנא הגדר את סיסמת האפליקציה של Gmail", "cvFromProfile": "קורות החיים מהפרופיל שלך ישמשו" }
+﻿{
+  "app": {
+    "title": "Email Sender",
+    "subtitle": "Automate your professional applications"
+  },
+  "nav": {
+    "newApplication": "New Application",
+    "queue": "Queue",
+    "send": "Send",
+    "logout": "Logout"
+  },
+  "hero": {
+    "title": "Job Application Assistant",
+    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
+    "getStarted": "Get Started",
+    "viewQueue": "View Queue",
+    "inQueue": "In Queue",
+    "sent": "Sent"
+  },
+  "form": {
+    "company": "Company",
+    "position": "Position",
+    "email": "Contact Email(s)",
+    "location": "Location",
+    "flexibility": "Flexibility",
+    "contractType": "Contract Type",
+    "applicationMethod": "Application Method",
+    "contactPerson": "Contact Person",
+    "applyDate": "Apply Date",
+    "status": "Status",
+    "responseDate": "Response Date",
+    "referral": "Referral",
+    "interviewDate": "Interview Date",
+    "inTouchPerson": "In-touch Person",
+    "salaryRange": "Salary Range",
+    "portfolio": "Portfolio",
+    "linkedin": "LinkedIn",
+    "phone": "Phone",
+    "notes": "Notes",
+    "attachCV": "Attach CV (PDF)",
+    "dryRun": "Simulation Mode (no emails sent)",
+    "realMode": "Real Mode (emails will be sent)",
+    "addToQueue": "Add to Queue",
+    "optional": "optional"
+  },
+  "profile": {
+    "title": "Profile",
+    "phone": "Phone",
+    "linkedin": "LinkedIn",
+    "portfolio": "Portfolio",
+    "cv": "CV (PDF)",
+    "uploadCV": "Click to upload your CV",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "smtp": {
+    "title": "Gmail SMTP Configuration",
+    "subtitle": "To send emails from your Gmail account",
+    "instructions": "Instructions:",
+    "step1": "Enable 2-factor authentication on your Google account",
+    "step2": "Go to myaccount.google.com/apppasswords",
+    "step3": "Create an app password named \"Email Sender\"",
+    "step4": "Copy the 16-character password and paste it below",
+    "password": "Gmail App Password",
+    "configured": "Configured",
+    "notConfigured": "Not Configured",
+    "modify": "Modify Gmail Configuration",
+    "configure": "Configure Gmail to Send"
+  },
+  "send": {
+    "title": "Send Control",
+    "numberOfEmails": "Number of Emails to Send",
+    "delay": "Delay Between Sends",
+    "fast": "Fast",
+    "secure": "Secure",
+    "sendButton": "Send",
+    "sending": "Sending...",
+    "success": "email(s) sent successfully",
+    "simulation": "simulation"
+  },
+  "queue": {
+    "title": "Queue",
+    "pending": "pending",
+    "empty": "Add applications to start your campaign.",
+    "remove": "Remove"
+  },
+  "results": {
+    "title": "Results",
+    "sent": "sent",
+    "failed": "failed"
+  },
+  "login": {
+    "title": "Email Sender",
+    "subtitle": "Automate your professional applications",
+    "secureConnection": "Secure connection with Google",
+    "dataProtected": "Your data is protected"
+  },
+  "messages": {
+    "addEmail": "Add at least one email",
+    "emailAdded": "Application added successfully",
+    "invalidEmail": "Invalid email format",
+    "emailExists": "This email already exists",
+    "configureSmtp": "Please configure your Gmail app password",
+    "cvFromProfile": "Your profile CV will be used"
+  },
+  "export": {
+    "downloadExcel": "Download Excel",
+    "downloading": "Downloading...",
+    "success": "File downloaded successfully",
+    "error": "Download error"
+  }
 }
+

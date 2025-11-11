@@ -1,1 +1,113 @@
-{"app":{"title":"Gửi Email","subtitle":"Tự động hóa đơn ứng tuyển chuyên nghiệp của bạn"},"nav":{"newApplication":"Đơn Mới","queue":"Hàng Đợi","send":"Gửi","logout":"Đăng Xuất"},"hero":{"title":"Trợ Lý Ứng Tuyển","description":"Tự động hóa chiến dịch email chuyên nghiệp, đính kèm CV và theo dõi mọi thứ trong Excel.","getStarted":"Bắt Đầu","viewQueue":"Xem Hàng Đợi","inQueue":"Trong Hàng Đợi","sent":"Đã Gửi"},"form":{"company":"Công Ty","position":"Vị Trí","email":"Email Liên Hệ","location":"Địa Điểm","flexibility":"Tính Linh Hoạt","contractType":"Loại Hợp Đồng","applicationMethod":"Phương Thức Ứng Tuyển","contactPerson":"Người Liên Hệ","applyDate":"Ngày Ứng Tuyển","status":"Trạng Thái","responseDate":"Ngày Phản Hồi","referral":"Giới Thiệu","interviewDate":"Ngày Phỏng Vấn","inTouchPerson":"Người Liên Lạc","salaryRange":"Mức Lương","portfolio":"Hồ Sơ Năng Lực","linkedin":"LinkedIn","phone":"Điện Thoại","notes":"Ghi Chú","attachCV":"Đính Kèm CV (PDF)","dryRun":"Chế Độ Mô Phỏng (không gửi email)","realMode":"Chế Độ Thực (email sẽ được gửi)","addToQueue":"Thêm Vào Hàng Đợi","optional":"tùy chọn"},"profile":{"title":"Hồ Sơ","phone":"Điện Thoại","linkedin":"LinkedIn","portfolio":"Hồ Sơ Năng Lực","cv":"CV (PDF)","uploadCV":"Nhấp để tải lên CV của bạn","cancel":"Hủy","save":"Lưu","saving":"Đang lưu..."},"smtp":{"title":"Cấu Hình Gmail SMTP","subtitle":"Để gửi email từ tài khoản Gmail của bạn","instructions":"Hướng dẫn:","step1":"Bật xác thực 2 yếu tố trên tài khoản Google của bạn","step2":"Truy cập myaccount.google.com/apppasswords","step3":"Tạo mật khẩu ứng dụng có tên \"Email Sender\"","step4":"Sao chép mật khẩu 16 ký tự và dán vào bên dưới","password":"Mật Khẩu Ứng Dụng Gmail","configured":"Đã Cấu Hình","notConfigured":"Chưa Cấu Hình","modify":"Sửa Đổi Cấu Hình Gmail","configure":"Cấu Hình Gmail Để Gửi"},"send":{"title":"Điều Khiển Gửi","numberOfEmails":"Số Lượng Email Cần Gửi","delay":"Độ Trễ Giữa Các Lần Gửi","fast":"Nhanh","secure":"An Toàn","sendButton":"Gửi","sending":"Đang gửi...","success":"email đã gửi thành công","simulation":"mô phỏng"},"queue":{"title":"Hàng Đợi","pending":"đang chờ","empty":"Thêm đơn ứng tuyển để bắt đầu chiến dịch của bạn.","remove":"Xóa"},"results":{"title":"Kết Quả","sent":"đã gửi","failed":"thất bại"},"login":{"title":"Gửi Email","subtitle":"Tự động hóa đơn ứng tuyển chuyên nghiệp của bạn","secureConnection":"Kết nối an toàn với Google","dataProtected":"Dữ liệu của bạn được bảo vệ"},"messages":{"addEmail":"Thêm ít nhất một email","emailAdded":"Đơn ứng tuyển đã được thêm","invalidEmail":"Định dạng email không hợp lệ","emailExists":"Email này đã tồn tại","configureSmtp":"Vui lòng cấu hình mật khẩu ứng dụng Gmail của bạn","cvFromProfile":"CV hồ sơ của bạn sẽ được sử dụng"}}
+﻿{
+  "app": {
+    "title": "Trình gửi Email",
+    "subtitle": "Tự động hóa hồ sơ ứng tuyển chuyên nghiệp"
+  },
+  "nav": {
+    "newApplication": "Ứng tuyển mới",
+    "queue": "Hàng chờ",
+    "send": "Gửi",
+    "logout": "Đăng xuất"
+  },
+  "hero": {
+    "title": "Trợ lý ứng tuyển",
+    "description": "Tự động hóa chiến dịch email ứng tuyển, đính kèm CV và theo dõi mọi việc trong Excel.",
+    "getStarted": "Bắt đầu",
+    "viewQueue": "Xem hàng chờ",
+    "inQueue": "Trong hàng chờ",
+    "sent": "Đã gửi"
+  },
+  "form": {
+    "company": "Công ty",
+    "position": "Vị trí",
+    "email": "Email liên hệ",
+    "location": "Địa điểm",
+    "flexibility": "Tính linh hoạt",
+    "contractType": "Loại hợp đồng",
+    "applicationMethod": "Phương thức ứng tuyển",
+    "contactPerson": "Người liên hệ",
+    "applyDate": "Ngày ứng tuyển",
+    "status": "Trạng thái",
+    "responseDate": "Ngày phản hồi",
+    "referral": "Giới thiệu",
+    "interviewDate": "Ngày phỏng vấn",
+    "inTouchPerson": "Người giữ liên lạc",
+    "salaryRange": "Mức lương",
+    "portfolio": "Hồ sơ năng lực",
+    "linkedin": "LinkedIn",
+    "phone": "Điện thoại",
+    "notes": "Ghi chú",
+    "attachCV": "Đính kèm CV (PDF)",
+    "dryRun": "Chế độ mô phỏng (không gửi email)",
+    "realMode": "Chế độ thật (email sẽ được gửi)",
+    "addToQueue": "Thêm vào hàng chờ",
+    "optional": "tùy chọn"
+  },
+  "profile": {
+    "title": "Hồ sơ",
+    "phone": "Điện thoại",
+    "linkedin": "LinkedIn",
+    "portfolio": "Hồ sơ năng lực",
+    "cv": "CV (PDF)",
+    "uploadCV": "Nhấn để tải lên CV",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "saving": "Đang lưu..."
+  },
+  "smtp": {
+    "title": "Cấu hình Gmail SMTP",
+    "subtitle": "Để gửi email từ tài khoản Gmail của bạn",
+    "instructions": "Hướng dẫn:",
+    "step1": "Bật xác thực hai bước cho tài khoản Google",
+    "step2": "Truy cập myaccount.google.com/apppasswords",
+    "step3": "Tạo mật khẩu ứng dụng tên \"Email Sender\"",
+    "step4": "Sao chép mật khẩu 16 ký tự và dán bên dưới",
+    "password": "Mật khẩu ứng dụng Gmail",
+    "configured": "Đã cấu hình",
+    "notConfigured": "Chưa cấu hình",
+    "modify": "Chỉnh sửa cấu hình Gmail",
+    "configure": "Cấu hình Gmail để gửi"
+  },
+  "send": {
+    "title": "Điều khiển gửi",
+    "numberOfEmails": "Số lượng email cần gửi",
+    "delay": "Độ trễ giữa các lượt gửi",
+    "fast": "Nhanh",
+    "secure": "An toàn",
+    "sendButton": "Gửi",
+    "sending": "Đang gửi...",
+    "success": "email đã gửi thành công",
+    "simulation": "mô phỏng"
+  },
+  "queue": {
+    "title": "Hàng chờ",
+    "pending": "đang chờ",
+    "empty": "Thêm ứng tuyển để bắt đầu chiến dịch.",
+    "remove": "Xóa"
+  },
+  "results": {
+    "title": "Kết quả",
+    "sent": "đã gửi",
+    "failed": "thất bại"
+  },
+  "login": {
+    "title": "Trình gửi Email",
+    "subtitle": "Tự động hóa hồ sơ ứng tuyển chuyên nghiệp",
+    "secureConnection": "Kết nối an toàn với Google",
+    "dataProtected": "Dữ liệu của bạn được bảo vệ"
+  },
+  "messages": {
+    "addEmail": "Thêm ít nhất một email",
+    "emailAdded": "Ứng tuyển đã được thêm",
+    "invalidEmail": "Định dạng email không hợp lệ",
+    "emailExists": "Email này đã tồn tại",
+    "configureSmtp": "Vui lòng cấu hình mật khẩu ứng dụng Gmail",
+    "cvFromProfile": "CV trong hồ sơ của bạn sẽ được sử dụng"
+  },
+  "export": {
+    "downloadExcel": "Tải Excel",
+    "downloading": "Đang tải...",
+    "success": "Tệp đã tải thành công",
+    "error": "Lỗi tải xuống"
+  }
+}

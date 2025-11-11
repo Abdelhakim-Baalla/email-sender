@@ -1,1 +1,114 @@
-{"app":{"title":"E-mailafsender","subtitle":"Automatiser dine professionelle ansøgninger"},"nav":{"newApplication":"Ny ansøgning","queue":"Kø","send":"Send","logout":"Log ud"},"hero":{"title":"Jobansøgningsassistent","description":"Automatiser professionelle e-mailkampagner, vedhæft dit CV og spor alt i Excel.","getStarted":"Kom i gang","viewQueue":"Vis kø","inQueue":"I kø","sent":"Sendt"},"form":{"company":"Virksomhed","position":"Stilling","email":"Kontakt e-mail","location":"Placering","flexibility":"Fleksibilitet","contractType":"Kontrakttype","applicationMethod":"Ansøgningsmetode","contactPerson":"Kontaktperson","applyDate":"Ansøgningsdato","status":"Status","responseDate":"Svardato","referral":"Reference","interviewDate":"Interviewdato","inTouchPerson":"Kontaktperson","salaryRange":"Løninterval","portfolio":"Portefølje","linkedin":"LinkedIn","phone":"Telefon","notes":"Noter","attachCV":"Vedhæft CV (PDF)","dryRun":"Simuleringstilstand (ingen e-mails sendes)","realMode":"Reel tilstand (e-mails vil blive sendt)","addToQueue":"Tilføj til kø","optional":"valgfrit"},"profile":{"title":"Profil","phone":"Telefon","linkedin":"LinkedIn","portfolio":"Portefølje","cv":"CV (PDF)","uploadCV":"Klik for at uploade dit CV","cancel":"Annuller","save":"Gem","saving":"Gemmer..."},"smtp":{"title":"Gmail SMTP-konfiguration","subtitle":"For at sende e-mails fra din Gmail-konto","instructions":"Instruktioner:","step1":"Aktiver tofaktorgodkendelse på din Google-konto","step2":"Gå til myaccount.google.com/apppasswords","step3":"Opret en app-adgangskode kaldet \"Email Sender\"","step4":"Kopier adgangskoden på 16 tegn og indsæt den nedenfor","password":"Gmail-appadgangskode","configured":"Konfigureret","notConfigured":"Ikke konfigureret","modify":"Rediger Gmail-konfiguration","configure":"Konfigurer Gmail til afsendelse"},"send":{"title":"Afsendelseskontrol","numberOfEmails":"Antal e-mails at sende","delay":"Forsinkelse mellem afsendelser","fast":"Hurtig","secure":"Sikker","sendButton":"Send","sending":"Sender...","success":"e-mail(s) sendt","simulation":"simulering"},"queue":{"title":"Kø","pending":"afventende","empty":"Tilføj ansøgninger for at starte din kampagne.","remove":"Fjern"},"results":{"title":"Resultater","sent":"sendt","failed":"mislykkedes"},"login":{"title":"E-mailafsender","subtitle":"Automatiser dine professionelle ansøgninger","secureConnection":"Sikker forbindelse med Google","dataProtected":"Dine data er beskyttede"},"messages":{"addEmail":"Tilføj mindst én e-mailadresse","emailAdded":"Ansøgning tilføjet","invalidEmail":"Ugyldigt e-mailformat","emailExists":"Denne e-mailadresse findes allerede","configureSmtp":"Konfigurer din Gmail-appadgangskode","cvFromProfile":"Dit profil-CV vil blive brugt"}}
+﻿{
+  "app": {
+    "title": "Email Sender",
+    "subtitle": "Automate your professional applications"
+  },
+  "nav": {
+    "newApplication": "New Application",
+    "queue": "Queue",
+    "send": "Send",
+    "logout": "Logout"
+  },
+  "hero": {
+    "title": "Job Application Assistant",
+    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
+    "getStarted": "Get Started",
+    "viewQueue": "View Queue",
+    "inQueue": "In Queue",
+    "sent": "Sent"
+  },
+  "form": {
+    "company": "Company",
+    "position": "Position",
+    "email": "Contact Email(s)",
+    "location": "Location",
+    "flexibility": "Flexibility",
+    "contractType": "Contract Type",
+    "applicationMethod": "Application Method",
+    "contactPerson": "Contact Person",
+    "applyDate": "Apply Date",
+    "status": "Status",
+    "responseDate": "Response Date",
+    "referral": "Referral",
+    "interviewDate": "Interview Date",
+    "inTouchPerson": "In-touch Person",
+    "salaryRange": "Salary Range",
+    "portfolio": "Portfolio",
+    "linkedin": "LinkedIn",
+    "phone": "Phone",
+    "notes": "Notes",
+    "attachCV": "Attach CV (PDF)",
+    "dryRun": "Simulation Mode (no emails sent)",
+    "realMode": "Real Mode (emails will be sent)",
+    "addToQueue": "Add to Queue",
+    "optional": "optional"
+  },
+  "profile": {
+    "title": "Profile",
+    "phone": "Phone",
+    "linkedin": "LinkedIn",
+    "portfolio": "Portfolio",
+    "cv": "CV (PDF)",
+    "uploadCV": "Click to upload your CV",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "smtp": {
+    "title": "Gmail SMTP Configuration",
+    "subtitle": "To send emails from your Gmail account",
+    "instructions": "Instructions:",
+    "step1": "Enable 2-factor authentication on your Google account",
+    "step2": "Go to myaccount.google.com/apppasswords",
+    "step3": "Create an app password named \"Email Sender\"",
+    "step4": "Copy the 16-character password and paste it below",
+    "password": "Gmail App Password",
+    "configured": "Configured",
+    "notConfigured": "Not Configured",
+    "modify": "Modify Gmail Configuration",
+    "configure": "Configure Gmail to Send"
+  },
+  "send": {
+    "title": "Send Control",
+    "numberOfEmails": "Number of Emails to Send",
+    "delay": "Delay Between Sends",
+    "fast": "Fast",
+    "secure": "Secure",
+    "sendButton": "Send",
+    "sending": "Sending...",
+    "success": "email(s) sent successfully",
+    "simulation": "simulation"
+  },
+  "queue": {
+    "title": "Queue",
+    "pending": "pending",
+    "empty": "Add applications to start your campaign.",
+    "remove": "Remove"
+  },
+  "results": {
+    "title": "Results",
+    "sent": "sent",
+    "failed": "failed"
+  },
+  "login": {
+    "title": "Email Sender",
+    "subtitle": "Automate your professional applications",
+    "secureConnection": "Secure connection with Google",
+    "dataProtected": "Your data is protected"
+  },
+  "messages": {
+    "addEmail": "Add at least one email",
+    "emailAdded": "Application added successfully",
+    "invalidEmail": "Invalid email format",
+    "emailExists": "This email already exists",
+    "configureSmtp": "Please configure your Gmail app password",
+    "cvFromProfile": "Your profile CV will be used"
+  },
+  "export": {
+    "downloadExcel": "Download Excel",
+    "downloading": "Downloading...",
+    "success": "File downloaded successfully",
+    "error": "Download error"
+  }
+}
+

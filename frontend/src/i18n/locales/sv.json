@@ -1,1 +1,114 @@
-{"app":{"title":"E-postskickare","subtitle":"Automatisera dina professionella ansökningar"},"nav":{"newApplication":"Ny ansökan","queue":"Kö","send":"Skicka","logout":"Logga ut"},"hero":{"title":"Jobbansökningsassistent","description":"Automatisera professionella e-postkampanjer, bifoga ditt CV och spåra allt i Excel.","getStarted":"Kom igång","viewQueue":"Visa kö","inQueue":"I kö","sent":"Skickat"},"form":{"company":"Företag","position":"Position","email":"Kontakt e-post","location":"Plats","flexibility":"Flexibilitet","contractType":"Kontraktstyp","applicationMethod":"Ansökningsmetod","contactPerson":"Kontaktperson","applyDate":"Ansökningsdatum","status":"Status","responseDate":"Svarsdatum","referral":"Referens","interviewDate":"Intervjudatum","inTouchPerson":"Kontaktperson","salaryRange":"Löneintervall","portfolio":"Portfölj","linkedin":"LinkedIn","phone":"Telefon","notes":"Anteckningar","attachCV":"Bifoga CV (PDF)","dryRun":"Simuleringsläge (inga e-postmeddelanden skickas)","realMode":"Verkligt läge (e-postmeddelanden kommer att skickas)","addToQueue":"Lägg till i kö","optional":"valfritt"},"profile":{"title":"Profil","phone":"Telefon","linkedin":"LinkedIn","portfolio":"Portfölj","cv":"CV (PDF)","uploadCV":"Klicka för att ladda upp ditt CV","cancel":"Avbryt","save":"Spara","saving":"Sparar..."},"smtp":{"title":"Gmail SMTP-konfiguration","subtitle":"För att skicka e-post från ditt Gmail-konto","instructions":"Instruktioner:","step1":"Aktivera tvåfaktorsautentisering på ditt Google-konto","step2":"Gå till myaccount.google.com/apppasswords","step3":"Skapa ett applösenord med namnet \"Email Sender\"","step4":"Kopiera lösenordet på 16 tecken och klistra in det nedan","password":"Gmail-applösenord","configured":"Konfigurerad","notConfigured":"Inte konfigurerad","modify":"Ändra Gmail-konfiguration","configure":"Konfigurera Gmail för att skicka"},"send":{"title":"Skickkontroll","numberOfEmails":"Antal e-postmeddelanden att skicka","delay":"Fördröjning mellan sändningar","fast":"Snabb","secure":"Säker","sendButton":"Skicka","sending":"Skickar...","success":"e-postmeddelande(n) skickade","simulation":"simulering"},"queue":{"title":"Kö","pending":"väntande","empty":"Lägg till ansökningar för att starta din kampanj.","remove":"Ta bort"},"results":{"title":"Resultat","sent":"skickat","failed":"misslyckades"},"login":{"title":"E-postskickare","subtitle":"Automatisera dina professionella ansökningar","secureConnection":"Säker anslutning med Google","dataProtected":"Dina data är skyddade"},"messages":{"addEmail":"Lägg till minst en e-postadress","emailAdded":"Ansökan tillagd","invalidEmail":"Ogiltigt e-postformat","emailExists":"Denna e-postadress finns redan","configureSmtp":"Konfigurera ditt Gmail-applösenord","cvFromProfile":"Ditt profil-CV kommer att användas"}}
+﻿{
+  "app": {
+    "title": "Email Sender",
+    "subtitle": "Automate your professional applications"
+  },
+  "nav": {
+    "newApplication": "New Application",
+    "queue": "Queue",
+    "send": "Send",
+    "logout": "Logout"
+  },
+  "hero": {
+    "title": "Job Application Assistant",
+    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
+    "getStarted": "Get Started",
+    "viewQueue": "View Queue",
+    "inQueue": "In Queue",
+    "sent": "Sent"
+  },
+  "form": {
+    "company": "Company",
+    "position": "Position",
+    "email": "Contact Email(s)",
+    "location": "Location",
+    "flexibility": "Flexibility",
+    "contractType": "Contract Type",
+    "applicationMethod": "Application Method",
+    "contactPerson": "Contact Person",
+    "applyDate": "Apply Date",
+    "status": "Status",
+    "responseDate": "Response Date",
+    "referral": "Referral",
+    "interviewDate": "Interview Date",
+    "inTouchPerson": "In-touch Person",
+    "salaryRange": "Salary Range",
+    "portfolio": "Portfolio",
+    "linkedin": "LinkedIn",
+    "phone": "Phone",
+    "notes": "Notes",
+    "attachCV": "Attach CV (PDF)",
+    "dryRun": "Simulation Mode (no emails sent)",
+    "realMode": "Real Mode (emails will be sent)",
+    "addToQueue": "Add to Queue",
+    "optional": "optional"
+  },
+  "profile": {
+    "title": "Profile",
+    "phone": "Phone",
+    "linkedin": "LinkedIn",
+    "portfolio": "Portfolio",
+    "cv": "CV (PDF)",
+    "uploadCV": "Click to upload your CV",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "smtp": {
+    "title": "Gmail SMTP Configuration",
+    "subtitle": "To send emails from your Gmail account",
+    "instructions": "Instructions:",
+    "step1": "Enable 2-factor authentication on your Google account",
+    "step2": "Go to myaccount.google.com/apppasswords",
+    "step3": "Create an app password named \"Email Sender\"",
+    "step4": "Copy the 16-character password and paste it below",
+    "password": "Gmail App Password",
+    "configured": "Configured",
+    "notConfigured": "Not Configured",
+    "modify": "Modify Gmail Configuration",
+    "configure": "Configure Gmail to Send"
+  },
+  "send": {
+    "title": "Send Control",
+    "numberOfEmails": "Number of Emails to Send",
+    "delay": "Delay Between Sends",
+    "fast": "Fast",
+    "secure": "Secure",
+    "sendButton": "Send",
+    "sending": "Sending...",
+    "success": "email(s) sent successfully",
+    "simulation": "simulation"
+  },
+  "queue": {
+    "title": "Queue",
+    "pending": "pending",
+    "empty": "Add applications to start your campaign.",
+    "remove": "Remove"
+  },
+  "results": {
+    "title": "Results",
+    "sent": "sent",
+    "failed": "failed"
+  },
+  "login": {
+    "title": "Email Sender",
+    "subtitle": "Automate your professional applications",
+    "secureConnection": "Secure connection with Google",
+    "dataProtected": "Your data is protected"
+  },
+  "messages": {
+    "addEmail": "Add at least one email",
+    "emailAdded": "Application added successfully",
+    "invalidEmail": "Invalid email format",
+    "emailExists": "This email already exists",
+    "configureSmtp": "Please configure your Gmail app password",
+    "cvFromProfile": "Your profile CV will be used"
+  },
+  "export": {
+    "downloadExcel": "Download Excel",
+    "downloading": "Downloading...",
+    "success": "File downloaded successfully",
+    "error": "Download error"
+  }
+}
+

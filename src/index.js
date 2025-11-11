@@ -340,6 +340,27 @@ app.post("/applications/send-batch", authenticateToken, async (req, res) => {
   });
 });
 
+// Route pour télécharger le fichier Excel
+app.get("/applications/download-excel", authenticateToken, async (req, res) => {
+  try {
+    const excelPath = process.env.EXCEL_OUTPUT_PATH || path.join(process.cwd(), 'logs', 'applications.xlsx');
+    
+    if (!fs.existsSync(excelPath)) {
+      return res.status(404).json({ error: "Aucun fichier Excel trouvé" });
+    }
+
+    res.download(excelPath, 'applications.xlsx', (err) => {
+      if (err) {
+        console.error('Erreur téléchargement:', err);
+        res.status(500).json({ error: "Erreur lors du téléchargement" });
+      }
+    });
+  } catch (error) {
+    console.error('Erreur:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.listen(port, () => {
   // Provide quick confirmation in logs when the service boots.
   console.log(`Email sender service listening on port ${port}`);

@@ -103,5 +103,11 @@
     "emailExists": "Cet email existe déjà",
     "configureSmtp": "Veuillez configurer votre mot de passe d'application Gmail",
     "cvFromProfile": "Votre CV du profil sera utilisé"
+  },
+  "export": {
+    "downloadExcel": "Télécharger Excel",
+    "downloading": "Téléchargement...",
+    "success": "Fichier téléchargé avec succès",
+    "error": "Erreur lors du téléchargement"
   }
 }

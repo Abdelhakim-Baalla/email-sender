@@ -1,107 +1,114 @@
-{
+﻿{
   "app": {
-    "title": "مرسل البريد الإلكتروني",
-    "subtitle": "أتمتة طلبات التوظيف الاحترافية"
+    "title": "Email Sender",
+    "subtitle": "Automate your professional applications"
   },
   "nav": {
-    "newApplication": "طلب جديد",
-    "queue": "قائمة الانتظار",
-    "send": "إرسال",
-    "logout": "تسجيل الخروج"
+    "newApplication": "New Application",
+    "queue": "Queue",
+    "send": "Send",
+    "logout": "Logout"
   },
   "hero": {
-    "title": "مساعد طلبات التوظيف",
-    "description": "أتمتة حملات البريد الإلكتروني الاحترافية، إرفاق سيرتك الذاتية، وتتبع كل شيء في Excel.",
-    "getStarted": "ابدأ الآن",
-    "viewQueue": "عرض القائمة",
-    "inQueue": "في الانتظار",
-    "sent": "تم الإرسال"
+    "title": "Job Application Assistant",
+    "description": "Automate professional email campaigns, attach your CV, and track everything in Excel.",
+    "getStarted": "Get Started",
+    "viewQueue": "View Queue",
+    "inQueue": "In Queue",
+    "sent": "Sent"
   },
   "form": {
-    "company": "الشركة",
-    "position": "المنصب",
-    "email": "البريد الإلكتروني للتواصل",
-    "location": "الموقع",
-    "flexibility": "المرونة",
-    "contractType": "نوع العقد",
-    "applicationMethod": "طريقة التقديم",
-    "contactPerson": "شخص الاتصال",
-    "applyDate": "تاريخ التقديم",
-    "status": "الحالة",
-    "responseDate": "تاريخ الرد",
-    "referral": "التوصية",
-    "interviewDate": "تاريخ المقابلة",
-    "inTouchPerson": "الشخص المتواصل",
-    "salaryRange": "نطاق الراتب",
-    "portfolio": "المحفظة",
-    "linkedin": "لينكد إن",
-    "phone": "الهاتف",
-    "notes": "ملاحظات",
-    "attachCV": "إرفاق السيرة الذاتية (PDF)",
-    "dryRun": "وضع المحاكاة (لن يتم إرسال رسائل)",
-    "realMode": "الوضع الحقيقي (سيتم إرسال الرسائل)",
-    "addToQueue": "إضافة إلى القائمة",
-    "optional": "اختياري"
+    "company": "Company",
+    "position": "Position",
+    "email": "Contact Email(s)",
+    "location": "Location",
+    "flexibility": "Flexibility",
+    "contractType": "Contract Type",
+    "applicationMethod": "Application Method",
+    "contactPerson": "Contact Person",
+    "applyDate": "Apply Date",
+    "status": "Status",
+    "responseDate": "Response Date",
+    "referral": "Referral",
+    "interviewDate": "Interview Date",
+    "inTouchPerson": "In-touch Person",
+    "salaryRange": "Salary Range",
+    "portfolio": "Portfolio",
+    "linkedin": "LinkedIn",
+    "phone": "Phone",
+    "notes": "Notes",
+    "attachCV": "Attach CV (PDF)",
+    "dryRun": "Simulation Mode (no emails sent)",
+    "realMode": "Real Mode (emails will be sent)",
+    "addToQueue": "Add to Queue",
+    "optional": "optional"
   },
   "profile": {
-    "title": "الملف الشخصي",
-    "phone": "الهاتف",
-    "linkedin": "لينكد إن",
-    "portfolio": "المحفظة",
-    "cv": "السيرة الذاتية (PDF)",
-    "uploadCV": "انقر لتحميل سيرتك الذاتية",
-    "cancel": "إلغاء",
-    "save": "حفظ",
-    "saving": "جاري الحفظ..."
+    "title": "Profile",
+    "phone": "Phone",
+    "linkedin": "LinkedIn",
+    "portfolio": "Portfolio",
+    "cv": "CV (PDF)",
+    "uploadCV": "Click to upload your CV",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
   },
   "smtp": {
-    "title": "إعداد SMTP لجيميل",
-    "subtitle": "لإرسال رسائل من حساب جيميل الخاص بك",
-    "instructions": "التعليمات:",
-    "step1": "قم بتفعيل المصادقة الثنائية على حساب جوجل",
-    "step2": "اذهب إلى myaccount.google.com/apppasswords",
-    "step3": "أنشئ كلمة مرور للتطبيق باسم \"Email Sender\"",
-    "step4": "انسخ كلمة المرور المكونة من 16 حرفاً والصقها أدناه",
-    "password": "كلمة مرور تطبيق جيميل",
-    "configured": "تم الإعداد",
-    "notConfigured": "لم يتم الإعداد",
-    "modify": "تعديل إعدادات جيميل",
-    "configure": "إعداد جيميل للإرسال"
+    "title": "Gmail SMTP Configuration",
+    "subtitle": "To send emails from your Gmail account",
+    "instructions": "Instructions:",
+    "step1": "Enable 2-factor authentication on your Google account",
+    "step2": "Go to myaccount.google.com/apppasswords",
+    "step3": "Create an app password named \"Email Sender\"",
+    "step4": "Copy the 16-character password and paste it below",
+    "password": "Gmail App Password",
+    "configured": "Configured",
+    "notConfigured": "Not Configured",
+    "modify": "Modify Gmail Configuration",
+    "configure": "Configure Gmail to Send"
   },
   "send": {
-    "title": "التحكم في الإرسال",
-    "numberOfEmails": "عدد الرسائل للإرسال",
-    "delay": "التأخير بين الإرسالات",
-    "fast": "سريع",
-    "secure": "آمن",
-    "sendButton": "إرسال",
-    "sending": "جاري الإرسال...",
-    "success": "تم إرسال الرسائل بنجاح",
-    "simulation": "محاكاة"
+    "title": "Send Control",
+    "numberOfEmails": "Number of Emails to Send",
+    "delay": "Delay Between Sends",
+    "fast": "Fast",
+    "secure": "Secure",
+    "sendButton": "Send",
+    "sending": "Sending...",
+    "success": "email(s) sent successfully",
+    "simulation": "simulation"
   },
   "queue": {
-    "title": "قائمة الانتظار",
-    "pending": "قيد الانتظار",
-    "empty": "أضف طلبات لبدء حملتك.",
-    "remove": "إزالة"
+    "title": "Queue",
+    "pending": "pending",
+    "empty": "Add applications to start your campaign.",
+    "remove": "Remove"
   },
   "results": {
-    "title": "النتائج",
-    "sent": "تم الإرسال",
-    "failed": "فشل"
+    "title": "Results",
+    "sent": "sent",
+    "failed": "failed"
   },
   "login": {
-    "title": "مرسل البريد الإلكتروني",
-    "subtitle": "أتمتة طلبات التوظيف الاحترافية",
-    "secureConnection": "اتصال آمن مع جوجل",
-    "dataProtected": "بياناتك محمية"
+    "title": "Email Sender",
+    "subtitle": "Automate your professional applications",
+    "secureConnection": "Secure connection with Google",
+    "dataProtected": "Your data is protected"
   },
   "messages": {
-    "addEmail": "أضف بريداً إلكترونياً واحداً على الأقل",
-    "emailAdded": "تمت إضافة الطلب بنجاح",
-    "invalidEmail": "تنسيق البريد الإلكتروني غير صالح",
-    "emailExists": "هذا البريد الإلكتروني موجود بالفعل",
-    "configureSmtp": "يرجى إعداد كلمة مرور تطبيق جيميل",
-    "cvFromProfile": "سيتم استخدام سيرتك الذاتية من الملف الشخصي"
+    "addEmail": "Add at least one email",
+    "emailAdded": "Application added successfully",
+    "invalidEmail": "Invalid email format",
+    "emailExists": "This email already exists",
+    "configureSmtp": "Please configure your Gmail app password",
+    "cvFromProfile": "Your profile CV will be used"
+  },
+  "export": {
+    "downloadExcel": "Download Excel",
+    "downloading": "Downloading...",
+    "success": "File downloaded successfully",
+    "error": "Download error"
   }
 }
+

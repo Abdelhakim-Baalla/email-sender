@@ -1,4 +1,4 @@
-{
+﻿{
   "app": {
     "title": "Email Sender",
     "subtitle": "Automate your professional applications"
@@ -103,5 +103,12 @@
     "emailExists": "This email already exists",
     "configureSmtp": "Please configure your Gmail app password",
     "cvFromProfile": "Your profile CV will be used"
+  },
+  "export": {
+    "downloadExcel": "Download Excel",
+    "downloading": "Downloading...",
+    "success": "File downloaded successfully",
+    "error": "Download error"
   }
 }
+
