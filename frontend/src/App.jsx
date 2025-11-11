@@ -55,6 +55,9 @@ export default function App() {
   const [successMessage, setSuccessMessage] = useState("");
   const [emailValidation, setEmailValidation] = useState({ valid: true, count: 0 });
   const [showQuickFill, setShowQuickFill] = useState(false);
+  const [emailInput, setEmailInput] = useState("");
+  const [emailList, setEmailList] = useState([]);
+  const [editingEmail, setEditingEmail] = useState(null);
 
   useEffect(() => {
     if (applications.length === 0) {
@@ -84,13 +87,39 @@ export default function App() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleAddEmail = () => {
+    const email = emailInput.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
-    if (name === 'to') {
-      const emails = value.split(',').map(e => e.trim()).filter(Boolean);
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const allValid = emails.every(e => emailRegex.test(e));
-      setEmailValidation({ valid: value === '' || allValid, count: emails.length });
+    if (!email) return;
+    
+    if (!emailRegex.test(email)) {
+      setError("Format d'email invalide");
+      return;
     }
+    
+    if (emailList.includes(email)) {
+      setError("Cet email existe déjà");
+      return;
+    }
+    
+    setEmailList([...emailList, email]);
+    setEmailInput("");
+    setError("");
+  };
+
+  const handleRemoveEmail = (email) => {
+    setEmailList(emailList.filter(e => e !== email));
+  };
+
+  const handleEditEmail = (oldEmail, newEmail) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(newEmail)) return;
+    
+    setEmailList(emailList.map(e => e === oldEmail ? newEmail : e));
+    setEditingEmail(null);
   };
 
   const handleFileChange = (event) => {
@@ -132,13 +161,8 @@ export default function App() {
     setError("");
     setSuccessMessage("");
 
-    if (!formData.to.trim()) {
-      setError("L'adresse e-mail du destinataire est obligatoire.");
-      return;
-    }
-
-    if (!emailValidation.valid) {
-      setError("Veuillez entrer des adresses e-mail valides.");
+    if (emailList.length === 0) {
+      setError("Ajoutez au moins un email");
       return;
     }
 
@@ -149,14 +173,15 @@ export default function App() {
 
     const entry = {
       ...formData,
+      to: emailList.join(', '),
       cvFile,
       createdAt: Date.now(),
     };
 
     setApplications((prev) => [...prev, entry]);
-    setSuccessMessage(`✓ Candidature ajoutée avec succès (${emailValidation.count} email${emailValidation.count > 1 ? 's' : ''})`);
+    setSuccessMessage(`✓ Candidature ajoutée avec succès (${emailList.length} email${emailList.length > 1 ? 's' : ''})`);
     resetForm();
-    setEmailValidation({ valid: true, count: 0 });
+    setEmailList([]);
   };
 
   const handleRemoveApplication = (index) => {
@@ -207,6 +232,7 @@ export default function App() {
       <header className="site-header">
         <div className="site-header__inner">
           <a href="#" className="brand">
+            <img src="/logo.png" alt="Logo" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
             <span className="brand__text">Email Sender</span>
           </a>
           <nav className="primary-nav">
@@ -432,32 +458,142 @@ export default function App() {
             />
           </div>
 
-          <div className="input-group">
+          <div className="input-group span-full">
             <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <span>Contact Email(s) *</span>
-              {emailValidation.count > 0 && (
+              {emailList.length > 0 && (
                 <motion.span 
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   className="status-badge success" 
                   style={{ fontSize: '0.7rem' }}
                 >
-                  {emailValidation.count} email{emailValidation.count > 1 ? 's' : ''}
+                  {emailList.length} email{emailList.length > 1 ? 's' : ''}
                 </motion.span>
               )}
             </label>
-            <input
-              name="to"
-              type="text"
-              placeholder="email1@company.com, email2@company.com"
-              value={formData.to}
-              onChange={handleInputChange}
-              style={{
-                borderColor: formData.to && !emailValidation.valid ? 'var(--color-error)' : undefined
-              }}
-            />
-            <small style={{ color: formData.to && !emailValidation.valid ? 'var(--color-error)' : 'var(--color-text-soft)', fontSize: '0.875rem', marginTop: '0.25rem' }}>
-              {formData.to && !emailValidation.valid ? '⚠ Format invalide' : '💡 Séparez par des virgules'}
+            <div style={{ display: 'flex', gap: 'var(--space-2)', alignItems: 'center' }}>
+              <input
+                type="text"
+                placeholder="email@company.com"
+                value={emailInput}
+                onChange={(e) => setEmailInput(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleAddEmail()}
+                style={{ flex: 1 }}
+              />
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                type="button"
+                onClick={handleAddEmail}
+                style={{
+                  width: '42px',
+                  height: '42px',
+                  borderRadius: 'var(--radius-xs)',
+                  background: 'var(--color-accent)',
+                  color: 'white',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold'
+                }}
+              >
+                +
+              </motion.button>
+            </div>
+            
+            <AnimatePresence>
+              {emailList.length > 0 && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  style={{ marginTop: 'var(--space-3)', display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}
+                >
+                  {emailList.map((email, index) => (
+                    <motion.div
+                      key={email}
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      style={{
+                        background: 'var(--color-accent-soft)',
+                        border: '1px solid var(--color-accent)',
+                        borderRadius: 'var(--radius-xs)',
+                        padding: 'var(--space-2) var(--space-3)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 'var(--space-2)'
+                      }}
+                    >
+                      {editingEmail === email ? (
+                        <input
+                          type="text"
+                          defaultValue={email}
+                          autoFocus
+                          onBlur={(e) => handleEditEmail(email, e.target.value)}
+                          onKeyPress={(e) => e.key === 'Enter' && handleEditEmail(email, e.target.value)}
+                          style={{
+                            background: 'transparent',
+                            border: 'none',
+                            outline: 'none',
+                            color: 'var(--color-text)',
+                            fontSize: '0.875rem',
+                            width: '200px'
+                          }}
+                        />
+                      ) : (
+                        <span style={{ fontSize: '0.875rem', color: 'var(--color-text)' }}>{email}</span>
+                      )}
+                      <motion.button
+                        whileHover={{ scale: 1.2 }}
+                        whileTap={{ scale: 0.8 }}
+                        type="button"
+                        onClick={() => setEditingEmail(email)}
+                        style={{
+                          background: 'transparent',
+                          border: 'none',
+                          cursor: 'pointer',
+                          padding: '2px',
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                      </motion.button>
+                      <motion.button
+                        whileHover={{ scale: 1.2 }}
+                        whileTap={{ scale: 0.8 }}
+                        type="button"
+                        onClick={() => handleRemoveEmail(email)}
+                        style={{
+                          background: 'transparent',
+                          border: 'none',
+                          cursor: 'pointer',
+                          padding: '2px',
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-error)" strokeWidth="2">
+                          <line x1="18" y1="6" x2="6" y2="18"/>
+                          <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                      </motion.button>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+            
+            <small style={{ color: 'var(--color-text-soft)', fontSize: '0.875rem', marginTop: '0.5rem', display: 'block' }}>
+              💡 Tapez un email et cliquez sur + pour l'ajouter
             </small>
           </div>
 
@@ -648,14 +784,14 @@ export default function App() {
               type="button" 
               className="btn btn--primary" 
               onClick={handleAddApplication}
-              disabled={!formData.to || !formData.company || !emailValidation.valid}
+              disabled={emailList.length === 0 || !formData.company}
               style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="12" y1="5" x2="12" y2="19"/>
                 <line x1="5" y1="12" x2="19" y2="12"/>
               </svg>
-              Ajouter
+              Ajouter à la file
             </motion.button>
           </div>
 
